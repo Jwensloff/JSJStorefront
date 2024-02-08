@@ -1,7 +1,7 @@
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client';
 
 export const LOAD_PRODUCTS = gql`
-query {
+  query {
     products {
       id
       title
@@ -15,4 +15,4 @@ query {
       }
     }
   }
-`
+`;
