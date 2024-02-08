@@ -1,9 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function page({ params }: { params: { slug: string } }) {
-  return (
-    <div>
-      individual id
-    </div>
-  )
+  return <div>individual id</div>;
 }

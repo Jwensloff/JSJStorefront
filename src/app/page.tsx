@@ -5,7 +5,7 @@ import ProductGrid from '../components/ProductGrid/ProductGrid';
 
 export default function Home() {
   return (
-    <main className='flex flex-col items-center'>
+    <main className="flex flex-col items-center">
       <Header />
       Hello world This is the landing page.
       <ProductGrid />

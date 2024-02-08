@@ -1,9 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function page() {
-  return (
-    <div>
-      Shopping cart
-    </div>
-  )
+  return <div>Shopping cart</div>;
 }
