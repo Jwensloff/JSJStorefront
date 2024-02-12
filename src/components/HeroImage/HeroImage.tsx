@@ -15,7 +15,11 @@ export default function HeroImage({ location }: HeroImageProps) {
             layout="fill"
             className="object-cover"
           />
-          <p className="">Find your style</p>
+          <div className="absolute text-white text-9xl h-[80%] left-[3rem] flex flex-col justify-evenly">
+            <p className=" ">Find</p>
+            <p className=" ">Your</p>
+            <p className=" ">Style</p>
+          </div>
         </div>
       );
     } else if (location === "mens") {
