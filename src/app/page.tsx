@@ -8,13 +8,7 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center w-screen">
       <Header />
-      <HeroImage
-        text={""}
-        src={"/woman_jumping.jpg"}
-        alt={"A woman jumping while holding an umbrella"}
-        textDecoration={""}
-        textContainerRules={""}
-      />
+      <HeroImage location={"landing"} />
       Hello world This is the landing page.
       <ProductGrid />
       <Footer />
