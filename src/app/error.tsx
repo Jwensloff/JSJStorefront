@@ -1,10 +1,7 @@
-'use client'
+"use client";
 
 function ErrorPage() {
-
-    console.error(Error)
-
-return <div>This is the error page</div>
+  return <div>This is the error page</div>;
 }
 
-export default ErrorPage
+export default ErrorPage;
