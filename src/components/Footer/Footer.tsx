@@ -16,10 +16,10 @@ export default function Footer() {
         <Link href="/womens" className="cursor-pointer hover:underline">
           Women&apos;s
         </Link>
-        <Link href="/womens" className="cursor-pointer hover:underline">
+        <Link href="/mens" className="cursor-pointer hover:underline">
           Men&apos;s
         </Link>
-        <Link href="/womens" className="cursor-pointer hover:underline">
+        <Link href="/jewelry" className="cursor-pointer hover:underline">
           Jewelry
         </Link>
       </div>

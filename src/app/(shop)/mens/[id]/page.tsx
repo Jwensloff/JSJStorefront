@@ -1,3 +1,3 @@
-export default function page({ params }: { params: { slug: string } }) {
+export default function page({ params }: { params: { slug: number } }) {
   return <div>individual id</div>;
 }
