@@ -9,10 +9,11 @@ export default function Home() {
     <main className="flex flex-col items-center w-screen">
       <Header />
       <HeroImage
-        text={"Here is some text"}
+        text={""}
         src={"/woman_jumping.jpg"}
         alt={"A woman jumping while holding an umbrella"}
-        textLocation={""}
+        textDecoration={""}
+        textContainerRules={""}
       />
       Hello world This is the landing page.
       <ProductGrid />
