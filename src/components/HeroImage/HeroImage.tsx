@@ -38,12 +38,20 @@ export default function HeroImage({ location }: HeroImageProps) {
       );
     } else if (location === "jewelry") {
       return (
-        <Image
-          src="https://images.pexels.com/photos/8003897/pexels-photo-8003897.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          alt="A photo showing the bottom half of a woman's face in order to focus on her earrings"
-          layout="fill"
-          className="object-cover"
-        />
+        <div>
+          <Image
+            src="https://images.pexels.com/photos/8003897/pexels-photo-8003897.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="A photo showing the bottom half of a woman's face in order to focus on her earrings"
+            layout="fill"
+            className="object-cover"
+          />
+          <div className="absolute text-white text-9xl h-[50vh] flex flex-col justify-between left-40 top-10">
+            <p>Just</p>
+            <p>Go</p>
+            <p>For</p>
+            <p>It</p>
+          </div>
+        </div>
       );
     } else if (location === "landing") {
       return (
