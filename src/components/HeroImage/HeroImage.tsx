@@ -16,20 +16,25 @@ export default function HeroImage({ location }: HeroImageProps) {
             className="object-cover"
           />
           <div className="absolute text-white text-9xl h-[80%] left-[3rem] flex flex-col justify-evenly">
-            <p className=" ">Find</p>
-            <p className=" ">Your</p>
-            <p className=" ">Style</p>
+            <p>Find</p>
+            <p>Your</p>
+            <p>Style</p>
           </div>
         </div>
       );
     } else if (location === "mens") {
       return (
-        <Image
-          src="https://images.pexels.com/photos/432059/pexels-photo-432059.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          alt="A black and white photo of a stylish man popping his colar"
-          layout="fill"
-          className="object-cover"
-        />
+        <div>
+          <Image
+            src="https://images.pexels.com/photos/432059/pexels-photo-432059.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="A black and white photo of a stylish man popping his colar"
+            layout="fill"
+            className="object-cover"
+          />
+          <div className="absolute w-[30vw] text-white text-8xl bottom-1/2 right-20">
+            <p>Be Authentic</p>
+          </div>
+        </div>
       );
     } else if (location === "jewelry") {
       return (
