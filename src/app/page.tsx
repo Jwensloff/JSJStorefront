@@ -18,23 +18,79 @@ const getLandingProductData = async () => {
 export default async function Home() {
   const products = await getLandingProductData()
 
-  const highestRatedProduct = products.reduce(
-    (prev: { rating: {rate: number} }, current: { rating: { rate: number}}) =>
-      prev.rating.rate > current.rating.rate ? prev : current
+  // i need to create a function to remove all producst with the category of 'electronics'
+  const updatedProductList = products.filter(
+    (product: { category: string }) => product.category !== 'electronics'
   )
 
-  const productUnder100 = products.find((product: { price: number }) => product.price < 100)
+  // i need to create a function to find the highest rated product
+  const highestRatedProduct = updatedProductList.reduce(
+    (
+      prev: { rating: { rate: number } },
+      current: { rating: { rate: number } }
+    ) => (prev.rating.rate > current.rating.rate ? prev : current)
+  )
 
-  const productWithGold = products.find((product: { title: string }) => product.title.includes('Gold'))
-  
+  // i need to create a function to find the first product with a price under 100
+  const productUnder100 = updatedProductList.find(
+    (product: { price: number }) => product.price < 100
+  )
+
+  // i need to create a function to find the first product with the word 'gold' in the title
+  const productWithGold = updatedProductList.find(
+    (product: { title: string }) => product.title.includes('Gold')
+  )
+
+  // i need to create a function to return an html element for each product
+  const createHTMLElement = (product: {
+    id: number
+    title: string
+    price: number
+    image: string
+    rating: { rate: number }
+  }) => {
+    return (
+      <div key={product.id} className="flex flex-col items-center justify-evenly bg-white p-6 max-w-[400px] min-h-[400px]">
+        <Image
+          src={product.image}
+          alt={product.title}
+          width={200}
+          height={200}
+          className='max-w-[200px] max-h-[200px]'
+        />
+        <p className='w-4/5 text-center'>{product.title}</p>
+        <p>${product.price}</p>
+        <p>{product.rating.rate} </p>
+      </div>
+    )
+  }
 
   return (
     <main className="flex flex-col items-center w-screen">
       <Header />
       <HeroImage location={'landing'} />
-      Hello world This is the landing page.
-      <div>{products[1].id}</div>
+      <div className='w-screen h-auto'>
+        <div className='mt-20 mb-20 flex flex-row justify-evenly items-center '>
+          <h2 className='text-4xl'>Shop Top Rated</h2>
+          <div className='bg-black w-[35rem] h-[35rem] transform rotate-6'>
+          <div className='flex h-full items-center flex-col justify-center transform rotate-[-6deg]'>{createHTMLElement(highestRatedProduct)}</div>
+          </div>
+        </div>
+        <div className='mt-20 mb-20 flex flex-row justify-evenly items-center '>
+          <div className='bg-black w-[35rem] h-[35rem] transform rotate-[-6deg]'>
+          <div className='flex h-full items-center flex-col justify-center transform rotate-6'>{createHTMLElement(productUnder100)}</div>
+          </div>
+          <h2 className='text-4xl'>Shop Under $100</h2>
+        </div>
+        <div className='mt-20 mb-20 flex flex-row justify-evenly items-center '>
+          <h2 className='text-4xl'>Shop Gold</h2>
+          <div className='bg-black w-[35rem] h-[35rem] transform rotate-6'>
+          <div className='flex h-full items-center flex-col justify-center transform rotate-[-6deg]'>{createHTMLElement(productWithGold)}</div>
+          </div>
+        </div>
+      </div>
       <Footer />
     </main>
   )
 }
+
