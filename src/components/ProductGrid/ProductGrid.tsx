@@ -37,5 +37,5 @@ export default function ProductGrid({ data }: ProductGridProps) {
       </p>
     </Link>
   ));
-  return <div className="grid grid-cols-3 gap-24 p-5">{products}</div>;
+  return <div className="grid grid-cols-4 gap-8 p-5">{products}</div>;
 }
