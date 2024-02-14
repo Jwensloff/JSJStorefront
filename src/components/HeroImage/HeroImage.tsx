@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface HeroImageProps {
   location: string;
@@ -63,15 +64,24 @@ export default function HeroImage({ location }: HeroImageProps) {
             className="object-cover"
           />
           <div className="absolute w-screen flex justify-evenly top-1/3">
-            <button className=" w-[12rem] h-[4rem] bg-black text-white text-xl">
+            <Link
+              href={`/top-rated`}
+              className="flex justify-center items-center w-[12rem] h-[4rem] text-center bg-black text-white text-xl"
+            >
               Shop Top Rated
-            </button>
-            <button className=" w-[12rem] h-[4rem] bg-black text-white text-xl">
+            </Link>
+            <Link
+              href={`/sale`}
+              className="flex justify-center items-center w-[12rem] h-[4rem] text-center bg-black text-white text-xl"
+            >
               Shop Sale
-            </button>
-            <button className=" w-[12rem] h-[4rem] bg-black text-white text-xl">
+            </Link>
+            <Link
+              href={`/gold`}
+              className="flex justify-center items-center w-[12rem] h-[4rem]  bg-black text-white text-xl"
+            >
               Shop Gold
-            </button>
+            </Link>
           </div>
         </div>
       );

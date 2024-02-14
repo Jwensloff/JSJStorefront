@@ -21,7 +21,7 @@ export default async function page() {
     <div>
       <Header />
       <HeroImage location={"jewelry"} />
-      <ProductGrid data={data} href={"jewelry"} />
+      <ProductGrid data={data} />
       <Footer />
     </div>
   );
