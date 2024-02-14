@@ -1,3 +1,5 @@
-export default function page({ params }: { params: { slug: number } }) {
-  return <div>individual id</div>;
+export default function page({ params }: { params: { id: number } }) {
+  const { id } = params;
+
+  return <div>{id}</div>;
 }
