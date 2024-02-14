@@ -21,7 +21,7 @@ export default async function WomensPage() {
     <div>
       <Header />
       <HeroImage location={"womens"} />
-      <ProductGrid data={womensClothing}/>
+      <ProductGrid data={womensClothing} />
       <Footer />
     </div>
   );
