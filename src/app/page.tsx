@@ -10,7 +10,6 @@ export default function Home() {
       <Header />
       <HeroImage location={"landing"} />
       Hello world This is the landing page.
-      <ProductGrid />
       <Footer />
     </main>
   );
