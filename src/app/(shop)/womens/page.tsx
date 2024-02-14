@@ -5,7 +5,7 @@ import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
 
 const getWomensClothing = async () => {
   const response = await fetch(
-    "https://fakestoreapi.com/products/category/women's clothing",
+    "https://fakestoreapi.com/products/category/women's clothing"
   );
 
   if (!response.ok) {
@@ -17,13 +17,11 @@ const getWomensClothing = async () => {
 
 export default async function WomensPage() {
   const womensClothing = await getWomensClothing();
-  /* eslint-disable no-console */
-  console.log("count: %d", womensClothing);
-  /* eslint-enable no-console */ return (
+  return (
     <div>
       <Header />
       <HeroImage location={"womens"} />
-      <ProductGrid />
+      <ProductGrid data={womensClothing} href={"womens"} />
       <Footer />
     </div>
   );
