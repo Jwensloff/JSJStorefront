@@ -7,15 +7,14 @@ import Link from "next/link";
 
 interface ProductGridProps {
   data: ProductTypes[] | [];
-  href: string;
 }
 
-export default function ProductGrid({ data, href }: ProductGridProps) {
+export default function ProductGrid({ data }: ProductGridProps) {
   const [allProducts, setAllProducts] = useState<ProductTypes[]>(data);
 
   const products = allProducts?.map((product) => (
     <Link
-      href={`/${href}/${product.id}`}
+      href={`/product/${product.id}`}
       key={product.id}
       className="flex-col max-w-80 max-h-96"
     >

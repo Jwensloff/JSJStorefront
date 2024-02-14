@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import HeroImage from '../components/HeroImage/HeroImage'
+import Link from 'next/link'
 
 // fetch all product data
 const getLandingProductData = async () => {
@@ -48,20 +49,27 @@ export default async function Home() {
     price: number
     image: string
     rating: { rate: number }
+    category: string
   }) => {
+
+
     return (
-      <div key={product.id} className="flex flex-col items-center justify-evenly bg-white p-6 max-w-[400px] min-h-[400px]">
+      <Link
+        key={product.id}
+        href={`/product/${product.id}`}
+        className="flex flex-col items-center justify-evenly bg-white p-6 max-w-[400px] min-h-[400px]"
+      >
         <Image
           src={product.image}
           alt={product.title}
           width={200}
           height={200}
-          className='max-w-[200px] max-h-[200px]'
+          className="max-w-[200px] max-h-[200px]"
         />
-        <p className='w-4/5 text-center'>{product.title}</p>
+        <p className="w-4/5 text-center">{product.title}</p>
         <p>${product.price}</p>
         <p>{product.rating.rate} </p>
-      </div>
+      </Link>
     )
   }
 
@@ -69,23 +77,29 @@ export default async function Home() {
     <main className="flex flex-col items-center w-screen">
       <Header />
       <HeroImage location={'landing'} />
-      <div className='w-screen h-auto'>
-        <div className='mt-20 mb-20 flex flex-row justify-evenly items-center '>
-          <h2 className='text-4xl'>Shop Top Rated</h2>
-          <div className='bg-black w-[35rem] h-[35rem] transform rotate-6'>
-          <div className='flex h-full items-center flex-col justify-center transform rotate-[-6deg]'>{createHTMLElement(highestRatedProduct)}</div>
+      <div className="w-screen h-auto">
+        <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
+          <h2 className="text-4xl">Shop Top Rated</h2>
+          <div className="bg-black w-[35rem] h-[35rem] transform rotate-6">
+            <div className="flex h-full items-center flex-col justify-center transform rotate-[-6deg]">
+              {createHTMLElement(highestRatedProduct)}
+            </div>
           </div>
         </div>
-        <div className='mt-20 mb-20 flex flex-row justify-evenly items-center '>
-          <div className='bg-black w-[35rem] h-[35rem] transform rotate-[-6deg]'>
-          <div className='flex h-full items-center flex-col justify-center transform rotate-6'>{createHTMLElement(productUnder100)}</div>
+        <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
+          <div className="bg-black w-[35rem] h-[35rem] transform rotate-[-6deg]">
+            <div className="flex h-full items-center flex-col justify-center transform rotate-6">
+              {createHTMLElement(productUnder100)}
+            </div>
           </div>
-          <h2 className='text-4xl'>Shop Under $100</h2>
+          <h2 className="text-4xl">Shop Sale Items</h2>
         </div>
-        <div className='mt-20 mb-20 flex flex-row justify-evenly items-center '>
-          <h2 className='text-4xl'>Shop Gold</h2>
-          <div className='bg-black w-[35rem] h-[35rem] transform rotate-6'>
-          <div className='flex h-full items-center flex-col justify-center transform rotate-[-6deg]'>{createHTMLElement(productWithGold)}</div>
+        <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
+          <h2 className="text-4xl">Shop Gold</h2>
+          <div className="bg-black w-[35rem] h-[35rem] transform rotate-6">
+            <div className="flex h-full items-center flex-col justify-center transform rotate-[-6deg]">
+              {createHTMLElement(productWithGold)}
+            </div>
           </div>
         </div>
       </div>
@@ -93,4 +107,3 @@ export default async function Home() {
     </main>
   )
 }
-
