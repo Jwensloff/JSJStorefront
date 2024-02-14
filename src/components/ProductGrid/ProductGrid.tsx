@@ -19,6 +19,9 @@ export default function ProductGrid({ data, href }: ProductGridProps) {
       key={product.id}
       className="flex-col max-w-80 max-h-96"
     >
+      {/* I changed this from a div to a link so when a user clicks on a
+       product it will navigate to the individual product page */}
+
       <div className="grid justify-center pb-4">
         <Image
           src={product.image}
