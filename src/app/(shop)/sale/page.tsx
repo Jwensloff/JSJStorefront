@@ -2,7 +2,7 @@ import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
 
-const getTopRated = async () => {
+const getAllProducts = async () => {
   "use server";
   const response = await fetch(`https://fakestoreapi.com/products`);
 
@@ -14,14 +14,11 @@ const getTopRated = async () => {
 };
 
 export default async function Sale() {
-  const allProducts = await getTopRated();
+  const allProducts = await getAllProducts();
 
-  const productsWithGold = allProducts?.map(
-    (product: { title: string; category: string }) => {
-      if (
-        product.category !== "electronics" &&
-        product.title.includes("Gold")
-      ) {
+  const productsOnSale = allProducts?.map(
+    (product: { price: number; category: string }) => {
+      if (product.category !== "electronics" && product.price <= 100) {
         return product;
       }
     },
@@ -30,7 +27,7 @@ export default async function Sale() {
   return (
     <div>
       <Header />
-      <ProductGrid data={productsWithGold} />
+      <ProductGrid data={productsOnSale} />
       <Footer />
     </div>
   );

@@ -2,7 +2,7 @@ import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
 
-const getTopRated = async () => {
+const getTopRatedProducts = async () => {
   "use server";
   const response = await fetch(`https://fakestoreapi.com/products`);
 
@@ -13,8 +13,8 @@ const getTopRated = async () => {
   return response.json();
 };
 
-export default async function Sale() {
-  const allProducts = await getTopRated();
+export default async function TopRated() {
+  const allProducts = await getTopRatedProducts();
 
   const highestRatedProducts = allProducts?.filter(
     (product: { rating: { rate: number }; category: string }) => {
