@@ -5,7 +5,7 @@ import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
 
 const getWomensClothing = async () => {
   const response = await fetch(
-    "https://fakestoreapi.com/products/category/women's clothing",
+    "https://fakestoreapi.com/products/category/women's clothing"
   );
 
   if (!response.ok) {
