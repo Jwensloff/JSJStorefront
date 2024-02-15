@@ -21,25 +21,25 @@ export default async function Home() {
 
   // i need to create a function to remove all producst with the category of 'electronics'
   const updatedProductList = products.filter(
-    (product: { category: string }) => product.category !== "electronics"
+    (product: { category: string }) => product.category !== "electronics",
   );
 
   // i need to create a function to find the highest rated product
   const highestRatedProduct = updatedProductList.reduce(
     (
       prev: { rating: { rate: number } },
-      current: { rating: { rate: number } }
-    ) => (prev.rating.rate > current.rating.rate ? prev : current)
+      current: { rating: { rate: number } },
+    ) => (prev.rating.rate > current.rating.rate ? prev : current),
   );
 
   // i need to create a function to find the first product with a price under 100
   const productUnder100 = updatedProductList.find(
-    (product: { price: number }) => product.price < 100
+    (product: { price: number }) => product.price < 100,
   );
 
   // i need to create a function to find the first product with the word 'gold' in the title
   const productWithGold = updatedProductList.find(
-    (product: { title: string }) => product.title.includes("Gold")
+    (product: { title: string }) => product.title.includes("Gold"),
   );
 
   // i need to create a function to return an html element for each product
