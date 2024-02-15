@@ -16,11 +16,16 @@ const getTopRated = async () => {
 export default async function Sale() {
   const allProducts = await getTopRated();
 
-  const productsWithGold = allProducts?.map((product: { rating: string }) => {
-    if (product.rating !== "electronics") {
-      return product;
-    }
-  });
+  const productsWithGold = allProducts?.map(
+    (product: { title: string; category: string }) => {
+      if (
+        product.category !== "electronics" &&
+        product.title.includes("Gold")
+      ) {
+        return product;
+      }
+    },
+  );
 
   return (
     <div>
