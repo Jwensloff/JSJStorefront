@@ -3,6 +3,7 @@ import { ProductTypes } from "@/src/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import HeroImage from "../HeroImage/HeroImage";
 
 interface LandingProps {
   // Define the type of the products prop
@@ -70,37 +71,40 @@ export const Landing: React.FC<LandingProps> = ({ products }) => {
   };
 
   return (
-    <div className="w-screen h-auto">
-      <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
-        <Link href={`/top-rated`} className="text-4xl">
-          Shop Top Rated
-        </Link>
-        <div className="bg-black w-[35rem] h-[35rem] transform rotate-6">
-          <div className="flex h-full items-center flex-col justify-center transform rotate-[-6deg]">
-            {highestRatedProduct && createHTMLElement(highestRatedProduct)}
+    <>
+      <HeroImage location={"landing"} />
+      <div className="w-screen h-auto">
+        <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
+          <Link href={`/top-rated`} className="text-4xl">
+            Shop Top Rated
+          </Link>
+          <div className="bg-black w-[35rem] h-[35rem] transform rotate-6">
+            <div className="flex h-full items-center flex-col justify-center transform rotate-[-6deg]">
+              {highestRatedProduct && createHTMLElement(highestRatedProduct)}
+            </div>
+          </div>
+        </div>
+        <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
+          <div className="bg-black w-[35rem] h-[35rem] transform rotate-[-6deg]">
+            <div className="flex h-full items-center flex-col justify-center transform rotate-6">
+              {productUnder100 && createHTMLElement(productUnder100)}
+            </div>
+          </div>
+          <Link href={`/sale`} className="text-4xl">
+            Shop Sale Items
+          </Link>
+        </div>
+        <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
+          <Link href={`/gold`} className="text-4xl">
+            Shop Gold
+          </Link>
+          <div className="bg-black w-[35rem] h-[35rem] transform rotate-6">
+            <div className="flex h-full items-center flex-col justify-center transform rotate-[-6deg]">
+              {productWithGold && createHTMLElement(productWithGold)}
+            </div>
           </div>
         </div>
       </div>
-      <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
-        <div className="bg-black w-[35rem] h-[35rem] transform rotate-[-6deg]">
-          <div className="flex h-full items-center flex-col justify-center transform rotate-6">
-            {productUnder100 && createHTMLElement(productUnder100)}
-          </div>
-        </div>
-        <Link href={`/sale`} className="text-4xl">
-          Shop Sale Items
-        </Link>
-      </div>
-      <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
-        <Link href={`/gold`} className="text-4xl">
-          Shop Gold
-        </Link>
-        <div className="bg-black w-[35rem] h-[35rem] transform rotate-6">
-          <div className="flex h-full items-center flex-col justify-center transform rotate-[-6deg]">
-            {productWithGold && createHTMLElement(productWithGold)}
-          </div>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };

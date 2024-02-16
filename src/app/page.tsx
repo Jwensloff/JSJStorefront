@@ -1,8 +1,5 @@
-import Image from "next/image";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import HeroImage from "../components/HeroImage/HeroImage";
-import Link from "next/link";
 import { Landing } from "../components/Landing/Landing";
 
 // fetch all product data
@@ -23,7 +20,6 @@ export default async function Home() {
   return (
     <main className="flex flex-col items-center w-screen">
       <Header />
-      <HeroImage location={"landing"} />
       <Landing products={products} />
       <Footer />
     </main>
