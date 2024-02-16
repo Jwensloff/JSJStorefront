@@ -1,56 +1,53 @@
-'use client';
-import { ProductTypes } from '@/src/types'
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+"use client";
+import { ProductTypes } from "@/src/types";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 interface LandingProps {
-    // Define the type of the products prop
-    products: ProductTypes[];
-  }
-  
- export const Landing: React.FC<LandingProps> = ({ products }) => {
+  // Define the type of the products prop
+  products: ProductTypes[];
+}
 
-// export default function Landing({ products }: ProductTypes[] ) {
+export const Landing: React.FC<LandingProps> = ({ products }) => {
+  // export default function Landing({ products }: ProductTypes[] ) {
 
   const addToLocalStorage = (productToLocal: ProductTypes[]) => {
-    let productArray = JSON.stringify(productToLocal)
-    localStorage.setItem('judy', productArray)
-  }
+    let productArray = JSON.stringify(productToLocal);
+    localStorage.setItem("judy", productArray);
+  };
 
   // i need to create a function to remove all producst with the category of 'electronics'
   const updatedProductList: ProductTypes[] = products.filter(
-    (product: ProductTypes) => product.category !== 'electronics'
-  )
-  addToLocalStorage(updatedProductList)
+    (product: ProductTypes) => product.category !== "electronics",
+  );
+  addToLocalStorage(updatedProductList);
 
   // i need to create a function to find the highest rated product
   const highestRatedProduct = updatedProductList?.reduce(
-    (
-      prev: ProductTypes,
-      current: ProductTypes
-    ) => (prev.rating.rate > current.rating.rate ? prev : current)
-  )
+    (prev: ProductTypes, current: ProductTypes) =>
+      prev.rating.rate > current.rating.rate ? prev : current,
+  );
 
   // i need to create a function to find the first product with a price under 100
   const productUnder100 = updatedProductList?.find(
-    (product: { price: number }) => product.price < 100
-  )
+    (product: { price: number }) => product.price < 100,
+  );
 
   // i need to create a function to find the first product with the word 'gold' in the title
   const productWithGold = updatedProductList?.find(
-    (product: { title: string }) => product.title.includes('Gold')
-  )
+    (product: { title: string }) => product.title.includes("Gold"),
+  );
 
   // i need to create a function to return an html element for each product
   const createHTMLElement = (product: {
-    id: number
-    title: string
-    price: number
-    description: string
-    image: string
-    rating: { rate: number, count: number}
-    category: string
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    image: string;
+    rating: { rate: number; count: number };
+    category: string;
   }) => {
     return (
       <Link
@@ -69,8 +66,8 @@ interface LandingProps {
         <p>${product.price}</p>
         <p>{product.rating.rate} </p>
       </Link>
-    )
-  }
+    );
+  };
 
   return (
     <div className="w-screen h-auto">
@@ -105,5 +102,5 @@ interface LandingProps {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -5,7 +5,6 @@ import HeroImage from "../components/HeroImage/HeroImage";
 import Link from "next/link";
 import { Landing } from "../components/Landing/Landing";
 
-
 // fetch all product data
 const getLandingProductData = async () => {
   "use server";
@@ -20,13 +19,10 @@ const getLandingProductData = async () => {
 
 export default async function Home() {
   const products = await getLandingProductData();
-  console.log(products);
-
-  
 
   return (
     <main className="flex flex-col items-center w-screen">
-      <Header /> 
+      <Header />
       <HeroImage location={"landing"} />
       <Landing products={products} />
       <Footer />
