@@ -18,7 +18,9 @@ export default function Header() {
 
   return (
     <header className="flex flex-row justify-between  items-center text-center w-screen border border-black">
-      <h1 className="text-7xl bg-gray-custom p-5">JSJ</h1>
+      <Link href={"/"} className="text-7xl bg-gray-custom p-5">
+        JSJ
+      </Link>
       <>
         <ul className="flex space-x-6 text-2xl">
           {categories.map((cat) => (
