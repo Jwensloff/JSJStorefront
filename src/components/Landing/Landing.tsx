@@ -11,11 +11,12 @@ interface LandingProps {
 }
 
 export const Landing: React.FC<LandingProps> = ({ products }) => {
-  // export default function Landing({ products }: ProductTypes[] ) {
-
   const addToLocalStorage = (productToLocal: ProductTypes[]) => {
-    let productArray = JSON.stringify(productToLocal);
-    localStorage.setItem("judy", productArray);
+    if (typeof window !== "undefined") {
+      let localStorage = window.localStorage;
+      let productArray = JSON.stringify(productToLocal);
+      localStorage.setItem("allProductsArray", productArray);
+    }
   };
 
   // i need to create a function to remove all producst with the category of 'electronics'
