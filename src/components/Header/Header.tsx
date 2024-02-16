@@ -1,6 +1,10 @@
+"use client";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 export default function Header() {
+  const pathname = usePathname();
+
   const categories = [
     {
       name: "Women's",
@@ -26,7 +30,7 @@ export default function Header() {
           {categories.map((cat) => (
             <li key={cat.name}>
               <Link
-                className="font-extrabold cursor-pointer hover:underline"
+                className={`${pathname === cat.link ? "underline" : ""} font-extrabold cursor-pointer hover:underline`}
                 href={cat.link}
               >
                 {cat.name}
