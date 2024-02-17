@@ -17,7 +17,6 @@ const getLandingProductData = async () => {
 
 export default async function Home() {
   const products = await getLandingProductData();
-  console.log("products", products)
 
   return (
     <main className="flex flex-col items-center w-screen">
