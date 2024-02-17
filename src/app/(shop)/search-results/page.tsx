@@ -1,31 +1,31 @@
-'use client'
-import Footer from '@/src/components/Footer/Footer'
-import Header from '@/src/components/Header/Header'
-import ProductGrid from '@/src/components/ProductGrid/ProductGrid'
-import { ProductTypes } from '@/src/types'
-import { useSearchParams } from 'next/navigation'
-import { Suspense, useEffect, useState } from 'react'
+"use client";
+import Footer from "@/src/components/Footer/Footer";
+import Header from "@/src/components/Header/Header";
+import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
+import { ProductTypes } from "@/src/types";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 
 export default function SearchResults() {
-  const [allProducts, setAllProducts] = useState<ProductTypes[]>()
-  const searchParams = useSearchParams()
-  const search = searchParams?.get('search')
+  const [allProducts, setAllProducts] = useState<ProductTypes[]>();
+  const searchParams = useSearchParams();
+  const search = searchParams?.get("search");
 
   useEffect(() => {
     const getUpdatedProductList = () => {
-      if (typeof window !== 'undefined') {
-        let localStorage = window.localStorage
-        let productArray = localStorage.getItem('allProductsArray')
+      if (typeof window !== "undefined") {
+        let localStorage = window.localStorage;
+        let productArray = localStorage.getItem("allProductsArray");
 
         if (productArray) {
-          return JSON.parse(productArray)
+          return JSON.parse(productArray);
         }
       }
-    }
+    };
 
-    const updatedProducts = getUpdatedProductList()
-    setAllProducts(updatedProducts)
-  }, [])
+    const updatedProducts = getUpdatedProductList();
+    setAllProducts(updatedProducts);
+  }, []);
 
   const searchedProducts = allProducts?.filter((product) => {
     return (
@@ -33,8 +33,8 @@ export default function SearchResults() {
       (product.title || product.description || product.category)
         .toLowerCase()
         .includes(search.toLowerCase())
-    )
-  })
+    );
+  });
 
   return (
     <>
@@ -49,5 +49,5 @@ export default function SearchResults() {
       </Suspense>
       <Footer />
     </>
-  )
+  );
 }
