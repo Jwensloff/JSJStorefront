@@ -37,17 +37,15 @@ export default function SearchResults() {
   });
 
   return (
-    <>
+    <Suspense>
       <Header />
-      <Suspense>
-        {searchedProducts?.length === 0 && (
-          <p className="px-2">
-            Sorry, no products match your search. Please try something else!
-          </p>
-        )}
-        <ProductGrid data={searchedProducts} />
-      </Suspense>
+      {searchedProducts?.length === 0 && (
+        <p className="px-2">
+          Sorry, no products match your search. Please try something else!
+        </p>
+      )}
+      <ProductGrid data={searchedProducts} />
       <Footer />
-    </>
+    </Suspense>
   );
 }
