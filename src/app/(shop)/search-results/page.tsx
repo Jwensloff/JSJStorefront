@@ -4,7 +4,7 @@ import Header from "@/src/components/Header/Header";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
 import { ProductTypes } from "@/src/types";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 export default function SearchResults() {
   const [allProducts, setAllProducts] = useState<ProductTypes[]>();
@@ -44,7 +44,9 @@ export default function SearchResults() {
           Sorry, no products match your search. Please try something else!
         </p>
       )}
-      {searchedProducts && <ProductGrid data={searchedProducts} />}
+      <Suspense>
+        {searchedProducts && <ProductGrid data={searchedProducts} />}
+      </Suspense>
       <Footer />
     </>
   );
