@@ -1,5 +1,6 @@
 import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
+import HeroImage from "@/src/components/HeroImage/HeroImage";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
 
 const getProductData = async () => {
@@ -30,6 +31,7 @@ export default async function Gold() {
   return (
     <div>
       <Header />
+      <HeroImage location="gold" />
       <ProductGrid data={productsWithGold} />
       <Footer />
     </div>
