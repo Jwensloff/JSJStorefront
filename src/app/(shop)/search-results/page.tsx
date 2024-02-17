@@ -39,12 +39,12 @@ export default function SearchResults() {
   return (
     <>
       <Header />
-      {searchedProducts?.length === 0 && (
-        <p className="px-2">
-          Sorry, no products match your search. Please try something else!
-        </p>
-      )}
-      <Suspense>
+      <Suspense >
+        {searchedProducts?.length === 0 && (
+          <p className="px-2">
+            Sorry, no products match your search. Please try something else!
+          </p>
+        )}
         {searchedProducts && <ProductGrid data={searchedProducts} />}
       </Suspense>
       <Footer />
