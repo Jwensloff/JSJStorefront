@@ -44,7 +44,7 @@ export default function SearchResults() {
           Sorry, no products match your search. Please try something else!
         </p>
       )}
-      <ProductGrid data={searchedProducts} />
+      {searchedProducts && <ProductGrid data={searchedProducts} />}
       <Footer />
     </>
   );

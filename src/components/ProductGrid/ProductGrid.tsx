@@ -2,10 +2,9 @@
 import Image from "next/image";
 import type { ProductTypes } from "@/src/types";
 import Link from "next/link";
-import { Suspense } from "react";
 
 interface ProductGridProps {
-  data: ProductTypes[] | undefined;
+  data: ProductTypes[] | null;
 }
 
 export default function ProductGrid({ data }: ProductGridProps) {
@@ -31,9 +30,5 @@ export default function ProductGrid({ data }: ProductGridProps) {
       </section>
     </Link>
   ));
-  return (
-    <div className="grid grid-cols-4 gap-8 p-5 h-[60vh]">
-      <Suspense>{products}</Suspense>
-    </div>
-  );
+  return <div className="grid grid-cols-4 gap-8 p-5 h-[60vh]">{products}</div>;
 }
