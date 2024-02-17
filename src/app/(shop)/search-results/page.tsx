@@ -44,7 +44,7 @@ export default function SearchResults() {
           Sorry, no products match your search. Please try something else!
         </p>
       )}
-      <Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
         {searchedProducts && <ProductGrid data={searchedProducts} />}
       </Suspense>
       <Footer />
