@@ -1,6 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { Search } from "../Search/Search";
 
 export default function Header() {
   const pathname = usePathname();
@@ -39,7 +40,7 @@ export default function Header() {
           ))}
         </ul>
       </>
-      <div>Search</div>
+      <Search />
       <Link
         href="/shopping-cart"
         className="pr-10 cursor-pointer hover:underline"

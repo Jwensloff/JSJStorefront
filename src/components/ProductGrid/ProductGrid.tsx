@@ -1,12 +1,10 @@
 "use client";
-import { useState } from "react";
-import mockData from "./mockData.json";
 import Image from "next/image";
 import type { ProductTypes } from "@/src/types";
 import Link from "next/link";
 
 interface ProductGridProps {
-  data: ProductTypes[] | [];
+  data: ProductTypes[] | undefined;
 }
 
 export default function ProductGrid({ data }: ProductGridProps) {
@@ -32,5 +30,5 @@ export default function ProductGrid({ data }: ProductGridProps) {
       </section>
     </Link>
   ));
-  return <div className="grid grid-cols-4 gap-8 p-5">{products}</div>;
+  return <div className="grid grid-cols-4 gap-8 p-5 h-[60vh]">{products}</div>;
 }
