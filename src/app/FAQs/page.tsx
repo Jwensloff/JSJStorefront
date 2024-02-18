@@ -35,8 +35,8 @@ export default function FAQs() {
       q: "How can I contact a customer service representative?",
       a: (
         <span>
-          We're sorry that we haven't been able to answer your questions so far.
-          Unfortunately we can never seem to remember the number for our
+          We are sorry that we have not been able to answer your questions so
+          far. Unfortunately we can never seem to remember the number for our
           customer service department, but you can reference{" "}
           <a
             className="font-bold underline"
