@@ -1,5 +1,6 @@
 import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
+import HeroImage from "@/src/components/HeroImage/HeroImage";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
 
 const getAllProducts = async () => {
@@ -27,6 +28,7 @@ export default async function Sale() {
   return (
     <div>
       <Header />
+      <HeroImage location={"sale"} />
       <ProductGrid data={productsOnSale} />
       <Footer />
     </div>

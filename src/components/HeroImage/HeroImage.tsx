@@ -85,6 +85,62 @@ export default function HeroImage({ location }: HeroImageProps) {
           </div>
         </div>
       );
+    } else if (location === "fallback") {
+      return (
+        <div>
+          <div className="flex flex-col">
+            <h1 className="z-10 text-center font-semibold text-3xl py-3 ">
+              Sorry, you have reached the end of the JSJ experience.{" "}
+            </h1>
+          </div>
+          <Image
+            src="https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="A dog peaking up from below"
+            fill={true}
+          />
+        </div>
+      );
+    } else if (location === "sale") {
+      return (
+        <div>
+          <Image
+            src="https://images.pexels.com/photos/7318909/pexels-photo-7318909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="A woman holding multiple shopping bags"
+            layout="fill"
+            className="object-cover"
+          />
+          <div className="absolute text-red-600	text-9xl h-[50vh] flex flex-col text-right justify-between right-20 top-80">
+            <p>Treat</p>
+            <p>Yo</p>
+            <p>Self</p>
+          </div>
+        </div>
+      );
+    } else if (location === "gold") {
+      return (
+        <div>
+          <Image
+            src="https://images.pexels.com/photos/5655011/pexels-photo-5655011.jpeg"
+            alt="A woman holding multiple shopping bags"
+            layout="fill"
+            className="object-cover"
+          />
+          <div className="absolute text-white	text-9xl h-[50vh] flex flex-col text-right justify-between left-10 top-20">
+            <p>Indulge</p>
+          </div>
+        </div>
+      );
+    } else if (location === "top-rated") {
+      return (
+        <div>
+          <Image
+            src="https://images.pexels.com/photos/2529172/pexels-photo-2529172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="A woman holding multiple shopping bags"
+            layout="fill"
+            className="object-cover"
+          />
+        </div>
+      );
     }
   };
 
