@@ -1,10 +1,11 @@
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { Landing } from "../components/Landing/Landing";
+import { useState } from "react";
 
 // fetch all product data
 const getLandingProductData = async () => {
-  "use server";
+  // "use server";
   const response = await fetch(`https://fakestoreapi.com/products`);
 
   if (!response.ok) {

@@ -1,42 +1,64 @@
 "use client";
+import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-async function getAllProducts() {
-  "use server";
-  const res = await fetch("https://fakestoreapi.com/products");
-  if (!res.ok) {
-    throw new Error(`${res.status}: Failed to fetch all products`);
-  }
-
-  return res.json();
-}
-// search all products
-// products are saved somewhere
-// getAllProducts- save it into state on main page
-// useEffect- user open apps- pass data into
-export async function Search() {
+export function Search() {
   const [search, setSearch] = useState<string>("");
-  const allProducts = await getAllProducts();
+  const router = useRouter();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
-  const handleClick = () => {
+  const handleClearSearch = () => {
     setSearch("");
   };
 
+  const createQueryString = (name: string, value: string) => {
+    const params = new URLSearchParams();
+    params.set(name, value);
+
+    return params.toString();
+  };
+
+  const handleSearch = () => {
+    router.push("/search-results" + "?" + createQueryString("search", search));
+  };
+
   return (
-    <div>
-      <label htmlFor="search">Search Products here</label>
-      <input
-        id="search"
-        type="text"
-        aria-label="search products here"
-        placeholder="Search products..."
-        value={search}
-        onChange={handleChange}
-      />
-      <button onClick={handleClick}>X</button>
+    <div className="border-2 border-slate-700 rounded ">
+      <div className="flex items-center p-1">
+        <label className="sr-only" htmlFor="search">
+          Search Products here
+        </label>
+        <input
+          id="search"
+          type="text"
+          aria-label="search products here"
+          placeholder="Search products..."
+          value={search}
+          onChange={handleChange}
+          className="w-96 text-xl outline-none"
+        />
+        {search && (
+          <button
+            aria-label="clear search"
+            className="pr-2 hover:text-sky-600"
+            onClick={handleClearSearch}
+          >
+            <FontAwesomeIcon size="lg" icon={faXmark} />
+          </button>
+        )}
+        <button
+          aria-label="search"
+          onClick={handleSearch}
+          className=" hover:text-sky-600"
+        >
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
+      </div>
     </div>
   );
 }
