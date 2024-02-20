@@ -22,21 +22,23 @@ export default async function Product({ params }: any) {
       <img src={image} alt={title} />
       <div className="flex-col">
       <h2 className="text-xl font-bold">{title}</h2>
+      <div className="flex">
+        <p className="font-bold">${price}</p>
+        <p>{rating.rate}</p>
+      </div>
       <ul>
         {formattedDescription.map((item: string) => (
           <li className="list-disc list-inside">{item}</li>
           ))}
       </ul>
-      <p>{price}</p>
-      <p>{rating.rate}</p>
           </div>
     </div>
   )
 
   return (
-    <div>
+    <div className="">
       <Header />
-      <div>{productDisplay}</div>
+      <div className="w-screen ">{productDisplay}</div>
       <Footer />
     </div>
   )
