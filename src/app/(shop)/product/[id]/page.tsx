@@ -13,7 +13,7 @@ const getLandingProductData = async (productID: string | undefined) => {
 }
 
 export default async function Product({ params }: any) {
-  const { id, title, price, description, image, rating } =
+  const { id, title, price, description, image, rating, category } =
     await getLandingProductData(params.id)
   const formattedDescription = description.split(/,|\/|\./).filter(Boolean)
 
@@ -24,13 +24,13 @@ export default async function Product({ params }: any) {
   const roundedRating = roundRating(rating.rate)
 
   const productDisplay = (
-    <div className="lg:flex  gap-40 m-10 w-fit">
+    <div className="lg:flex lg:flex-row sm:flex sm:flex-col sm:items-center  gap-40 m-10 w-fit">
       <img src={image} alt={title} className="object-contain w-80 " />
       <div className="flex-col space-y-10 w-auto">
         <h2 className="text-4xl font-bold">{title}</h2>
         <div className="flex">
           <div className="flex flex-row items-center gap-1 ">
-            <p className="font-bold text-4xl ">${price}</p>
+            <p className="font-bold text-4xl ">${price.toFixed(2)}</p>
             <div className="border border-black h-full m-1"></div>
             <div className="border border-black h-full m-1"></div>
             <Rating
@@ -50,6 +50,7 @@ export default async function Product({ params }: any) {
         </div>
         <div className="border border-black w-full m-1"></div>
         <div className="space-y-10">
+          {category !== 'jewelery' && (
           <Select variant="static" label="Select Size" placeholder={undefined}>
             <Option value="xx-small">XX-Small</Option>
             <Option value="x-small">X-Small</Option>
@@ -60,6 +61,7 @@ export default async function Product({ params }: any) {
             <Option value="xx-large">XX-Large</Option>
             <Option value="xxx-large">XXX-Large</Option>
           </Select>
+          )}
           <Select variant="static" label="Quantity" placeholder={undefined}>
             <Option value="1">1</Option>
             <Option value="2">2</Option>
@@ -90,7 +92,7 @@ export default async function Product({ params }: any) {
   return (
     <div className="overflow-auto">
       <Header />
-      <div className="">{productDisplay}</div>
+      <div className="flex flex-row justify-evenly">{productDisplay}</div>
       <Footer />
     </div>
   )
