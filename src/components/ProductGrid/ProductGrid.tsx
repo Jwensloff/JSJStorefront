@@ -10,17 +10,16 @@ interface ProductGridProps {
 export default function ProductGrid({ data }: ProductGridProps) {
   const products = data?.map((product) => (
     <Link href={`/product/${product.id}`} key={product.id}>
-      <section className="flex justify-center">
-        <div className="flex-col max-w-80 h-96">
-          <div className="grid justify-center pb-4">
-            <Image
-              src={product.image}
-              width={250}
-              height={250}
-              alt={product.title}
-              style={{ objectFit: "contain", height: "250px" }}
-            ></Image>
-          </div>
+      <section className="flex justify-center m-[2rem] ">
+        <div className="flex-col justify-center max-w-64 h-80 ">
+          <Image
+            src={product.image}
+            width={250}
+            height={250}
+            alt={product.title}
+            style={{ objectFit: "contain", maxHeight: "250px" }}
+            className="grid justify-center pb-4 h-52 sm:h-56 md:h-72 lg:h-96"
+          ></Image>
           <h2 className="font-semibold line-clamp-2">{product.title}</h2>
           <p>${product.price}</p>
           <p>
@@ -30,5 +29,9 @@ export default function ProductGrid({ data }: ProductGridProps) {
       </section>
     </Link>
   ));
-  return <div className="grid grid-cols-4 gap-8 p-5 h-[60vh]">{products}</div>;
+  return (
+    <div className="grid grid-cols-1 gap-0 p-0 sm:grid-cols-2 md:grid-cols-3 md:gap-5 lg:grid-cols-4 ">
+      {products}
+    </div>
+  );
 }

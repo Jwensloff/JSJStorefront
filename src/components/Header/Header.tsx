@@ -22,7 +22,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="flex flex-row justify-between  items-center text-center w-screen border border-black">
+    <header className="flex flex-row justify-between items-center text-center w-screen border border-black">
       <Link href={"/"} className="text-7xl bg-gray-custom p-5">
         JSJ
       </Link>
