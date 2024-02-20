@@ -1,32 +1,34 @@
-import Footer from '@/src/components/Footer/Footer'
-import Header from '@/src/components/Header/Header'
-import { Rating, Select, Option, Button } from '@/src/tailwind'
-import Image from 'next/image'
+import Footer from "@/src/components/Footer/Footer";
+import Header from "@/src/components/Header/Header";
+import { Rating, Select, Option, Button } from "@/src/tailwind";
+import Image from "next/image";
 
 const getLandingProductData = async (productID: string | undefined) => {
-  const response = await fetch(`https://fakestoreapi.com/products/${productID}`)
+  const response = await fetch(
+    `https://fakestoreapi.com/products/${productID}`,
+  );
 
   if (!response.ok) {
-    throw new Error('Oops, something went wrong')
+    throw new Error("Oops, something went wrong");
   }
 
-  return response.json()
-}
+  return response.json();
+};
 
 export default async function Product({ params }: any) {
   const { id, title, price, description, image, rating, category } =
-    await getLandingProductData(params.id)
-  const formattedDescription = description.split(/,|\/|\./).filter(Boolean)
+    await getLandingProductData(params.id);
+  const formattedDescription = description.split(/,|\/|\./).filter(Boolean);
 
   const roundRating = (num: number) => {
-    return Math.round(num)
-  }
+    return Math.round(num);
+  };
 
-  const roundedRating = roundRating(rating.rate)
+  const roundedRating = roundRating(rating.rate);
 
   const productDisplay = (
     <div className="lg:flex lg:flex-row sm:flex sm:flex-col sm:items-center  gap-40 m-10 w-fit">
-        <Image width={320} height={320} src={image} alt={title} />
+      <Image width={320} height={320} src={image} alt={title} />
       <div className="flex-col space-y-10 w-auto">
         <h2 className="text-4xl font-bold">{title}</h2>
         <div className="flex">
@@ -42,16 +44,16 @@ export default async function Product({ params }: any) {
               readonly
             />
             <p>
-              {roundedRating}/5{' '}
+              {roundedRating}/5{" "}
               <span className="text-xs italic underline">
-                {rating.count} Customer Review's
+                {rating.count} Customer Review&apos;s
               </span>
             </p>
           </div>
         </div>
         <div className="border border-black w-full m-1"></div>
         <div className="space-y-10">
-          {category !== 'jewelery' && (
+          {category !== "jewelery" && (
             <Select
               variant="static"
               label="Select Size"
@@ -101,7 +103,7 @@ export default async function Product({ params }: any) {
         </ul>
       </div>
     </div>
-  )
+  );
 
   return (
     <div className="overflow-auto">
@@ -109,5 +111,5 @@ export default async function Product({ params }: any) {
       <div className="flex flex-row justify-evenly">{productDisplay}</div>
       <Footer />
     </div>
-  )
+  );
 }
