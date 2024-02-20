@@ -15,7 +15,7 @@ const getLandingProductData = async (productID: string | undefined) => {
   return response.json();
 };
 
-export default async function Product({ params }: any) {
+export default async function Product({ params }: { params: { id: string } }) {
   const { id, title, price, description, image, rating, category } =
     await getLandingProductData(params.id);
   const formattedDescription = description.split(/,|\/|\./).filter(Boolean);
