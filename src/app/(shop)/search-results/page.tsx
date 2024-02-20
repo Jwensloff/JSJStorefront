@@ -41,9 +41,11 @@ export default function SearchResults() {
       <>
         <Header />
         {searchedProducts?.length === 0 && (
-          <p className="px-2">
-            Sorry, no products match your search. Please try something else!
-          </p>
+          <div className="h-[70vh] flex justify-center items-center">
+            <p className="px-2">
+              Sorry, no products match your search. Please try something else!
+            </p>
+          </div>
         )}
         {searchedProducts && <ProductGrid data={searchedProducts} />}
         <Footer />

@@ -10,7 +10,7 @@ interface ProductGridProps {
 export default function ProductGrid({ data }: ProductGridProps) {
   const products = data?.map((product) => (
     <Link href={`/product/${product.id}`} key={product.id}>
-      <section className="flex justify-center">
+      <section className="flex justify-center m-[2rem] h-[60vh]">
         <div className="flex-col max-w-80 h-96">
           <div className="grid justify-center pb-4">
             <Image
@@ -30,5 +30,5 @@ export default function ProductGrid({ data }: ProductGridProps) {
       </section>
     </Link>
   ));
-  return <div className="grid grid-cols-4 gap-8 p-5 h-[60vh]">{products}</div>;
+  return <div className="grid grid-cols-4 gap-8 p-5">{products}</div>;
 }
