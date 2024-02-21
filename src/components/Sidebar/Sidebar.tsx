@@ -33,9 +33,9 @@ export default function Sidebar({ openSidebar, toggleSidebar }: SidebarProps) {
         placeholder="drawer"
         open={openSidebar}
         onClose={toggleSidebar}
-        className="p-4"
+        className="p-4 w-auto"
       >
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex items-center break-words gap-6">
           <Typography
             placeholder="Shop By Department"
             variant="h5"
@@ -44,7 +44,11 @@ export default function Sidebar({ openSidebar, toggleSidebar }: SidebarProps) {
           >
             Shop By Department
           </Typography>
-          <FontAwesomeIcon icon={faClose} onClick={toggleSidebar} />
+          <FontAwesomeIcon
+            focusable={true}
+            icon={faClose}
+            onClick={toggleSidebar}
+          />
         </div>
         <Card
           placeholder="card"

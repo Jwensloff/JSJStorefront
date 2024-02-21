@@ -28,7 +28,7 @@ export function Search() {
           placeholder="Search products..."
           value={search}
           onChange={handleChange}
-          className="w-full text-sm sm:text-xl outline-none"
+          className="w-full text-lg md:text-xl outline-none"
         />
         {search && (
           <button
