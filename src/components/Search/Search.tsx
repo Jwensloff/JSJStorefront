@@ -1,12 +1,11 @@
 "use client";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useState } from "react";
 
 export function Search() {
   const [search, setSearch] = useState<string>("");
-  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -14,17 +13,6 @@ export function Search() {
 
   const handleClearSearch = () => {
     setSearch("");
-  };
-
-  const createQueryString = (name: string, value: string) => {
-    const params = new URLSearchParams();
-    params.set(name, value);
-
-    return params.toString();
-  };
-
-  const handleSearch = () => {
-    router.push("/search-results" + "?" + createQueryString("search", search));
   };
 
   return (
@@ -40,24 +28,24 @@ export function Search() {
           placeholder="Search products..."
           value={search}
           onChange={handleChange}
-          className="w-96 text-xl outline-none"
+          className="w-full text-lg md:text-xl outline-none"
         />
         {search && (
           <button
             aria-label="clear search"
-            className="pr-2 hover:text-sky-600"
+            className="pr-2 hover:text-blue-900"
             onClick={handleClearSearch}
           >
             <FontAwesomeIcon size="lg" icon={faXmark} />
           </button>
         )}
-        <button
+        <Link
           aria-label="search"
-          onClick={handleSearch}
-          className=" hover:text-sky-600"
+          href={`/search-results/${search}`}
+          className="hover:text-blue-900"
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -11,19 +11,10 @@ interface LandingProps {
 }
 
 export const Landing: React.FC<LandingProps> = ({ products }) => {
-  const addToLocalStorage = (productToLocal: ProductTypes[]) => {
-    if (typeof window !== "undefined") {
-      let localStorage = window.localStorage;
-      let productArray = JSON.stringify(productToLocal);
-      localStorage.setItem("allProductsArray", productArray);
-    }
-  };
-
   // i need to create a function to remove all producst with the category of 'electronics'
   const updatedProductList: ProductTypes[] = products.filter(
     (product: ProductTypes) => product.category !== "electronics",
   );
-  addToLocalStorage(updatedProductList);
 
   // i need to create a function to find the highest rated product
   const highestRatedProduct = updatedProductList?.reduce(
