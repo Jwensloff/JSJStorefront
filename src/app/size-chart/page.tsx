@@ -6,7 +6,7 @@ export default function page() {
   return (
     <div className="min-h-screen flex flex-col justify-between items-center">
       <Header />
-      <div className="relative w-[90%] h-[70vh]">
+      <div className="relative w-[90%] h-[30vh] md:h-[50vh]">
         <Image
           src="/sizechart_women.jpg"
           alt="womens size chart"
@@ -14,7 +14,7 @@ export default function page() {
           objectFit="contain"
         />
       </div>
-      <div className="relative w-[90%] h-[70vh]">
+      <div className="relative w-[90%] h-[30vh] md:h-[50vh]">
         <Image
           src="/sizechart_men.jpg"
           alt="womens size chart"
