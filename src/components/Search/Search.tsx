@@ -28,12 +28,12 @@ export function Search() {
           placeholder="Search products..."
           value={search}
           onChange={handleChange}
-          className="w-96 text-xl outline-none"
+          className="w-full text-lg md:text-xl outline-none"
         />
         {search && (
           <button
             aria-label="clear search"
-            className="pr-2 hover:text-sky-600"
+            className="pr-2 hover:text-blue-900"
             onClick={handleClearSearch}
           >
             <FontAwesomeIcon size="lg" icon={faXmark} />
@@ -42,7 +42,7 @@ export function Search() {
         <Link
           aria-label="search"
           href={`/search-results/${search}`}
-          className=" hover:text-sky-600"
+          className="hover:text-blue-900"
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </Link>
