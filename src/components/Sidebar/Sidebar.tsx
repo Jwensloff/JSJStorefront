@@ -40,6 +40,7 @@ export default function Sidebar({ openSidebar, toggleSidebar }: SidebarProps) {
             placeholder="Shop By Department"
             variant="h5"
             color="blue-gray"
+            className="text-md sm:text-lg"
           >
             Shop By Department
           </Typography>
@@ -49,7 +50,7 @@ export default function Sidebar({ openSidebar, toggleSidebar }: SidebarProps) {
           placeholder="card"
           className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-1 shadow-xl shadow-blue-gray-900/5"
         >
-          <ul className="flex-col text-left text-2xl">
+          <ul className="flex-col text-left text-md sm:text-lg">
             {categories.map((cat) => (
               <li key={cat.name} className="py-2">
                 <Link
