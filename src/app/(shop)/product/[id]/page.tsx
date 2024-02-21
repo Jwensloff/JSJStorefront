@@ -77,7 +77,7 @@ export default async function Product({ params }: { params: { id: string } }) {
             <Option value="5">5</Option>
           </Select>
         </div>
-        <div className="space-x-5">
+        <div className="space-x-5 flex">
           <a href="/shopping-cart">
             <Button size="lg" color="blue" placeholder={undefined}>
               Add To Cart
@@ -106,7 +106,7 @@ export default async function Product({ params }: { params: { id: string } }) {
   );
 
   return (
-    <div className="overflow-auto">
+    <div>
       <Header />
       <div className="flex flex-row justify-evenly">{productDisplay}</div>
       <Footer />
