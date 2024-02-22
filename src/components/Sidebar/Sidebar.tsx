@@ -33,7 +33,7 @@ export default function Sidebar({ openSidebar, toggleSidebar }: SidebarProps) {
         placeholder="drawer"
         open={openSidebar}
         onClose={toggleSidebar}
-        className="p-4 w-auto"
+        className="p-4 w-[50vw]"
       >
         <div className="mb-6 flex items-center break-words gap-6">
           <Typography

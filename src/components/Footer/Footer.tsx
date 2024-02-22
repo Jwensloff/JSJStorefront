@@ -10,7 +10,7 @@ import {
 
 export default function Footer() {
   return (
-    <div className="flex justify-between text-center w-screen	p-2 px-10 bg-gray-custom">
+    <div className="flex w-full justify-between text-center	p-2 px-10 bg-gray-custom">
       <div className="flex flex-col">
         <h2 className="font-extrabold">Shop</h2>
         <Link href="/womens" className="cursor-pointer hover:underline">
