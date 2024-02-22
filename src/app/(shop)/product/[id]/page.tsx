@@ -28,7 +28,13 @@ export default async function Product({ params }: { params: { id: string } }) {
 
   const productDisplay = (
     <div className="lg:flex lg:flex-row sm:flex sm:flex-col sm:items-center  lg:gap-80 sm:gap-20 m-10 w-fit">
-      <Image width={320} height={320} src={image} alt={title} className="lg:ml-40" />
+      <Image
+        width={320}
+        height={320}
+        src={image}
+        alt={title}
+        className="lg:ml-40"
+      />
       <div className="flex-col space-y-10 max-w-2xl">
         <h2 className="text-4xl font-bold">{title}</h2>
         <div className="flex">

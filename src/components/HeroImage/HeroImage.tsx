@@ -45,14 +45,14 @@ export default function HeroImage({ location }: HeroImageProps) {
             alt="A photo showing the bottom half of a woman's face in order to focus on her earrings"
             fill
             className="object-cover"
-            />
+          />
           <div className="absolute text-white text-9xl h-[50vh] flex flex-col justify-between left-40 top-10">
             <p>Just</p>
             <p>Go</p>
             <p>For</p>
             <p>It</p>
           </div>
-       </div>
+        </div>
       );
     } else if (location === "landing") {
       return (
@@ -144,9 +144,5 @@ export default function HeroImage({ location }: HeroImageProps) {
     }
   };
 
-  return (
-    <div className="h-[95vh] w-full relative">
-      {innerComponent()}
-    </div>
-  );
+  return <div className="h-[95vh] w-full relative">{innerComponent()}</div>;
 }
