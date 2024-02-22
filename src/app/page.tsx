@@ -2,6 +2,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { Landing } from "../components/Landing/Landing";
 import { useState } from "react";
+import HeroImage from "../components/HeroImage/HeroImage";
 
 // fetch all product data
 const getLandingProductData = async () => {
@@ -19,8 +20,9 @@ export default async function Home() {
   const products = await getLandingProductData();
 
   return (
-    <main className="flex flex-col items-center w-screen">
+    <main className="flex flex-col items-center">
       <Header />
+      <HeroImage location={"landing"} />
       <Landing products={products} />
       <Footer />
     </main>

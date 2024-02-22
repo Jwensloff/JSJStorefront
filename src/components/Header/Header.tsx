@@ -37,8 +37,8 @@ export default function Header() {
   ];
 
   return (
-    <header className="flex flex-row sm:justify-between  w-screen border border-black">
-      <div className="flex flex-row w-screen gap-2 pr-1 md:gap-3 md:pr-3">
+    <header className="flex flex-col w-full sm:justify-between">
+      <div className="flex flex-row gap-2 pr-1 md:gap-3 md:pr-3">
         <Link
           href={"/"}
           className="p-3 text-5xl md:text-7xl bg-gray-custom md:p-5"
