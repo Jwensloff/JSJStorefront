@@ -29,10 +29,10 @@ export default async function SearchResults({
   });
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col justify-between">
       <Header />
       {searchedProducts?.length === 0 && (
-        <div className="h-[70vh] flex justify-center items-center">
+        <div className="flex justify-center items-center">
           <p className="px-2">
             Sorry, no products match your search. Please try something else!
           </p>
@@ -40,6 +40,6 @@ export default async function SearchResults({
       )}
       {searchedProducts && <ProductGrid data={searchedProducts} />}
       <Footer />
-    </>
+    </div>
   );
 }
