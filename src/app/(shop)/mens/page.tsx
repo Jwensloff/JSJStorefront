@@ -5,7 +5,9 @@ import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
 import supabase from "@/src/config/supabaseClient";
 
 const getMensClothing = async () => {
-  const { data, error } = await supabase.from("products").select()
+  // await supabase.clearCache();
+
+  let { data, error } = await supabase.from("products").select('')
 
   if (error) {
     throw new Error("Oops, something went wrong");
@@ -17,6 +19,7 @@ const getMensClothing = async () => {
 
 export default async function page() {
   const data = await getMensClothing();
+  console.log(data)
   return (
     <div>
       <Header />
