@@ -22,9 +22,13 @@ export default function ProductGrid({ data }: ProductGridProps) {
           ></Image>
           <h2 className="font-semibold line-clamp-2">{product.title}</h2>
           <p>${product.price}</p>
-          <p>
+
+          {/* 
+          Will need to update access to rates and ratings
+           */}
+          {/* <p>
             Rating: {product.rating.rate} <span>({product.rating.count})</span>
-          </p>
+          </p> */}
         </div>
       </section>
     </Link>
