@@ -4,10 +4,12 @@ import type { ProductTypes } from "@/src/types";
 import Link from "next/link";
 
 interface ProductGridProps {
-  data: ProductTypes[] | null;
+  data: ProductTypes[] | undefined;
 }
 
 export default function ProductGrid({ data }: ProductGridProps) {
+
+  console.log(data)
   const products = data?.map((product) => (
     <Link href={`/product/${product.id}`} key={product.id}>
       <section className="flex justify-center m-[2rem] ">
@@ -26,9 +28,9 @@ export default function ProductGrid({ data }: ProductGridProps) {
           {/* 
           Will need to update access to rates and ratings
            */}
-          {/* <p>
-            Rating: {product.rating.rate} <span>({product.rating.count})</span>
-          </p> */}
+          <p>
+            Rating: {product.rate.rating} <span>({product.rate.count})</span>
+          </p>
         </div>
       </section>
     </Link>
