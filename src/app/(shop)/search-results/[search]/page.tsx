@@ -2,16 +2,19 @@ import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
 import { ProductTypes } from "@/src/types";
+import supabase from "@/src/config/supabaseClient";
 
 const getProductData = async () => {
-  const response = await fetch(`https://fakestoreapi.com/products`);
+  let { data, error } = await supabase.from("products").select("*");
 
-  if (!response.ok) {
-    throw new Error("Oops, something went wrong");
+  if (error) {
+    throw error;
   }
-
-  return response.json();
+  if (data) {
+    return data;
+  }
 };
+
 export default async function SearchResults({
   params,
 }: {
