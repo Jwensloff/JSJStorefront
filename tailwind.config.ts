@@ -11,12 +11,12 @@ const config: Config = withMT({
     "./node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    // screens: {
-    //   sm: "480px",
-    //   md: "768px",
-    //   lg: "976px",
-    //   xl: "1440px",
-    // },
+    screens: {
+      sm: "480px",
+      md: "768px",
+      lg: "1275px",
+      xl: "1440px",
+    },
     extend: {
       colors: {
         "gray-custom": "#D9D9D9",

@@ -33,6 +33,7 @@ export default async function Product({ params }: { params: { id: string } }) {
   const roundedRating = roundRating(singleProduct.rate.rating);
 
   const productDisplay = (
+
     <div className="lg:flex lg:flex-row sm:flex sm:flex-col sm:items-center  gap-40 m-10 w-fit">
       <Image
         width={320}
@@ -90,7 +91,7 @@ export default async function Product({ params }: { params: { id: string } }) {
             <Option value="5">5</Option>
           </Select>
         </div>
-        <div className="space-x-5">
+        <div className="space-x-5 flex">
           <a href="/shopping-cart">
             <Button size="lg" color="blue" placeholder={undefined}>
               Add To Cart
@@ -119,7 +120,7 @@ export default async function Product({ params }: { params: { id: string } }) {
   );
 
   return (
-    <div className="overflow-auto">
+    <div className="flex flex-col justify-between min-h-screen">
       <Header />
       <div className="flex flex-row justify-evenly">{productDisplay}</div>
       <Footer />

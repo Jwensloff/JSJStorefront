@@ -3,7 +3,7 @@ import { ProductTypes } from "@/src/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import HeroImage from "../HeroImage/HeroImage";
+// import HeroImage from "../HeroImage/HeroImage";
 
 interface LandingProps {
   // Define the type of the products prop
@@ -66,8 +66,8 @@ export const Landing: React.FC<LandingProps> = ({ products }) => {
 
   return (
     <>
-      <HeroImage location={"landing"} />
-      <div className="w-screen h-auto">
+      {/* <HeroImage location={"landing"} /> */}
+      <div className="h-auto">
         <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
           <Link href={`/top-rated`} className="text-4xl">
             Shop Top Rated
