@@ -6,10 +6,7 @@ import supabase from "@/src/config/supabaseClient";
 
 const getAllProducts = async () => {
   // "use server";
-  let { data, error } = await supabase
-    .from("products")
-    .select('*')
-    
+  let { data, error } = await supabase.from("products").select("*");
 
   if (error) {
     throw error;
@@ -22,13 +19,11 @@ const getAllProducts = async () => {
 export default async function Sale() {
   const allProducts = await getAllProducts();
 
-  const productsOnSale = allProducts?.map(
-    (product) => {
-      if (product.price <= 100) {
-        return product;
-      }
-    },
-  );
+  const productsOnSale = allProducts?.map((product) => {
+    if (product.price <= 100) {
+      return product;
+    }
+  });
 
   return (
     <div>

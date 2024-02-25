@@ -30,8 +30,8 @@ export const Landing: React.FC<LandingProps> = ({ products }) => {
   );
 
   // i need to create a function to find the first product with the word 'gold' in the title
-  const productWithGold = products?.find(
-    (product: { title: string }) => product.title.includes("Gold"),
+  const productWithGold = products?.find((product: { title: string }) =>
+    product.title.includes("Gold"),
   );
 
   // i need to create a function to return an html element for each product

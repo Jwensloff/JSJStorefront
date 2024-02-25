@@ -6,10 +6,7 @@ import supabase from "../config/supabaseClient";
 // fetch all product data
 const getLandingProductData = async () => {
   // "use server";
-  let { data, error } = await supabase
-    .from("products")
-    .select('*')
-    
+  let { data, error } = await supabase.from("products").select("*");
 
   if (error) {
     throw error;
