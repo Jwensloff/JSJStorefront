@@ -7,28 +7,30 @@ import HeroImage from "../HeroImage/HeroImage";
 
 interface LandingProps {
   // Define the type of the products prop
-  products: ProductTypes[];
+  products: ProductTypes[] | undefined;
 }
 
 export const Landing: React.FC<LandingProps> = ({ products }) => {
   // i need to create a function to remove all producst with the category of 'electronics'
-  const updatedProductList: ProductTypes[] = products.filter(
-    (product: ProductTypes) => product.category !== "electronics",
-  );
+  // const updatedProductList: ProductTypes[] = products?.filter(
+  //   (product: ProductTypes) => product.category !== "electronics",
+  // );
+
+  // console.log(updatedProductList)
 
   // i need to create a function to find the highest rated product
-  const highestRatedProduct = updatedProductList?.reduce(
+  const highestRatedProduct = products?.reduce(
     (prev: ProductTypes, current: ProductTypes) =>
-      prev.rating.rate > current.rating.rate ? prev : current,
+      prev.rate.rating > current.rate.rating ? prev : current,
   );
 
   // i need to create a function to find the first product with a price under 100
-  const productUnder100 = updatedProductList?.find(
+  const productUnder100 = products?.find(
     (product: { price: number }) => product.price < 100,
   );
 
   // i need to create a function to find the first product with the word 'gold' in the title
-  const productWithGold = updatedProductList?.find(
+  const productWithGold = products?.find(
     (product: { title: string }) => product.title.includes("Gold"),
   );
 
@@ -39,7 +41,7 @@ export const Landing: React.FC<LandingProps> = ({ products }) => {
     price: number;
     description: string;
     image: string;
-    rating: { rate: number; count: number };
+    rate: { rating: number; count: number };
     category: string;
   }) => {
     return (
@@ -57,7 +59,7 @@ export const Landing: React.FC<LandingProps> = ({ products }) => {
         />
         <p className="w-4/5 text-center">{product.title}</p>
         <p>${product.price}</p>
-        <p>{product.rating.rate} </p>
+        <p>{product.rate.rating} </p>
       </Link>
     );
   };

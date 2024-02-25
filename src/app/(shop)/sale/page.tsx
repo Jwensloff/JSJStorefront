@@ -2,24 +2,29 @@ import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
 import HeroImage from "@/src/components/HeroImage/HeroImage";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
+import supabase from "@/src/config/supabaseClient";
 
 const getAllProducts = async () => {
-  "use server";
-  const response = await fetch(`https://fakestoreapi.com/products`);
+  // "use server";
+  let { data, error } = await supabase
+    .from("products")
+    .select('*')
+    
 
-  if (!response.ok) {
-    throw new Error("Oops, something went wrong");
+  if (error) {
+    throw error;
   }
-
-  return response.json();
+  if (data) {
+    return data;
+  }
 };
 
 export default async function Sale() {
   const allProducts = await getAllProducts();
 
   const productsOnSale = allProducts?.map(
-    (product: { price: number; category: string }) => {
-      if (product.category !== "electronics" && product.price <= 100) {
+    (product) => {
+      if (product.price <= 100) {
         return product;
       }
     },

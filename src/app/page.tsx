@@ -1,18 +1,22 @@
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { Landing } from "../components/Landing/Landing";
-import { useState } from "react";
+import supabase from "../config/supabaseClient";
 
 // fetch all product data
 const getLandingProductData = async () => {
   // "use server";
-  const response = await fetch(`https://fakestoreapi.com/products`);
+  let { data, error } = await supabase
+    .from("products")
+    .select('*')
+    
 
-  if (!response.ok) {
-    throw new Error("Oops, something went wrong");
+  if (error) {
+    throw error;
   }
-
-  return response.json();
+  if (data) {
+    return data;
+  }
 };
 
 export default async function Home() {
