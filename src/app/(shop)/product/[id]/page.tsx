@@ -33,7 +33,6 @@ export default async function Product({ params }: { params: { id: string } }) {
   const roundedRating = roundRating(singleProduct.rate.rating);
 
   const productDisplay = (
-
     <div className="lg:flex lg:flex-row sm:flex sm:flex-col sm:items-center  gap-40 m-10 w-fit">
       <Image
         width={320}
