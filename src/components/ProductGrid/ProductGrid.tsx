@@ -8,8 +8,6 @@ interface ProductGridProps {
 }
 
 export default function ProductGrid({ data }: ProductGridProps) {
-
-  console.log(data)
   const products = data?.map((product) => (
     <Link href={`/product/${product.id}`} key={product.id}>
       <section className="flex justify-center m-[2rem] ">
