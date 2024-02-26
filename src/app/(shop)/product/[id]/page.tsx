@@ -1,45 +1,52 @@
 import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
+import supabase from "@/src/config/supabaseClient";
 import { Rating, Select, Option, Button } from "@/src/tailwind";
 import Image from "next/image";
 
-const getLandingProductData = async (productID: string | undefined) => {
-  const response = await fetch(
-    `https://fakestoreapi.com/products/${productID}`,
+const getProductById = async () => {
+  // await supabase.clearCache();
+
+  let { data, error } = await supabase.from("products").select("*");
+
+  if (error) {
+    throw error;
+  }
+  if (data) {
+    return data;
+  }
+};
+export default async function Product({ params }: { params: { id: string } }) {
+  const allProducts = await getProductById();
+  const singleProduct = allProducts?.find(
+    (product) => product.id === Number(params.id),
   );
 
-  if (!response.ok) {
-    throw new Error("Oops, something went wrong");
-  }
-
-  return response.json();
-};
-
-export default async function Product({ params }: { params: { id: string } }) {
-  const { id, title, price, description, image, rating, category } =
-    await getLandingProductData(params.id);
-  const formattedDescription = description.split(/,|\/|\./).filter(Boolean);
+  const formattedDescription = singleProduct?.description
+    .split(/,|\/|\./)
+    .filter(Boolean);
 
   const roundRating = (num: number) => {
     return Math.round(num);
   };
 
-  const roundedRating = roundRating(rating.rate);
+  const roundedRating = roundRating(singleProduct.rate.rating);
 
   const productDisplay = (
-    <div className="lg:flex lg:flex-row sm:flex sm:flex-col sm:items-center  lg:gap-80 sm:gap-20 m-10 w-fit">
+    <div className="lg:flex lg:flex-row sm:flex sm:flex-col sm:items-center  gap-40 m-10 w-fit">
       <Image
         width={320}
         height={320}
-        src={image}
-        alt={title}
-        className="lg:ml-40"
+        src={singleProduct.image}
+        alt={singleProduct.title}
       />
-      <div className="flex-col space-y-10 max-w-2xl">
-        <h2 className="text-4xl font-bold">{title}</h2>
+      <div className="flex-col space-y-10 w-auto">
+        <h2 className="text-4xl font-bold">{singleProduct.title}</h2>
         <div className="flex">
           <div className="flex flex-row items-center gap-1 ">
-            <p className="font-bold text-4xl ">${price.toFixed(2)}</p>
+            <p className="font-bold text-4xl ">
+              ${singleProduct.price.toFixed(2)}
+            </p>
             <div className="border border-black h-full m-1"></div>
             <div className="border border-black h-full m-1"></div>
             <Rating
@@ -52,14 +59,14 @@ export default async function Product({ params }: { params: { id: string } }) {
             <p>
               {roundedRating}/5{" "}
               <span className="text-xs italic underline">
-                {rating.count} Customer Review&apos;s
+                {singleProduct.rate.count} Customer Review&apos;s
               </span>
             </p>
           </div>
         </div>
         <div className="border border-black w-full m-1"></div>
         <div className="space-y-10">
-          {category !== "jewelery" && (
+          {singleProduct.category !== "jewelery" && (
             <Select
               variant="static"
               label="Select Size"

@@ -2,21 +2,27 @@ import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
 import HeroImage from "@/src/components/HeroImage/HeroImage";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
+import supabase from "@/src/config/supabaseClient";
 
 const getMensClothing = async () => {
-  const response = await fetch(
-    "https://fakestoreapi.com/products/category/men's clothing",
-  );
+  // await supabase.clearCache();
 
-  if (!response.ok) {
-    throw new Error("Oops, something went wrong");
+  let { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("category", "men's clothing");
+
+  if (error) {
+    throw error;
   }
-
-  return response.json();
+  if (data) {
+    return data;
+  }
 };
 
 export default async function page() {
   const data = await getMensClothing();
+  // console.log(data)
   return (
     <div>
       <Header />

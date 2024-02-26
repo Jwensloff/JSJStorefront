@@ -2,24 +2,26 @@ import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
 import HeroImage from "@/src/components/HeroImage/HeroImage";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
+import supabase from "@/src/config/supabaseClient";
 
-const getTopRatedProducts = async () => {
-  "use server";
-  const response = await fetch(`https://fakestoreapi.com/products`);
+const getTopRated = async () => {
+  // "use server";
+  let { data, error } = await supabase.from("products").select("*");
 
-  if (!response.ok) {
-    throw new Error("Oops, something went wrong");
+  if (error) {
+    throw error;
   }
-
-  return response.json();
+  if (data) {
+    return data;
+  }
 };
 
 export default async function TopRated() {
-  const allProducts = await getTopRatedProducts();
+  const allProducts = await getTopRated();
 
   const highestRatedProducts = allProducts?.filter(
-    (product: { rating: { rate: number }; category: string }) => {
-      if (product.rating.rate >= 4 && product.category !== "electronics") {
+    (product: { rate: { rating: number }; category: string }) => {
+      if (product.rate.rating >= 4) {
         return product;
       }
     },

@@ -4,7 +4,7 @@ import type { ProductTypes } from "@/src/types";
 import Link from "next/link";
 
 interface ProductGridProps {
-  data: ProductTypes[] | null;
+  data: ProductTypes[] | undefined;
 }
 
 export default function ProductGrid({ data }: ProductGridProps) {
@@ -22,8 +22,12 @@ export default function ProductGrid({ data }: ProductGridProps) {
           ></Image>
           <h2 className="font-semibold line-clamp-2">{product.title}</h2>
           <p>${product.price}</p>
+
+          {/* 
+          Will need to update access to rates and ratings
+           */}
           <p>
-            Rating: {product.rating.rate} <span>({product.rating.count})</span>
+            Rating: {product.rate.rating} <span>({product.rate.count})</span>
           </p>
         </div>
       </section>
