@@ -1,11 +1,25 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/src/tailwind";
+import supabase from "@/src/config/supabaseClient";
 
-export default function CartButton() {
-  const handleClick = () => {
-    console.log("I was clicked");
+interface CartButtonProps {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+}
+
+export default function CartButton({
+  id,
+  title,
+  price,
+  image,
+}: CartButtonProps) {
+  const handleClick = async () => {
+    const { data, error } = await supabase
+      .from("shopping_cart")
+      .insert({ id, title, price, image });
   };
   return (
     <Button

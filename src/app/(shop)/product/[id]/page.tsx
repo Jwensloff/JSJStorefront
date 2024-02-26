@@ -21,7 +21,7 @@ const getProductById = async () => {
 export default async function Product({ params }: { params: { id: string } }) {
   const allProducts = await getProductById();
   const singleProduct = allProducts?.find(
-    (product) => product.id === Number(params.id)
+    (product) => product.id === Number(params.id),
   );
   const formattedDescription = singleProduct?.description
     .split(/,|\/|\./)
@@ -92,9 +92,14 @@ export default async function Product({ params }: { params: { id: string } }) {
           </Select>
         </div>
         <div className="space-x-5 flex">
-          {/* <a href="/shopping-cart"> */}
-          <CartButton />
-          {/* </a> */}
+          <a href="/shopping-cart">
+            <CartButton
+              id={singleProduct.id}
+              title={singleProduct.title}
+              price={singleProduct.price}
+              image={singleProduct.image}
+            />
+          </a>
           <a>
             <Button
               size="lg"
