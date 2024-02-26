@@ -3,8 +3,8 @@ name: CI
 on: [push]
 
 env:
-  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-  SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+  supabaseUrl: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+  supabaseKey: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
 jobs:
   cypress-run:
