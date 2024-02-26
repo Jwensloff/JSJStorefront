@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Sidebar from "../Sidebar/Sidebar";
 import { useRef, useState } from "react";
+import ShoppingCartSymbol from "../ShoppingCartSymbol/ShoppingCartSymbol";
 
 export default function Header() {
   const pathname = usePathname();
@@ -37,7 +38,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="flex flex-col w-full sm:justify-between">
+    <header className="flex flex-col w-full sm:justify-between pr-2">
       <div className="flex flex-row gap-2 pr-1 md:gap-3 md:pr-3">
         <Link
           href={"/"}
@@ -45,7 +46,7 @@ export default function Header() {
         >
           JSJ
         </Link>
-        <div className="flex flex-col w-full justify-around">
+        <div className="flex flex-col w-full justify-around py-2">
           <div className="flex flex-row justify-end sm:justify-between">
             {!openSidebar && (
               <>
@@ -68,7 +69,7 @@ export default function Header() {
                 href="/shopping-cart"
                 className="cursor-pointer hover:underline"
               >
-                Cart
+                <ShoppingCartSymbol />
               </Link>
               <nav
                 onKeyDown={handleKeyDown}
