@@ -1,10 +1,10 @@
-name: Cypress Tests
+name: CI
 
 on: [push]
 
 env:
-  supabaseUrl: ${{ secrets.SUPABASE_URL }}
-  supabaseKey: ${{ secrets.SUPABASE_ANON_KEY }}
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
 
 jobs:
   cypress-run:
