@@ -3,6 +3,7 @@ import Header from "@/src/components/Header/Header";
 import supabase from "@/src/config/supabaseClient";
 import { Rating, Select, Option, Button } from "@/src/tailwind";
 import Image from "next/image";
+import CartButton from "../CartButton";
 
 const getProductById = async () => {
   // await supabase.clearCache();
@@ -16,12 +17,12 @@ const getProductById = async () => {
     return data;
   }
 };
+
 export default async function Product({ params }: { params: { id: string } }) {
   const allProducts = await getProductById();
   const singleProduct = allProducts?.find(
-    (product) => product.id === Number(params.id),
+    (product) => product.id === Number(params.id)
   );
-
   const formattedDescription = singleProduct?.description
     .split(/,|\/|\./)
     .filter(Boolean);
@@ -91,11 +92,9 @@ export default async function Product({ params }: { params: { id: string } }) {
           </Select>
         </div>
         <div className="space-x-5 flex">
-          <a href="/shopping-cart">
-            <Button size="lg" color="blue" placeholder={undefined}>
-              Add To Cart
-            </Button>
-          </a>
+          {/* <a href="/shopping-cart"> */}
+          <CartButton />
+          {/* </a> */}
           <a>
             <Button
               size="lg"
