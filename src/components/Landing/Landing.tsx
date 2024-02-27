@@ -1,102 +1,123 @@
 "use client";
 import { ProductTypes } from "@/src/types";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Typography,
+} from "@material-tailwind/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-// import HeroImage from "../HeroImage/HeroImage";
 
 interface LandingProps {
-  // Define the type of the products prop
   products: ProductTypes[] | undefined;
 }
 
 export const Landing: React.FC<LandingProps> = ({ products }) => {
-  // i need to create a function to remove all producst with the category of 'electronics'
-  // const updatedProductList: ProductTypes[] = products?.filter(
-  //   (product: ProductTypes) => product.category !== "electronics",
-  // );
-
-  // console.log(updatedProductList)
-
-  // i need to create a function to find the highest rated product
   const highestRatedProduct = products?.reduce(
     (prev: ProductTypes, current: ProductTypes) =>
       prev.rate.rating > current.rate.rating ? prev : current,
   );
 
-  // i need to create a function to find the first product with a price under 100
   const productUnder100 = products?.find(
     (product: { price: number }) => product.price < 100,
   );
 
-  // i need to create a function to find the first product with the word 'gold' in the title
   const productWithGold = products?.find((product: { title: string }) =>
     product.title.includes("Gold"),
   );
 
-  // i need to create a function to return an html element for each product
-  const createHTMLElement = (product: {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    image: string;
-    rate: { rating: number; count: number };
-    category: string;
-  }) => {
+  const createProductCard = (product: ProductTypes) => {
     return (
-      <Link
-        key={product.id}
-        href={`/product/${product.id}`}
-        className="flex flex-col items-center justify-evenly bg-white p-6 max-w-[400px] min-h-[400px]"
-      >
-        <Image
-          src={product.image}
-          alt={product.title}
-          width={200}
-          height={200}
-          className="max-w-[200px] max-h-[200px]"
-        />
-        <p className="w-4/5 text-center">{product.title}</p>
-        <p>${product.price}</p>
-        <p>{product.rate.rating} </p>
-      </Link>
+      <>
+        <div className="flex items-center flex-col  z-10">
+          <Card
+            className="h-5/6 w-96 transform hover:scale-110"
+            placeholder={undefined}
+            color="gray"
+          >
+            <CardHeader
+              shadow={true}
+              floated={false}
+              className="h-96"
+              placeholder={undefined}
+            >
+              <Image
+                src={product.image}
+                width={250}
+                height={250}
+                alt="card-image"
+                className="h-full w-full object-scale-down"
+              />
+            </CardHeader>
+            <CardBody placeholder={undefined}>
+              <div className="mb-2 flex flex-col items-center justify-between">
+                <Typography
+                  color="white"
+                  className="font-medium"
+                  placeholder={undefined}
+                >
+                  {product.title}
+                </Typography>
+                <Typography
+                  color="white"
+                  className="font-medium"
+                  placeholder={undefined}
+                >
+                  ${product.price}
+                </Typography>
+              </div>
+            </CardBody>
+            <CardFooter className="pt-0" placeholder={undefined}>
+              <Button
+                ripple={false}
+                fullWidth={true}
+                className="bg-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+                placeholder={undefined}
+              >
+                Shop
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+        <div className="absolute h-1/2 w-full align-bottom bg-gray-custom z-0"></div>
+      </>
     );
   };
 
   return (
     <>
       {/* <HeroImage location={"landing"} /> */}
-      <div className="h-auto">
-        <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
-          <Link href={`/top-rated`} className="text-4xl">
+      <div className="pl-2 pr-2">
+        <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row  justify-evenly items-center gap-10 md:gap-60">
+          <Link
+            href={`/top-rated`}
+            className="text-4xl  z-10 text-black transform hover:scale-110 "
+          >
             Shop Top Rated
           </Link>
-          <div className="bg-black w-[35rem] h-[35rem] transform rotate-6">
-            <div className="flex h-full items-center flex-col justify-center transform rotate-[-6deg]">
-              {highestRatedProduct && createHTMLElement(highestRatedProduct)}
-            </div>
-          </div>
+          {highestRatedProduct && createProductCard(highestRatedProduct)}
         </div>
-        <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
-          <div className="bg-black w-[35rem] h-[35rem] transform rotate-[-6deg]">
-            <div className="flex h-full items-center flex-col justify-center transform rotate-6">
-              {productUnder100 && createHTMLElement(productUnder100)}
-            </div>
-          </div>
-          <Link href={`/sale`} className="text-4xl">
+        <div className="mt-20 mb-20 ml-5 mr-5 flex sm:flex-col-reverse md:flex-row justify-evenly items-center gap-10 md:gap-60">
+          {productUnder100 && createProductCard(productUnder100)}
+          <Link
+            href={`/sale`}
+            className="text-4xl text-black z-10 transform hover:scale-110"
+          >
             Shop Sale Items
           </Link>
         </div>
-        <div className="mt-20 mb-20 flex flex-row justify-evenly items-center ">
-          <Link href={`/gold`} className="text-4xl">
+        <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-60">
+          <Link
+            href={`/gold`}
+            className="text-4xl z-10 text-black transform hover:scale-110"
+          >
             Shop Gold
           </Link>
-          <div className="bg-black w-[35rem] h-[35rem] transform rotate-6">
-            <div className="flex h-full items-center flex-col justify-center transform rotate-[-6deg]">
-              {productWithGold && createHTMLElement(productWithGold)}
-            </div>
-          </div>
+          {productWithGold && createProductCard(productWithGold)}
         </div>
       </div>
     </>

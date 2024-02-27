@@ -63,22 +63,22 @@ export default function HeroImage({ location }: HeroImageProps) {
             fill
             className="object-cover"
           />
-          <div className="absolute w-full flex justify-evenly top-1/3">
+          <div className="absolute w-full flex md:flex-row md:justify-evenly sm:flex-col sm:items-center sm:gap-20 top-1/3">
             <Link
               href={`/top-rated`}
-              className="flex justify-center items-center w-[12rem] h-[4rem] text-center bg-black text-white text-xl"
+              className="flex justify-center items-center w-[12rem] h-[4rem] text-center bg-black text-white text-xl transform hover:scale-110"
             >
               Shop Top Rated
             </Link>
             <Link
               href={`/sale`}
-              className="flex justify-center items-center w-[12rem] h-[4rem] text-center bg-black text-white text-xl"
+              className="flex justify-center items-center w-[12rem] h-[4rem] text-center bg-black text-white text-xl transform hover:scale-110"
             >
               Shop Sale
             </Link>
             <Link
               href={`/gold`}
-              className="flex justify-center items-center w-[12rem] h-[4rem]  bg-black text-white text-xl"
+              className="flex justify-center items-center w-[12rem] h-[4rem]  bg-black text-white text-xl transform hover:scale-110"
             >
               Shop Gold
             </Link>
