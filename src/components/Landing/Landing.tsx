@@ -101,7 +101,7 @@ export const Landing: React.FC<LandingProps> = ({ products }) => {
           </Link>
           {highestRatedProduct && createProductCard(highestRatedProduct)}
         </div>
-        <div className="mt-20 mb-20 ml-5 mr-5 flex sm:flex-col-reverse md:flex-row justify-evenly items-center gap-10 md:gap-60">
+        <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col-reverse md:flex-row justify-evenly items-center gap-10 md:gap-60">
           {productUnder100 && createProductCard(productUnder100)}
           <Link
             href={`/sale`}
