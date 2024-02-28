@@ -35,7 +35,7 @@ export const Landing: React.FC<LandingProps> = ({ products }) => {
       <>
         <div className="flex items-center flex-col  z-10">
           <Card
-            className="h-5/6 w-96 transform hover:scale-110"
+            className="h-5/6 w-auto sm:w-96 transform hover:scale-110"
             placeholder={undefined}
             color="gray"
           >
@@ -95,7 +95,7 @@ export const Landing: React.FC<LandingProps> = ({ products }) => {
         <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row  justify-evenly items-center gap-10 md:gap-60">
           <Link
             href={`/top-rated`}
-            className="text-4xl  z-10 text-black transform hover:scale-110 "
+            className="text-2xl xs:text-4xl  z-10 text-black transform hover:scale-110 "
           >
             Shop Top Rated
           </Link>
@@ -105,7 +105,7 @@ export const Landing: React.FC<LandingProps> = ({ products }) => {
           {productUnder100 && createProductCard(productUnder100)}
           <Link
             href={`/sale`}
-            className="text-4xl text-black z-10 transform hover:scale-110"
+            className="text-2xl xs:text-4xl text-black z-10 transform hover:scale-110"
           >
             Shop Sale Items
           </Link>
@@ -113,7 +113,7 @@ export const Landing: React.FC<LandingProps> = ({ products }) => {
         <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-60">
           <Link
             href={`/gold`}
-            className="text-4xl z-10 text-black transform hover:scale-110"
+            className="text-2xl xs:text-4xl z-10 text-black transform hover:scale-110"
           >
             Shop Gold
           </Link>
