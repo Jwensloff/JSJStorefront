@@ -30,11 +30,15 @@ export default function HeroImage({ location }: HeroImageProps) {
             src="https://images.pexels.com/photos/432059/pexels-photo-432059.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt="A black and white photo of a stylish man popping his colar"
             fill
-            className="object-cover"
+            className="object-cover z-0"
           />
-          <div className="absolute w-[30vw] text-white text-8xl bottom-1/2 right-20">
-            <p>Be Authentic</p>
-          </div>
+          <p className="absolute top-[30%] left-[20%] z-10 text-white text-6xl sm:text-9xl">
+            Be <br></br> Auth
+            <span className="md:hidden">-</span>
+            <br className="md:hidden"></br>
+            entic
+          </p>
+          {/* </div> */}
         </div>
       );
     } else if (location === "jewelry") {
