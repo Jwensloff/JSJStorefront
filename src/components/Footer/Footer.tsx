@@ -14,7 +14,12 @@ const AccordionSection = ({
   links,
 }: {
   title: string;
-  links: { href: string; text?: string; icon?: IconDefinition }[];
+  links: {
+    href: string;
+    text?: string;
+    icon?: IconDefinition;
+    label?: string;
+  }[];
 }) => (
   <details className="bg-gray-custom shadow rounded group border-b border-black w-[100%] md:hidden">
     <summary className="list-none flex flex-wrap items-center cursor-pointer">
@@ -27,6 +32,7 @@ const AccordionSection = ({
           <Link
             key={index}
             href={link.href}
+            aria-label={link.label}
             className="cursor-pointer hover:underline"
           >
             {link.text}
@@ -65,9 +71,9 @@ export default function Footer() {
       title: "Contact Us",
       links: [
         { href: "/fallback", text: "+1-(800)-123-4567" },
-        { href: "/fallback", icon: faInstagram },
-        { href: "/fallback", icon: faTwitter },
-        { href: "/fallback", icon: faFacebook },
+        { href: "/fallback", icon: faInstagram, label: "Instagram" },
+        { href: "/fallback", icon: faTwitter, label: "Twitter" },
+        { href: "/fallback", icon: faFacebook, label: "Facebook" },
       ],
     },
   ];
@@ -78,6 +84,7 @@ export default function Footer() {
           key={index}
           title={section.title}
           links={section.links}
+          aria-label={section.links}
         />
       ))}
 
@@ -124,13 +131,13 @@ export default function Footer() {
         <h2 className="font-extrabold">Contact Us</h2>
         <p className="cursor-pointer hover:underline"> +1-(800)-123-4567</p>
         <div className="flex justify-evenly text-lg mt-1">
-          <Link href={"/fallback"}>
+          <Link aria-label="Instagram" href={"/fallback"}>
             <FontAwesomeIcon icon={faInstagram} />
           </Link>
-          <Link href={"/fallback"}>
+          <Link aria-label="Twitter" href={"/fallback"}>
             <FontAwesomeIcon icon={faTwitter} />
           </Link>
-          <Link href={"/fallback"}>
+          <Link aria-label="Facebook" href={"/fallback"}>
             <FontAwesomeIcon icon={faFacebook} />
           </Link>
         </div>
