@@ -1,12 +1,12 @@
 import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
-import OrderStatus from "@/src/components/OrderStatus/OrderStatus";
+import OrderStatuses from "@/src/components/OrderStatuses/OrderStatuses";
 
-export default function page() {
+export default function OrderStatus() {
   return (
     <div className="min-h-screen flex flex-col justify-between ">
       <Header />
-      <OrderStatus />
+      <OrderStatuses />
       <Footer />
     </div>
   );

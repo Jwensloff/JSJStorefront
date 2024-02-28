@@ -8,9 +8,9 @@ export default function ReturnsAndExchanges() {
       <h1 className="text-center text-lg sm:text-2xl font-bold mb-2">
         Return and Exchanges
       </h1>
-      <div className="flex flex-col sm:flex-row items-center gap-1 sm:justify-around">
+      <div className="flex flex-col sm:flex-row items-center gap-4 sm:justify-evenly pb-2">
         <Link href={"/fallback"}>
-          <section className="flex flex-col h-auto justify-around max-w-56 sm:h-52  rounded border border-gray-500 text-center">
+          <section className="flex flex-col h-auto justify-around max-w-56 xs:h-56 rounded border border-gray-500 text-center">
             <FontAwesomeIcon
               aria-hidden="true"
               icon={faBoxOpen}
@@ -21,7 +21,7 @@ export default function ReturnsAndExchanges() {
           </section>
         </Link>
         <Link href={"/fallback"}>
-          <section className="flex flex-col h-auto justify-around max-w-56 sm:h-52 rounded border border-gray-500 text-center">
+          <section className="flex flex-col h-auto justify-around max-w-56 xs:h-56 rounded border border-gray-500 text-center">
             <FontAwesomeIcon
               aria-hidden="true"
               icon={faGift}
