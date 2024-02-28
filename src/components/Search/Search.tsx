@@ -16,7 +16,7 @@ export function Search() {
   };
 
   return (
-    <div className="border-2 border-slate-700 rounded ">
+    <div data-test="search" className="border-2 border-slate-700 rounded ">
       <div className="flex items-center p-1">
         <label className="sr-only" htmlFor="search">
           Search Products here
@@ -40,6 +40,7 @@ export function Search() {
           </button>
         )}
         <Link
+          data-test="search-icon"
           aria-label="search"
           href={`/search-results/${search}`}
           className="hover:text-blue-900"
