@@ -20,6 +20,7 @@ export {
   Select,
   Option,
   Button,
+  Badge,
   Card,
   CardHeader,
   CardBody,
