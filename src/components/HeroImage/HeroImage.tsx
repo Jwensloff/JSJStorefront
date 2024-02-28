@@ -30,11 +30,15 @@ export default function HeroImage({ location }: HeroImageProps) {
             src="https://images.pexels.com/photos/432059/pexels-photo-432059.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt="A black and white photo of a stylish man popping his colar"
             fill
-            className="object-cover"
+            className="object-cover z-0"
           />
-          <div className="absolute w-[30vw] text-white text-8xl bottom-1/2 right-20">
-            <p>Be Authentic</p>
-          </div>
+          <p className="absolute top-[30%] left-[20%] z-10 text-white text-6xl sm:text-9xl">
+            Be <br></br> Auth
+            <span className="md:hidden">-</span>
+            <br className="md:hidden"></br>
+            entic
+          </p>
+          {/* </div> */}
         </div>
       );
     } else if (location === "jewelry") {
@@ -63,22 +67,22 @@ export default function HeroImage({ location }: HeroImageProps) {
             fill
             className="object-cover"
           />
-          <div className="absolute w-full flex justify-evenly top-1/3">
+          <div className="absolute w-full flex md:flex-row md:justify-evenly flex-col items-center gap-20 top-1/3">
             <Link
               href={`/top-rated`}
-              className="flex justify-center items-center w-[12rem] h-[4rem] text-center bg-black text-white text-xl"
+              className="flex justify-center items-center w-[12rem] h-[4rem] text-center bg-black text-white text-xl transform hover:scale-110"
             >
               Shop Top Rated
             </Link>
             <Link
               href={`/sale`}
-              className="flex justify-center items-center w-[12rem] h-[4rem] text-center bg-black text-white text-xl"
+              className="flex justify-center items-center w-[12rem] h-[4rem] text-center bg-black text-white text-xl transform hover:scale-110"
             >
               Shop Sale
             </Link>
             <Link
               href={`/gold`}
-              className="flex justify-center items-center w-[12rem] h-[4rem]  bg-black text-white text-xl"
+              className="flex justify-center items-center w-[12rem] h-[4rem]  bg-black text-white text-xl transform hover:scale-110"
             >
               Shop Gold
             </Link>

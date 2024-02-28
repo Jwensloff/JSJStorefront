@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-const withMT = require("@material-tailwind/react/utils/withMT")
+const withMT = require("@material-tailwind/react/utils/withMT");
 
 const config: Config = withMT({
   content: [
@@ -12,6 +12,7 @@ const config: Config = withMT({
   ],
   theme: {
     screens: {
+      xs: "350px",
       sm: "480px",
       md: "768px",
       lg: "1275px",
