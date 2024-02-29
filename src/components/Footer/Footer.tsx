@@ -49,7 +49,7 @@ export default function Footer() {
     },
     {
       title: "Company",
-      links: [{ href: "/careers", text: "Careers" }],
+      links: [{ href: "/careers-home", text: "Careers" }],
     },
     {
       title: "Help",
@@ -95,7 +95,7 @@ export default function Footer() {
       </div>
       <div className="hidden md:flex md:flex-col">
         <h2 className="font-extrabold">Company</h2>
-        <Link href="/careers" className="cursor-pointer hover:underline">
+        <Link href="/careers-home" className="cursor-pointer hover:underline">
           Careers
         </Link>
       </div>
