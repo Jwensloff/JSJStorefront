@@ -39,9 +39,9 @@ export default async function JobDetails({
       .filter(Boolean)
 
     return (
-      <div key={jobDesc.id} className="flex flex-col gap-5">
+      <div key={jobDesc.id} className="flex flex-col gap-5 xl:w-1/2">
         <h2 className="font-extrabold text-4xl">{jobDesc.title}</h2>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col gap-2 md:flex-row">
           <p className="font-bold">Location:</p>
           <p>
             {jobDesc.location.state}, {jobDesc.location.country}
@@ -101,7 +101,7 @@ export default async function JobDetails({
   return (
     <div>
       <Header />
-      <div className="m-20">
+      <div className="m-20 flex flex-col items-center">
         {jobDetails && jobDetails?.map((job) => generateJobDetails(job))}
       </div>
       <Footer />

@@ -8,7 +8,7 @@ interface CareersProps {
 export default function CareersPreview({ data }: CareersProps) {
   const createCard = (career: CareerPreviewProps) => {
     return (
-      <div key={career.id}>
+      <div key={career.id} className="xl:w-1/2">
         <Card key={career.id} className="m-20" placeholder={undefined}>
           <CardBody placeholder={undefined}>
             <Typography
@@ -41,7 +41,7 @@ export default function CareersPreview({ data }: CareersProps) {
   };
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full flex flex-col items-center">
       {data && data?.map((career) => createCard(career))}
     </div>
   );
