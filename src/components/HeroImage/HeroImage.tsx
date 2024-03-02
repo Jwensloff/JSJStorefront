@@ -62,6 +62,7 @@ export default function HeroImage({ location }: HeroImageProps) {
       return (
         <div>
           <Image
+            data-test="landing-page-hero"
             src="https://images.pexels.com/photos/270859/pexels-photo-270859.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt="A woman jumping in front of an umbrella"
             fill
@@ -69,18 +70,21 @@ export default function HeroImage({ location }: HeroImageProps) {
           />
           <div className="absolute w-full flex md:flex-row md:justify-evenly flex-col items-center gap-20 top-1/3">
             <Link
+              data-test="top-rated-btn"
               href={`/top-rated`}
               className="flex justify-center items-center w-[12rem] h-[4rem] text-center bg-black text-white text-xl transform hover:scale-110"
             >
               Shop Top Rated
             </Link>
             <Link
+              data-test="sale-btn"
               href={`/sale`}
               className="flex justify-center items-center w-[12rem] h-[4rem] text-center bg-black text-white text-xl transform hover:scale-110"
             >
               Shop Sale
             </Link>
             <Link
+              data-test="gold-btn"
               href={`/gold`}
               className="flex justify-center items-center w-[12rem] h-[4rem]  bg-black text-white text-xl transform hover:scale-110"
             >
