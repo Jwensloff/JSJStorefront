@@ -1,42 +1,37 @@
-import supabase from '@/src/config/supabaseClient'
-import Footer from '../../../../components/Footer/Footer'
-import Header from '../../../../components/Header/Header'
-import { CareerProps } from '@/src/types'
-import { Button } from '../../../../tailwind'
+import supabase from "@/src/config/supabaseClient";
+import Footer from "../../../../components/Footer/Footer";
+import Header from "../../../../components/Header/Header";
+import { CareerProps } from "@/src/types";
+import { Button } from "../../../../tailwind";
+import HeroImage from "@/src/components/HeroImage/HeroImage";
 
 const getJobDetails = async (id: number) => {
   let { data, error } = await supabase
-    .from('open_jobs')
-    .select('')
-    .eq('id', `${id}`)
+    .from("open_jobs")
+    .select("")
+    .eq("id", `${id}`);
 
   if (error) {
-    throw error
+    throw error;
   }
   if (data) {
-    return data
+    return data;
   }
-}
+};
 
 export default async function JobDetails({
   params,
 }: {
-  params: { id: string }
+  params: { id: string };
 }) {
-  const jobDetails = await getJobDetails(Number(params.id))
+  const jobDetails = await getJobDetails(Number(params.id));
 
   const generateJobDetails = (jobDesc: CareerProps | any) => {
-    const formattedJobQ = jobDesc?.qualifications
-      .split(/\//)
-      .filter(Boolean)
+    const formattedJobQ = jobDesc?.qualifications.split(/\//).filter(Boolean);
 
-    const formattedJobR = jobDesc?.responsibilities
-      .split(/\//)
-      .filter(Boolean)
+    const formattedJobR = jobDesc?.responsibilities.split(/\//).filter(Boolean);
 
-    const formattedBenefits = jobDesc?.benefits
-      .split(/,/)
-      .filter(Boolean)
+    const formattedBenefits = jobDesc?.benefits.split(/,/).filter(Boolean);
 
     return (
       <div key={jobDesc.id} className="flex flex-col gap-5 xl:w-1/2">
@@ -47,7 +42,7 @@ export default async function JobDetails({
             {jobDesc.location.state}, {jobDesc.location.country}
           </p>
           <p className="font-bold">Remote: </p>
-          <p>{jobDesc.location.remote ? 'Yes' : 'No'}</p>
+          <p>{jobDesc.location.remote ? "Yes" : "No"}</p>
           <p className="font-bold">Job Type:</p>
           <p>{jobDesc.type}</p>
           <p className="font-bold">Salary:</p>
@@ -56,7 +51,7 @@ export default async function JobDetails({
         <div className="flex gap-2">
           <p className="font-bold">Expected Start: </p>
           <p>
-            {' '}
+            {" "}
             {jobDesc.start_date.month} - {jobDesc.start_date.year}
           </p>
         </div>
@@ -85,18 +80,14 @@ export default async function JobDetails({
             </li>
           ))}
         </ul>
-        <a href='/fallback'>
-        <Button
-          color="blue"
-          className="w-1/2 mt-10"
-          placeholder={undefined}
-        >
-          APPLY
-        </Button>
+        <a href="/fallback">
+          <Button color="blue" className="w-1/2 mt-10" placeholder={undefined}>
+            APPLY
+          </Button>
         </a>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div>
@@ -106,5 +97,5 @@ export default async function JobDetails({
       </div>
       <Footer />
     </div>
-  )
+  );
 }
