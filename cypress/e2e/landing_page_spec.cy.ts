@@ -1,5 +1,12 @@
+import supabase from "@/src/config/supabaseClient";
 describe("template spec", () => {
   beforeEach(() => {
+    // let supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
+    // let supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
+
+    cy.intercept("GET", "https://qclojeseumhphvvxrtog.supabase.co/", {
+      fixture: "landing_page_data.json",
+    }).as("landing_page_data");
 
     cy.visit("http://localhost:3000/");
   });
