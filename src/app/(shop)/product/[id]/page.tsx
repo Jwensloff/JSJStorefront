@@ -124,9 +124,7 @@ export default async function Product({ params }: { params: { id: string } }) {
 
   return (
     <div className="flex flex-col justify-between min-h-screen">
-      <Header />
       <div className="flex flex-row justify-evenly">{productDisplay}</div>
-      <Footer />
     </div>
   );
 }

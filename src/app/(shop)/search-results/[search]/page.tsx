@@ -33,7 +33,6 @@ export default async function SearchResults({
 
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      <Header />
       {searchedProducts?.length === 0 && (
         <div className="flex justify-center items-center">
           <p className="px-2">
@@ -42,7 +41,6 @@ export default async function SearchResults({
         </div>
       )}
       {searchedProducts && <ProductGrid data={searchedProducts} />}
-      <Footer />
     </div>
   );
 }

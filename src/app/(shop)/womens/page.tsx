@@ -22,10 +22,8 @@ export default async function WomensPage() {
   const womensClothing = await getWomensClothing();
   return (
     <div>
-      <Header />
       <HeroImage location={"womens"} />
       <ProductGrid data={womensClothing} />
-      <Footer />
     </div>
   );
 }

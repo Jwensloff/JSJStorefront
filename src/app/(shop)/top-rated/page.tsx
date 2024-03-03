@@ -29,10 +29,8 @@ export default async function TopRated() {
 
   return (
     <div>
-      <Header />
       <HeroImage location="top-rated" />
       <ProductGrid data={highestRatedProducts} />
-      <Footer />
     </div>
   );
 }

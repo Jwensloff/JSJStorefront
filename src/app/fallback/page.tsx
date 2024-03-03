@@ -7,7 +7,6 @@ import Link from "next/link";
 export default function Fallback() {
   return (
     <>
-      <Header />
       <HeroImage location="fallback" />
       <p className="text-center font-medium text-lg py-3">
         BUT feel free to connect with us:
@@ -43,8 +42,6 @@ export default function Fallback() {
           Or go back home
         </Link>
       </div>
-
-      <Footer />
     </>
   );
 }

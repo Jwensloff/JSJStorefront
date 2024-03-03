@@ -5,9 +5,7 @@ import ReturnsAndExchanges from "@/src/components/ReturnsAndExchanges/ReturnsAnd
 export default function ReturnAndExchange() {
   return (
     <div className="min-h-screen flex flex-col justify-between ">
-      <Header />
       <ReturnsAndExchanges />
-      <Footer />
     </div>
   );
 }

@@ -31,10 +31,8 @@ export default async function Gold() {
 
   return (
     <div>
-      <Header />
       <HeroImage location="gold" />
       <ProductGrid data={productsWithGold} />
-      <Footer />
     </div>
   );
 }

@@ -126,14 +126,12 @@ export default function FAQs() {
 
   return (
     <div className="flex flex-col items-center">
-      <Header />
       <h2 className="text-center text-4xl font-bold my-5">
         Frequently Asked Questions
       </h2>
       <div className="flex flex-col align-center min-h-[55vh] w-[85vw] gap-4 mb-4">
         {qAndA}
       </div>
-      <Footer />
     </div>
   );
 }

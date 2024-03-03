@@ -22,10 +22,8 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col items-center">
-      <Header />
       <HeroImage location={"landing"} />
       <Landing products={products} />
-      <Footer />
     </main>
   );
 }

@@ -22,10 +22,8 @@ export default async function page() {
   const data = await getJewelryData();
   return (
     <div>
-      <Header />
       <HeroImage location={"jewelry"} />
       <ProductGrid data={data} />
-      <Footer />
     </div>
   );
 }

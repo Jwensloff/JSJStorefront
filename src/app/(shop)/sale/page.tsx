@@ -27,10 +27,8 @@ export default async function Sale() {
 
   return (
     <div>
-      <Header />
       <HeroImage location={"sale"} />
       <ProductGrid data={productsOnSale} />
-      <Footer />
     </div>
   );
 }

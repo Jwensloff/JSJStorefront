@@ -25,10 +25,8 @@ export default async function page() {
   // console.log(data)
   return (
     <div>
-      <Header />
       <HeroImage location={"mens"} />
       <ProductGrid data={data} />
-      <Footer />
     </div>
   );
 }
