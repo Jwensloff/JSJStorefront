@@ -75,7 +75,7 @@ export default function Header() {
                 href="/shopping-cart"
                 className="cursor-pointer hover:underline"
               >
-                <ShoppingCartSymbol />
+                {/* <ShoppingCartSymbol /> */}
               </Link>
               <nav
                 onKeyDown={handleKeyDown}

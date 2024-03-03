@@ -1,30 +1,17 @@
+"use client";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { Landing } from "../components/Landing/Landing";
-import supabase from "../config/supabaseClient";
 import HeroImage from "../components/HeroImage/HeroImage";
-
+// import { getLandingProductData } from "@/apiCalls";}
 // fetch all product data
-const getLandingProductData = async () => {
-  // "use server";
-  let { data, error } = await supabase.from("products").select("*");
 
-  if (error) {
-    throw error;
-  }
-  if (data) {
-    return data;
-  }
-};
-
-export default async function Home() {
-  const products = await getLandingProductData();
-
+export default function Home() {
   return (
     <main className="flex flex-col items-center">
       <Header />
       <HeroImage location={"landing"} />
-      <Landing products={products} />
+      <Landing />
       <Footer />
     </main>
   );
