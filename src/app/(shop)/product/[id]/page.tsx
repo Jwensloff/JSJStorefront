@@ -1,25 +1,13 @@
-import Footer from "@/src/components/Footer/Footer";
-import Header from "@/src/components/Header/Header";
-import supabase from "@/src/config/supabaseClient";
 import { Rating, Select, Option, Button } from "@/src/tailwind";
 import Image from "next/image";
 import CartButton from "../CartButton";
-
-const getProductById = async () => {
-  // await supabase.clearCache();
-
-  let { data, error } = await supabase.from("products").select("*");
-
-  if (error) {
-    throw error;
-  }
-  if (data) {
-    return data;
-  }
-};
+import { createClient } from "@/src/utils/supabase/supabaseServer";
 
 export default async function Product({ params }: { params: { id: string } }) {
-  const allProducts = await getProductById();
+  const supabase = createClient();
+
+  const { data: allProducts } = await supabase.from("products").select("*");
+
   const singleProduct = allProducts?.find(
     (product) => product.id === Number(params.id),
   );
@@ -92,14 +80,14 @@ export default async function Product({ params }: { params: { id: string } }) {
           </Select>
         </div>
         <div className="space-x-5 flex">
-          <a href="/shopping-cart">
-            <CartButton
-              id={singleProduct.id}
-              title={singleProduct.title}
-              price={singleProduct.price}
-              image={singleProduct.image}
-            />
-          </a>
+          {/* <a href="/shopping-cart"> */}
+          <CartButton
+            id={singleProduct.id}
+            title={singleProduct.title}
+            price={singleProduct.price}
+            image={singleProduct.image}
+          />
+          {/* </a> */}
           <a>
             <Button
               size="lg"
@@ -124,9 +112,7 @@ export default async function Product({ params }: { params: { id: string } }) {
 
   return (
     <div className="flex flex-col justify-between min-h-screen">
-      <Header />
       <div className="flex flex-row justify-evenly">{productDisplay}</div>
-      <Footer />
     </div>
   );
 }

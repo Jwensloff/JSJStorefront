@@ -91,7 +91,7 @@ export const Landing: React.FC<LandingProps> = ({ products }) => {
   return (
     <>
       {/* <HeroImage location={"landing"} /> */}
-      <div className="pl-2 pr-2">
+      <div>
         <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row  justify-evenly items-center gap-10 md:gap-60">
           <Link
             href={`/top-rated`}

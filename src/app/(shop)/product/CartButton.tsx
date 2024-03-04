@@ -1,7 +1,7 @@
 "use client";
-
 import { Button } from "@/src/tailwind";
-import supabase from "@/src/config/supabaseClient";
+import { createClient } from "@/src/utils/supabase/supabaseClient";
+import { redirect, useRouter } from "next/navigation";
 
 interface CartButtonProps {
   id: number;
@@ -16,10 +16,18 @@ export default function CartButton({
   price,
   image,
 }: CartButtonProps) {
+  const router = useRouter();
   const handleClick = async () => {
-    const { data, error } = await supabase
+    const supabase = createClient();
+    const { error } = await supabase
       .from("shopping_cart")
       .insert({ id, title, price, image });
+
+    if (error) {
+      redirect("/error");
+    }
+
+    router.refresh();
   };
   return (
     <Button

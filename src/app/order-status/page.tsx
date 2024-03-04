@@ -5,9 +5,7 @@ import OrderStatuses from "@/src/components/OrderStatuses/OrderStatuses";
 export default function OrderStatus() {
   return (
     <div className="min-h-screen flex flex-col justify-between ">
-      <Header />
       <OrderStatuses />
-      <Footer />
     </div>
   );
 }

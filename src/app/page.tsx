@@ -1,31 +1,19 @@
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
 import { Landing } from "../components/Landing/Landing";
-import supabase from "../config/supabaseClient";
+
 import HeroImage from "../components/HeroImage/HeroImage";
-
-// fetch all product data
-const getLandingProductData = async () => {
-  // "use server";
-  let { data, error } = await supabase.from("products").select("*");
-
-  if (error) {
-    throw error;
-  }
-  if (data) {
-    return data;
-  }
-};
+import { createClient } from "../utils/supabase/supabaseServer";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
-  const products = await getLandingProductData();
-
+  const supabase = createClient();
+  const { data, error } = await supabase.from("products").select("*");
+  if (error) {
+    redirect("/error");
+  }
   return (
     <main className="flex flex-col items-center">
-      <Header />
       <HeroImage location={"landing"} />
-      <Landing products={products} />
-      <Footer />
+      <Landing products={data} />
     </main>
   );
 }
