@@ -92,10 +92,9 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
     product.title.includes("Gold")
   );
 
-    const highestRatedProduct = products?.reduce(
-    (prev: ProductTypes, current: ProductTypes) =>
-      prev.rate.rating > current.rate.rating ? prev : current
-  );
+  const highestRatedProducts = products?.filter((product) => {
+    return product.rate.rating <= 4;
+  });
 
   const productsUnder100 = products?.filter(
     (product: { price: number }) => product.price < 100
@@ -163,6 +162,9 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
   };
 
   const goldItems = createProductCard(productsWithGold);
+  const saleItems = createProductCard(productsUnder100);
+  const highestRatedItems = createProductCard(highestRatedProducts);
+
   function CarouselDefault(items) {
     return (
       <Carousel
@@ -179,7 +181,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
   return (
     <>
       <div className="w-full">
-        <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-60">
+        <div className=" bg-gray-200 p-[1rem] mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-60">
           <Link
             data-test="top-rated-link"
             href={`/top-rated`}
@@ -187,10 +189,10 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
           >
             Shop Top Rated {"->"}
           </Link>
-          {/* {highestRatedProduct && createProductCard(highestRatedProduct)} */}
+          {highestRatedProducts && CarouselDefault(highestRatedItems)}
         </div>
         <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col-reverse md:flex-row justify-evenly items-center gap-10 md:gap-60">
-          {/* {productUnder100 && createProductCard(productUnder100)} */}
+          {productsUnder100 && CarouselDefault(saleItems)}
           <Link
             data-test="shop-sale-link"
             href={`/sale`}
