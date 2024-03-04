@@ -1,6 +1,5 @@
 import { ProductTypes } from "../../types";
 import {
-  Button,
   Card,
   CardBody,
   CardFooter,
@@ -77,10 +76,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
             <Link
               href={`/product/${product.id}`}
               data-test={`${product.id}-card-button`}
-              ripple={false}
-              fullWidth={true}
               className=" w-[80%] py-[1rem] flex items-center justify-center rounded bg-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-              placeholder={undefined}
             >
               Shop
             </Link>
