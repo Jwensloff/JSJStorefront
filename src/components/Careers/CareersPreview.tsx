@@ -1,4 +1,4 @@
-import { CareerPreviewProps } from "@/src/types";
+import { CareerPreviewProps } from "../../types";
 import { Button, Card, CardBody, CardFooter, Typography } from "../../tailwind";
 import React from "react";
 
