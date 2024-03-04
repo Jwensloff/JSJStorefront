@@ -1,7 +1,7 @@
-import { Rating, Select, Option, Button } from "@/src/tailwind";
+import { Rating, Select, Option, Button } from "../../../../tailwind";
 import Image from "next/image";
 import CartButton from "../CartButton";
-import { createClient } from "@/src/utils/supabase/supabaseServer";
+import { createClient } from "../../../../utils/supabase/supabaseClient";
 
 export default async function Product({ params }: { params: { id: string } }) {
   const supabase = createClient();

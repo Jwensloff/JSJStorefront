@@ -1,5 +1,6 @@
 import { CareerPreviewProps } from "@/src/types";
 import { Button, Card, CardBody, CardFooter, Typography } from "../../tailwind";
+import React from "react";
 
 interface CareersProps {
   data: CareerPreviewProps[] | undefined;

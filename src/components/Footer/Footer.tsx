@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

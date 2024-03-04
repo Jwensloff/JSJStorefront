@@ -2,6 +2,7 @@
 import Image from "next/image";
 import type { ProductTypes } from "@/src/types";
 import Link from "next/link";
+import React from "react";
 
 interface ProductGridProps {
   data: ProductTypes[] | undefined;

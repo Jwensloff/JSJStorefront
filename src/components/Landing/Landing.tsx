@@ -70,16 +70,20 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
               </Typography>
             </div>
           </CardBody>
-          <CardFooter className="pt-0" placeholder={undefined}>
-            <Button
+          <CardFooter
+            className="flex items-center justify-center"
+            placeholder={undefined}
+          >
+            <Link
+              href={`/product/${product.id}`}
               data-test={`${product.id}-card-button`}
               ripple={false}
               fullWidth={true}
-              className="bg-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+              className=" w-[80%] py-[1rem] flex items-center justify-center rounded bg-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
               placeholder={undefined}
             >
               Shop
-            </Button>
+            </Link>
           </CardFooter>
         </Card>
       </div>
@@ -104,39 +108,37 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
   }
 
   return (
-    <>
-      <div className="w-full">
-        <div className=" bg-gray-custom p-[1rem] mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
-          <Link
-            data-test="top-rated-link"
-            href={`/top-rated`}
-            className="text-2xl xs:text-4xl  z-10 text-black hover:underline "
-          >
-            Shop Top Rated {"->"}
-          </Link>
-          {highestRatedProducts && createCarousel(highestRatedItems)}
-        </div>
-        <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col-reverse md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
-          {productsUnder100 && createCarousel(saleItems)}
-          <Link
-            data-test="shop-sale-link"
-            href={`/sale`}
-            className="text-2xl xs:text-4xl text-black z-10 hover:underline"
-          >
-            {"<-"} Shop Sale Items
-          </Link>
-        </div>
-        <div className="bg-gray-custom p-[1rem] mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
-          <Link
-            data-test="shop-gold-link"
-            href={`/gold`}
-            className="text-2xl xs:text-4xl z-10 text-black hover:underline"
-          >
-            Shop Gold {"->"}
-          </Link>
-          {productsWithGold && createCarousel(goldItems)}
-        </div>
+    <div className="w-full">
+      <div className=" bg-gray-custom p-[1rem] mt-20 mb-20 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
+        <Link
+          data-test="top-rated-link"
+          href={`/top-rated`}
+          className="text-2xl xs:text-4xl  z-10 text-black hover:underline "
+        >
+          Shop Top Rated {"->"}
+        </Link>
+        {highestRatedProducts && createCarousel(highestRatedItems)}
       </div>
-    </>
+      <div className="mt-20 mb-20 flex flex-col-reverse md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
+        {productsUnder100 && createCarousel(saleItems)}
+        <Link
+          data-test="shop-sale-link"
+          href={`/sale`}
+          className="text-2xl xs:text-4xl text-black z-10 hover:underline"
+        >
+          {"<-"} Shop Sale Items
+        </Link>
+      </div>
+      <div className="bg-gray-custom p-[1rem] mt-20 mb-20 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
+        <Link
+          data-test="shop-gold-link"
+          href={`/gold`}
+          className="text-2xl xs:text-4xl z-10 text-black hover:underline"
+        >
+          Shop Gold {"->"}
+        </Link>
+        {productsWithGold && createCarousel(goldItems)}
+      </div>
+    </div>
   );
 }
