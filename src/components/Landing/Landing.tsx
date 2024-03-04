@@ -90,19 +90,6 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
   const saleItems = createProductCard(productsUnder100);
   const highestRatedItems = createProductCard(highestRatedProducts);
 
-  function createCarousel(items) {
-    return (
-      <Carousel
-        className="rounded-xl bg-gray-600 py-[1rem] w-[90%] lg:w-[50%]"
-        transition={{ duration: 0.5 }}
-        loop={true}
-        placeholder={undefined}
-      >
-        {items}
-      </Carousel>
-    );
-  }
-
   return (
     <div className="w-full">
       <div className=" bg-gray-custom p-[1rem] mt-20 mb-20 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
@@ -113,10 +100,28 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
         >
           Shop Top Rated {"->"}
         </Link>
-        {highestRatedProducts && createCarousel(highestRatedItems)}
+        {highestRatedProducts && (
+          <Carousel
+            className="rounded-xl bg-gray-600 py-[1rem] w-[90%] lg:w-[50%]"
+            transition={{ duration: 0.5 }}
+            loop={true}
+            placeholder={undefined}
+          >
+            {highestRatedItems}
+          </Carousel>
+        )}
       </div>
       <div className="mt-20 mb-20 flex flex-col-reverse md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
-        {productsUnder100 && createCarousel(saleItems)}
+        {productsUnder100 && (
+          <Carousel
+            className="rounded-xl bg-gray-600 py-[1rem] w-[90%] lg:w-[50%]"
+            transition={{ duration: 0.5 }}
+            loop={true}
+            placeholder={undefined}
+          >
+            {saleItems}
+          </Carousel>
+        )}
         <Link
           data-test="shop-sale-link"
           href={`/sale`}
@@ -133,7 +138,16 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
         >
           Shop Gold {"->"}
         </Link>
-        {productsWithGold && createCarousel(goldItems)}
+        {productsWithGold && (
+          <Carousel
+            className="rounded-xl bg-gray-600 py-[1rem] w-[90%] lg:w-[50%]"
+            transition={{ duration: 0.5 }}
+            loop={true}
+            placeholder={undefined}
+          >
+            {goldItems}
+          </Carousel>
+        )}
       </div>
     </div>
   );
