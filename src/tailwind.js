@@ -12,6 +12,8 @@ import {
   CardBody,
   CardFooter,
   Typography,
+  Carousel,
+  IconButton,
 } from "@material-tailwind/react";
 
 export {
@@ -26,4 +28,6 @@ export {
   CardBody,
   CardFooter,
   Typography,
+  Carousel,
+  IconButton,
 };

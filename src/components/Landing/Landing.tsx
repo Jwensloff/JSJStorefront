@@ -7,91 +7,179 @@ import {
   CardFooter,
   CardHeader,
   Typography,
+  Carousel,
 } from "../../tailwind";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 export async function Landing({ products }: { products: ProductTypes[] }) {
-  const highestRatedProduct = products?.reduce(
+  // const highestRatedProduct = products?.reduce(
+  //   (prev: ProductTypes, current: ProductTypes) =>
+  //     prev.rate.rating > current.rate.rating ? prev : current
+  // );
+
+  // const productUnder100 = products?.find(
+  //   (product: { price: number }) => product.price < 100
+  // );
+
+  // const productWithGold = products?.find((product: { title: string }) =>
+  //   product.title.includes("Gold")
+  // );
+
+  // const createProductCard = (product: ProductTypes) => {
+  //   return (
+  //     <>
+  //       <div className="flex items-center flex-col  z-10">
+  //         <Card
+  //           data-test={`${product.id}-card`}
+  //           className="h-5/6 w-auto sm:w-96 transform hover:scale-110"
+  //           placeholder={undefined}
+  //           color="gray"
+  //         >
+  //           <CardHeader
+  //             shadow={true}
+  //             floated={false}
+  //             className="h-96"
+  //             placeholder={undefined}
+  //           >
+  //             <Image
+  //               data-test={`${product.id}-card-image`}
+  //               src={product.image}
+  //               width={250}
+  //               height={250}
+  //               alt="card-image"
+  //               className="h-full w-full object-scale-down"
+  //             />
+  //           </CardHeader>
+  //           <CardBody placeholder={undefined}>
+  //             <div className="mb-2 flex flex-col items-center justify-between">
+  //               <Typography
+  //                 color="white"
+  //                 className="font-medium"
+  //                 placeholder={undefined}
+  //               >
+  //                 {product.title}
+  //               </Typography>
+  //               <Typography
+  //                 color="white"
+  //                 className="font-medium"
+  //                 placeholder={undefined}
+  //               >
+  //                 ${product.price}
+  //               </Typography>
+  //             </div>
+  //           </CardBody>
+  //           <CardFooter className="pt-0" placeholder={undefined}>
+  //             <Button
+  //               data-test={`${product.id}-card-button`}
+  //               ripple={false}
+  //               fullWidth={true}
+  //               className="bg-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+  //               placeholder={undefined}
+  //             >
+  //               Shop
+  //             </Button>
+  //           </CardFooter>
+  //         </Card>
+  //       </div>
+  //       <div className="absolute h-1/2 w-full align-bottom bg-gray-custom z-0"></div>
+  //     </>
+  //   );
+  // };
+
+  const productsWithGold = products?.filter((product: { title: string }) =>
+    product.title.includes("Gold")
+  );
+
+    const highestRatedProduct = products?.reduce(
     (prev: ProductTypes, current: ProductTypes) =>
       prev.rate.rating > current.rate.rating ? prev : current
   );
 
-  const productUnder100 = products?.find(
+  const productsUnder100 = products?.filter(
     (product: { price: number }) => product.price < 100
   );
 
-  const productWithGold = products?.find((product: { title: string }) =>
-    product.title.includes("Gold")
-  );
-
-  const createProductCard = (product: ProductTypes) => {
-    return (
-      <>
-        <div className="flex items-center flex-col  z-10">
-          <Card
-            data-test={`${product.id}-card`}
-            className="h-5/6 w-auto sm:w-96 transform hover:scale-110"
+  const createProductCard = (products: ProductTypes[]) => {
+    return products.map((product) => (
+      <div
+        key={product.id}
+        className="flex items-center flex-col jusfity-center"
+      >
+        <Card
+          data-test={`${product.id}-card`}
+          className="h-5/6 w-[100%] sm:w-96"
+          placeholder={undefined}
+          color="gray"
+        >
+          <CardHeader
+            shadow={true}
+            floated={false}
+            className="h-96"
             placeholder={undefined}
-            color="gray"
           >
-            <CardHeader
-              shadow={true}
-              floated={false}
-              className="h-96"
-              placeholder={undefined}
-            >
-              <Image
-                data-test={`${product.id}-card-image`}
-                src={product.image}
-                width={250}
-                height={250}
-                alt="card-image"
-                className="h-full w-full object-scale-down"
-              />
-            </CardHeader>
-            <CardBody placeholder={undefined}>
-              <div className="mb-2 flex flex-col items-center justify-between">
-                <Typography
-                  color="white"
-                  className="font-medium"
-                  placeholder={undefined}
-                >
-                  {product.title}
-                </Typography>
-                <Typography
-                  color="white"
-                  className="font-medium"
-                  placeholder={undefined}
-                >
-                  ${product.price}
-                </Typography>
-              </div>
-            </CardBody>
-            <CardFooter className="pt-0" placeholder={undefined}>
-              <Button
-                data-test={`${product.id}-card-button`}
-                ripple={false}
-                fullWidth={true}
-                className="bg-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            <Image
+              data-test={`${product.id}-card-image`}
+              src={product.image}
+              width={250}
+              height={250}
+              alt="card-image"
+              className="h-full w-full object-scale-down"
+            />
+          </CardHeader>
+          <CardBody placeholder={undefined}>
+            <div className="mb-2 flex flex-col items-center justify-between">
+              <Typography
+                color="white"
+                className="font-medium"
                 placeholder={undefined}
               >
-                Shop
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
-        <div className="absolute h-1/2 w-full align-bottom bg-gray-custom z-0"></div>
-      </>
-    );
+                {product.title}
+              </Typography>
+              <Typography
+                color="white"
+                className="font-medium"
+                placeholder={undefined}
+              >
+                ${product.price}
+              </Typography>
+            </div>
+          </CardBody>
+          <CardFooter className="pt-0" placeholder={undefined}>
+            <Button
+              data-test={`${product.id}-card-button`}
+              ripple={false}
+              fullWidth={true}
+              className="bg-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+              placeholder={undefined}
+            >
+              Shop
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+    ));
   };
+
+  const goldItems = createProductCard(productsWithGold);
+  function CarouselDefault(items) {
+    return (
+      <Carousel
+        className="rounded-xl bg-gray-600 py-[1rem] w-[50%]"
+        transition={{ duration: 0.5 }}
+        loop={true}
+        placeholder={undefined}
+      >
+        {items}
+      </Carousel>
+    );
+  }
 
   return (
     <>
-      {/* <HeroImage location={"landing"} /> */}
-      <div>
-        <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row  justify-evenly items-center gap-10 md:gap-60">
+      <div className="w-full">
+        <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-60">
           <Link
             data-test="top-rated-link"
             href={`/top-rated`}
@@ -99,10 +187,10 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
           >
             Shop Top Rated {"->"}
           </Link>
-          {highestRatedProduct && createProductCard(highestRatedProduct)}
+          {/* {highestRatedProduct && createProductCard(highestRatedProduct)} */}
         </div>
         <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col-reverse md:flex-row justify-evenly items-center gap-10 md:gap-60">
-          {productUnder100 && createProductCard(productUnder100)}
+          {/* {productUnder100 && createProductCard(productUnder100)} */}
           <Link
             data-test="shop-sale-link"
             href={`/sale`}
@@ -111,7 +199,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
             {"<-"} Shop Sale Items
           </Link>
         </div>
-        <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-60">
+        <div className="bg-gray-200 p-[1rem] mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-60">
           <Link
             data-test="shop-gold-link"
             href={`/gold`}
@@ -119,7 +207,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
           >
             Shop Gold {"->"}
           </Link>
-          {productWithGold && createProductCard(productWithGold)}
+          {productsWithGold && CarouselDefault(goldItems)}
         </div>
       </div>
     </>
