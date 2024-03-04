@@ -1,4 +1,3 @@
-// import supabase from "@/src/utils/supabase/supabaseClient";
 import { Rating, Select, Option, Button } from "@/src/tailwind";
 import Image from "next/image";
 import CartButton from "../CartButton";
@@ -82,12 +81,12 @@ export default async function Product({ params }: { params: { id: string } }) {
         </div>
         <div className="space-x-5 flex">
           {/* <a href="/shopping-cart"> */}
-            <CartButton
-              id={singleProduct.id}
-              title={singleProduct.title}
-              price={singleProduct.price}
-              image={singleProduct.image}
-            />
+          <CartButton
+            id={singleProduct.id}
+            title={singleProduct.title}
+            price={singleProduct.price}
+            image={singleProduct.image}
+          />
           {/* </a> */}
           <a>
             <Button

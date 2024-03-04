@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/src/tailwind";
 import { createClient } from "@/src/utils/supabase/supabaseClient";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 interface CartButtonProps {
   id: number;
@@ -24,7 +24,7 @@ export default function CartButton({
       .insert({ id, title, price, image });
 
     if (error) {
-      console.log(error);
+      redirect("/error");
     }
 
     router.refresh();
