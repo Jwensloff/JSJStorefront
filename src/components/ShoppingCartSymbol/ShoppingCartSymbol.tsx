@@ -3,7 +3,7 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Badge } from "@material-tailwind/react";
 import { useEffect } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+// import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 
 export default function ShoppingCartSymbol({
@@ -11,29 +11,29 @@ export default function ShoppingCartSymbol({
 }: {
   dataLength: number;
 }) {
-  const router = useRouter();
-  const supabase = createClientComponentClient();
+  // const router = useRouter();
+  // const supabase = createClientComponentClient();
 
-  useEffect(() => {
-    const channel = supabase
-      .channel("shopping cart length")
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "shopping_cart",
-        },
-        () => {
-          router.refresh();
-        },
-      )
-      .subscribe();
+  // useEffect(() => {
+  //   const channel = supabase
+  //     .channel("shopping cart length")
+  //     .on(
+  //       "postgres_changes",
+  //       {
+  //         event: "*",
+  //         schema: "public",
+  //         table: "shopping_cart",
+  //       },
+  //       () => {
+  //         router.refresh();
+  //       },
+  //     )
+  //     .subscribe();
 
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, [supabase, router]);
+  //   return () => {
+  //     supabase.removeChannel(channel);
+  //   };
+  // }, [supabase, router]);
 
   return (
     <div className="pt-3 md:pt-1">

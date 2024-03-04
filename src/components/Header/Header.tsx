@@ -65,9 +65,12 @@ export default function Header({ dataLength }: { dataLength: number }) {
               >
                 <ShoppingCartSymbol dataLength={dataLength} />
               </Link>
-              <div className="sm:hidden cursor-pointer hover:text-blue-900">
+              <button
+                aria-label="open side navigation"
+                className="sm:hidden cursor-pointer hover:text-blue-900"
+              >
                 <FontAwesomeIcon icon={faBars} onClick={toggleSidebar} />
-              </div>
+              </button>
             </div>
           </div>
           <Search />

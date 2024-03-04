@@ -1,7 +1,7 @@
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { Landing } from "../components/Landing/Landing";
-import supabase from "../config/supabaseClient";
+import supabase from "../utils/supabase/supabaseClient";
 import HeroImage from "../components/HeroImage/HeroImage";
 
 // fetch all product data

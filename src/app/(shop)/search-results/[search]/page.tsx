@@ -2,7 +2,7 @@ import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
 import { ProductTypes } from "@/src/types";
-import supabase from "@/src/config/supabaseClient";
+import supabase from "@/src/utils/supabase/supabaseClient";
 
 const getProductData = async () => {
   let { data, error } = await supabase.from("products").select("*");

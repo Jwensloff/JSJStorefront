@@ -1,33 +1,25 @@
-import Footer from "@/src/components/Footer/Footer";
-import Header from "@/src/components/Header/Header";
 import HeroImage from "@/src/components/HeroImage/HeroImage";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
-import supabase from "@/src/config/supabaseClient";
+import { redirect } from "next/navigation";
+import { createClient } from "@/src/utils/supabase/supabaseServer";
 
-const getGold = async () => {
-  // await supabase.clearCache();
+export default async function Gold() {
+  const supabase = createClient();
 
-  let { data, error } = await supabase
+  const { data: allProducts, error } = await supabase
     .from("products")
     .select("*")
     .eq("category", "jewelery");
 
   if (error) {
-    throw error;
+    redirect("/error");
   }
-  if (data) {
-    return data;
-  }
-};
-
-export default async function Gold() {
-  const allProducts = await getGold();
 
   const productsWithGold = allProducts
     ?.filter((product: { title: string } | undefined) => {
       return product?.title.includes("Gold");
     })
-    .filter(Boolean); // Filter out undefined values
+    .filter(Boolean);
 
   return (
     <div>
