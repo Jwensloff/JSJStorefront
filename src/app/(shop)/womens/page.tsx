@@ -1,29 +1,24 @@
-import Footer from "@/src/components/Footer/Footer";
-import Header from "@/src/components/Header/Header";
 import HeroImage from "@/src/components/HeroImage/HeroImage";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
-import supabase from "@/src/utils/supabase/supabaseClient";
+import { createClient } from "@/src/utils/supabase/supabaseServer";
+import { redirect } from "next/navigation";
 
-const getWomensClothing = async () => {
-  let { data, error } = await supabase
+export default async function WomensPage() {
+  const supabase = createClient();
+
+  const { data, error } = await supabase
     .from("products")
     .select("*")
     .eq("category", "women's clothing");
 
   if (error) {
-    throw error;
+    redirect("/error");
   }
-  if (data) {
-    return data;
-  }
-};
 
-export default async function WomensPage() {
-  const womensClothing = await getWomensClothing();
   return (
     <div>
       <HeroImage location={"womens"} />
-      <ProductGrid data={womensClothing} />
+      <ProductGrid data={data} />
     </div>
   );
 }

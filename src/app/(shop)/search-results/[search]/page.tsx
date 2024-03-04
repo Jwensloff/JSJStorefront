@@ -2,25 +2,22 @@ import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
 import { ProductTypes } from "@/src/types";
-import supabase from "@/src/utils/supabase/supabaseClient";
-
-const getProductData = async () => {
-  let { data, error } = await supabase.from("products").select("*");
-
-  if (error) {
-    throw error;
-  }
-  if (data) {
-    return data;
-  }
-};
+import { createClient } from "@/src/utils/supabase/supabaseServer";
+import { redirect } from "next/navigation";
 
 export default async function SearchResults({
   params,
 }: {
   params: { search: string };
 }) {
-  const allProducts = await getProductData();
+  const supabase = createClient();
+  const { data: allProducts, error } = await supabase
+    .from("products")
+    .select("*");
+
+  if (error) {
+    redirect("/error");
+  }
 
   const searchedProducts = allProducts?.filter((product: ProductTypes) => {
     return (

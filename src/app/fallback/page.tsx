@@ -1,5 +1,3 @@
-import Footer from "@/src/components/Footer/Footer";
-import Header from "@/src/components/Header/Header";
 import HeroImage from "@/src/components/HeroImage/HeroImage";
 
 import Link from "next/link";
