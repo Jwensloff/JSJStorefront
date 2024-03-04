@@ -8,7 +8,12 @@ import Sidebar from "../Sidebar/Sidebar";
 import { useState } from "react";
 import ShoppingCartSymbol from "../ShoppingCartSymbol/ShoppingCartSymbol";
 
-export default function Header({ dataLength }: { dataLength: number }) {
+interface HeaderProps {
+  dataLength: number;
+  products: any; // Type for products array
+}
+
+export default function Header({ dataLength, products }: HeaderProps) {
   const pathname = usePathname();
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
 
@@ -59,12 +64,12 @@ export default function Header({ dataLength }: { dataLength: number }) {
               </>
             )}
             <div className="flex flex-row gap-5 justify-end">
-              <Link
+              {/* <Link
                 href="/shopping-cart"
                 className="cursor-pointer hover:underline"
-              >
-                <ShoppingCartSymbol dataLength={dataLength} />
-              </Link>
+              > */}
+              <ShoppingCartSymbol dataLength={dataLength} products={products} />
+              {/* </Link> */}
               <button
                 aria-label="open side navigation"
                 className="sm:hidden cursor-pointer hover:text-blue-900"
