@@ -149,6 +149,22 @@ export default function HeroImage({ location }: HeroImageProps) {
           />
         </div>
       );
+    } else if (location === "careers-home") {
+      return (
+        <div>
+          <Image
+            src="https://images.pexels.com/photos/4008717/pexels-photo-4008717.jpeg"
+            alt="A woman typing on a laptop"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute text-white	text-6xl md:text-9xl h-[30vh] flex flex-col text-right justify-between right-20 top-80">
+            <p>Grow</p>
+            <p>Collaborate</p>
+            <p>Achieve</p>
+          </div>
+        </div>
+      );
     }
   };
 

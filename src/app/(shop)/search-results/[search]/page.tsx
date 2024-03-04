@@ -2,25 +2,22 @@ import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
 import { ProductTypes } from "@/src/types";
-import supabase from "@/src/config/supabaseClient";
-
-const getProductData = async () => {
-  let { data, error } = await supabase.from("products").select("*");
-
-  if (error) {
-    throw error;
-  }
-  if (data) {
-    return data;
-  }
-};
+import { createClient } from "@/src/utils/supabase/supabaseServer";
+import { redirect } from "next/navigation";
 
 export default async function SearchResults({
   params,
 }: {
   params: { search: string };
 }) {
-  const allProducts = await getProductData();
+  const supabase = createClient();
+  const { data: allProducts, error } = await supabase
+    .from("products")
+    .select("*");
+
+  if (error) {
+    redirect("/error");
+  }
 
   const searchedProducts = allProducts?.filter((product: ProductTypes) => {
     return (
@@ -33,7 +30,6 @@ export default async function SearchResults({
 
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      <Header />
       {searchedProducts?.length === 0 && (
         <div className="flex justify-center items-center">
           <p data-test="search-error" className="px-2">
@@ -42,7 +38,6 @@ export default async function SearchResults({
         </div>
       )}
       {searchedProducts && <ProductGrid data={searchedProducts} />}
-      <Footer />
     </div>
   );
 }

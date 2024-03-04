@@ -1,23 +1,17 @@
-import Footer from "@/src/components/Footer/Footer";
-import Header from "@/src/components/Header/Header";
 import HeroImage from "@/src/components/HeroImage/HeroImage";
 import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
-import supabase from "@/src/config/supabaseClient";
-
-const getAllProducts = async () => {
-  // "use server";
-  let { data, error } = await supabase.from("products").select("*");
-
-  if (error) {
-    throw error;
-  }
-  if (data) {
-    return data;
-  }
-};
+import { createClient } from "@/src/utils/supabase/supabaseServer";
+import { redirect } from "next/navigation";
 
 export default async function Sale() {
-  const allProducts = await getAllProducts();
+  const supabase = createClient();
+  const { data: allProducts, error } = await supabase
+    .from("products")
+    .select("*");
+
+  if (error) {
+    redirect("/error");
+  }
 
   const productsOnSale = allProducts?.map((product) => {
     if (product.price <= 100) {
@@ -27,10 +21,8 @@ export default async function Sale() {
 
   return (
     <div>
-      <Header />
       <HeroImage location={"sale"} />
       <ProductGrid data={productsOnSale} />
-      <Footer />
     </div>
   );
 }

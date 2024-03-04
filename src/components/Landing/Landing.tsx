@@ -92,14 +92,14 @@ export async function Landing() {
   return (
     <>
       {/* <HeroImage location={"landing"} /> */}
-      <div className="pl-2 pr-2">
+      <div>
         <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row  justify-evenly items-center gap-10 md:gap-60">
           <Link
             data-test="top-rated-link"
             href={`/top-rated`}
-            className="text-2xl xs:text-4xl  z-10 text-black transform hover:scale-110 "
+            className="text-2xl xs:text-4xl  z-10 text-black hover:underline "
           >
-            Shop Top Rated
+            Shop Top Rated {"->"}
           </Link>
           {highestRatedProduct && createProductCard(highestRatedProduct)}
         </div>
@@ -108,18 +108,18 @@ export async function Landing() {
           <Link
             data-test="shop-sale-link"
             href={`/sale`}
-            className="text-2xl xs:text-4xl text-black z-10 transform hover:scale-110"
+            className="text-2xl xs:text-4xl text-black z-10 hover:underline"
           >
-            Shop Sale Items
+            {"<-"} Shop Sale Items
           </Link>
         </div>
         <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-60">
           <Link
             data-test="shop-gold-link"
             href={`/gold`}
-            className="text-2xl xs:text-4xl z-10 text-black transform hover:scale-110"
+            className="text-2xl xs:text-4xl z-10 text-black hover:underline"
           >
-            Shop Gold
+            Shop Gold {"->"}
           </Link>
           {productWithGold && createProductCard(productWithGold)}
         </div>

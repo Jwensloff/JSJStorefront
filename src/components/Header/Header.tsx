@@ -5,23 +5,17 @@ import { Search } from "../Search/Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Sidebar from "../Sidebar/Sidebar";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import ShoppingCartSymbol from "../ShoppingCartSymbol/ShoppingCartSymbol";
 
-export default function Header() {
+export default function Header({ dataLength }: { dataLength: number }) {
   const pathname = usePathname();
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
-  const drawerRef = useRef(null);
 
   const toggleSidebar = () => {
     setOpenSidebar(!openSidebar);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      toggleSidebar();
-    }
-  };
   const categories = [
     {
       name: "Women's",
@@ -50,7 +44,7 @@ export default function Header() {
         >
           JSJ
         </Link>
-        <div className="flex flex-col w-full justify-around py-2">
+        <div className="flex flex-col w-full justify-around">
           <div className="flex flex-row justify-end sm:justify-between">
             {!openSidebar && (
               <>
@@ -75,26 +69,21 @@ export default function Header() {
                 href="/shopping-cart"
                 className="cursor-pointer hover:underline"
               >
-                {/* <ShoppingCartSymbol /> */}
+                <ShoppingCartSymbol dataLength={dataLength} />
               </Link>
-              <nav
-                onKeyDown={handleKeyDown}
-                tabIndex={0}
+              <button
+                aria-label="open side navigation"
                 className="sm:hidden cursor-pointer hover:text-blue-900"
               >
                 <FontAwesomeIcon icon={faBars} onClick={toggleSidebar} />
-                <div className="lg:hidden pr-2 cursor-pointer hover:text-blue-900">
-                  <Sidebar
-                    aria-expanded="true"
-                    openSidebar={openSidebar}
-                    toggleSidebar={toggleSidebar}
-                  />
-                </div>
-              </nav>
+              </button>
             </div>
           </div>
           <Search />
         </div>
+      </div>
+      <div className="lg:hidden pr-2 cursor-pointer hover:text-blue-900">
+        <Sidebar openSidebar={openSidebar} toggleSidebar={toggleSidebar} />
       </div>
     </header>
   );

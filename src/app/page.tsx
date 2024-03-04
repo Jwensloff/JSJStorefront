@@ -1,18 +1,19 @@
-"use client";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
 import { Landing } from "../components/Landing/Landing";
-import HeroImage from "../components/HeroImage/HeroImage";
-// import { getLandingProductData } from "@/apiCalls";}
-// fetch all product data
 
-export default function Home() {
+import HeroImage from "../components/HeroImage/HeroImage";
+import { createClient } from "../utils/supabase/supabaseServer";
+import { redirect } from "next/navigation";
+
+export default async function Home() {
+  const supabase = createClient();
+  const { data, error } = await supabase.from("products").select("*");
+  if (error) {
+    redirect("/error");
+  }
   return (
     <main className="flex flex-col items-center">
-      <Header />
       <HeroImage location={"landing"} />
-      <Landing />
-      <Footer />
+      <Landing products={data} />
     </main>
   );
 }
