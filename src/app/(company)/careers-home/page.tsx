@@ -3,7 +3,6 @@ import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
 import HeroImage from "@/src/components/HeroImage/HeroImage";
 import supabase from "@/src/config/supabaseClient";
-
 const getCareersData = async () => {
   // "use server";
 

@@ -1,6 +1,5 @@
 // "use server";
-import { getLandingProductData } from "@/apiCalls";
-import { ProductTypes } from "@/src/types";
+import { ProductTypes } from "../../types";
 import {
   Button,
   Card,
@@ -8,13 +7,12 @@ import {
   CardFooter,
   CardHeader,
   Typography,
-} from "@material-tailwind/react";
+} from "../../tailwind";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
-export async function Landing() {
-  const products = await getLandingProductData();
-
+export async function Landing({ products }: { products: ProductTypes[] }) {
   const highestRatedProduct = products?.reduce(
     (prev: ProductTypes, current: ProductTypes) =>
       prev.rate.rating > current.rate.rating ? prev : current
