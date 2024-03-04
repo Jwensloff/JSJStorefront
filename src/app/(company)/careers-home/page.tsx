@@ -1,38 +1,26 @@
-import CareersPreview from "@/src/components/Careers/CareersPreview";
-import Footer from "@/src/components/Footer/Footer";
-import Header from "@/src/components/Header/Header";
-import HeroImage from "@/src/components/HeroImage/HeroImage";
-import supabase from "@/src/config/supabaseClient";
-
-const getCareersData = async () => {
-  // "use server";
-
-  let { data: open_jobs, error } = await supabase
-    .from("open_jobs")
-    .select("id,title,description");
-
-  if (error) {
-    throw error;
-  }
-  if (open_jobs) {
-    return open_jobs;
-  }
-};
+import CareersPreview from '@/src/components/Careers/CareersPreview'
+import HeroImage from '@/src/components/HeroImage/HeroImage'
+import { createClient } from '@/src/utils/supabase/supabaseServer'
+import { redirect } from 'next/navigation'
 
 export default async function Careers() {
-  const careers = await getCareersData();
+  const supabase = createClient()
+  const { data: open_jobs, error } = await supabase
+    .from('open_jobs')
+    .select('id,title,description')
+  if (error) {
+    redirect('/error')
+  }
 
   return (
     <div>
-      <Header />
-      <HeroImage location={"careers-home"} />
+      <HeroImage location={'careers-home'} />
       <div className="w-full flex flex-col ">
         <h2 className="text-4xl font-extrabold text-center mt-20">
           Open Positions
         </h2>
-        <CareersPreview data={careers} />
+        <CareersPreview data={open_jobs} />
       </div>
-      <Footer />
     </div>
-  );
+  )
 }
