@@ -2,6 +2,7 @@ import { createClient } from "@/src/utils/supabase/supabaseClient";
 import { Card, Typography } from "@material-tailwind/react";
 import Image from "next/image";
 import CartSide from "./CartSide";
+import { ShoppingCartProps } from "@/src/types";
 
 export default async function CartMain({ router }: { router: any }) {
   const supabase = createClient();
@@ -9,11 +10,14 @@ export default async function CartMain({ router }: { router: any }) {
     .from("shopping_cart")
     .select("*");
 
-  const cartTotal = shoppingCartItems?.reduce((acc: any, product: any) => {
-    return acc + product.price;
-  }, 0);
+  const cartTotal = shoppingCartItems?.reduce(
+    (acc: number, product: ShoppingCartProps) => {
+      return acc + product.price;
+    },
+    0,
+  );
 
-  const handleClick = async (id: any) => {
+  const handleClick = async (id: number) => {
     const supabase = createClient();
     const { error } = await supabase
       .from("shopping_cart")
@@ -26,11 +30,11 @@ export default async function CartMain({ router }: { router: any }) {
     router.refresh();
   };
 
-  const createProductCard = (products: any) => {
+  const createProductCard = (products: ShoppingCartProps[] | null) => {
     return (
       <Card placeholder="card" className="min-h-full">
         <div className="w-full h-auto flex flex-col gap-5 p-5">
-          {products.map((product: any) => (
+          {products?.map((product: ShoppingCartProps) => (
             <div
               key={product.id}
               className="w-full min-h-56 max-h-56 pb-5 pr-5 flex flex-row justify-evenly box-border hover:border-t-blue-gray-400 hover:border-t-2"
@@ -80,7 +84,7 @@ export default async function CartMain({ router }: { router: any }) {
       <div className="w-[40vw] p-5">
         <CartSide
           cartTotal={cartTotal}
-          totalItems={shoppingCartItems?.length}
+          totalItems={Number(shoppingCartItems?.length)}
         />
       </div>
     </div>

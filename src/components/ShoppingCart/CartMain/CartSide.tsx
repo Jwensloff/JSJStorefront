@@ -4,11 +4,9 @@ export default async function CartSide({
   cartTotal,
   totalItems,
 }: {
-  cartTotal: any;
-  totalItems: any;
+  cartTotal: number;
+  totalItems: number;
 }) {
-  const { price } = cartTotal;
-
   const createCartSide = (amount: number, totalItems: number) => {
     return (
       <Card

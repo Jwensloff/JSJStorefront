@@ -3,11 +3,17 @@ import { Drawer, Typography, Card, Button } from "@material-tailwind/react";
 import Image from "next/image";
 import { createClient } from "@/src/utils/supabase/supabaseClient";
 import { useRouter } from "next/navigation";
+import { ShoppingCartProps } from "@/src/types";
 
 interface SidebarProps {
   openSidebar: boolean;
   toggleSidebar: () => void;
-  products: any;
+  products: {
+    id: number;
+    title: string;
+    price: number;
+    image: string;
+  }[];
 }
 
 export default function CartPreview({
@@ -16,7 +22,7 @@ export default function CartPreview({
   products,
 }: SidebarProps) {
   const router = useRouter();
-  const handleClick = async (id: any) => {
+  const handleClick = async (id: number) => {
     const supabase = createClient();
     const { error } = await supabase
       .from("shopping_cart")
@@ -30,9 +36,12 @@ export default function CartPreview({
     router.refresh();
   };
 
-  const cartTotal = products.reduce((acc: any, product: any) => {
-    return acc + product.price;
-  }, 0);
+  const cartTotal = products?.reduce(
+    (acc: number, product: ShoppingCartProps) => {
+      return acc + product.price;
+    },
+    0,
+  );
 
   const createCart = (shoppinCartItems: any) => {
     return (
@@ -54,7 +63,7 @@ export default function CartPreview({
         </Typography>
         <Card placeholder="card" className="w-full pt-10">
           <div className="w-full h-96 overflow-scroll flex flex-col gap-5">
-            {shoppinCartItems.map((product: any) => (
+            {shoppinCartItems.map((product: ShoppingCartProps) => (
               <div
                 key={product.id}
                 className="w-full pb-5 pr-5 flex flex-row justify-evenly border-b-4 border-black border-double"
