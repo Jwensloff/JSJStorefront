@@ -1,29 +1,7 @@
-<<<<<<< HEAD
 import { CareerProps } from "@/src/types";
 import { Button } from "../../../../tailwind";
 import { createClient } from "@/src/utils/supabase/supabaseServer";
 import { redirect } from "next/navigation";
-=======
-import { createClient } from "../../../../utils/supabase/supabaseClient";
-import { CareerProps } from "../../../../types";
-import { Button } from "../../../../tailwind";
-import React from "react";
-const getJobDetails = async (id: number) => {
-  const supabase = createClient();
-
-  let { data, error } = await supabase
-    .from("open_jobs")
-    .select("")
-    .eq("id", `${id}`);
-
-  if (error) {
-    throw error;
-  }
-  if (data) {
-    return data;
-  }
-};
->>>>>>> origin/feat/add-carousel
 
 export default async function JobDetails({
   params,
