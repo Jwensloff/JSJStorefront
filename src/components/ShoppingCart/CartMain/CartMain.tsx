@@ -1,6 +1,5 @@
 import { createClient } from "@/src/utils/supabase/supabaseClient";
 import { Card, Typography } from "@material-tailwind/react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import CartSide from "./CartSide";
 
