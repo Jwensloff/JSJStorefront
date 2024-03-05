@@ -7,6 +7,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Sidebar from "../Sidebar/Sidebar";
 import { useState } from "react";
 import ShoppingCartSymbol from "../ShoppingCartSymbol/ShoppingCartSymbol";
+import React from "react";
 
 export default function Header({ dataLength }: { dataLength: number }) {
   const pathname = usePathname();
@@ -32,9 +33,13 @@ export default function Header({ dataLength }: { dataLength: number }) {
   ];
 
   return (
-    <header className="flex flex-col w-full sm:justify-between pr-2">
+    <header
+      data-test="header"
+      className="flex flex-col w-full sm:justify-between"
+    >
       <div className="flex flex-row gap-2 pr-1 md:gap-3 md:pr-3">
         <Link
+          data-test="header_logo"
           href={"/"}
           className="p-3 text-5xl md:text-7xl bg-gray-custom md:p-5"
         >
@@ -48,6 +53,7 @@ export default function Header({ dataLength }: { dataLength: number }) {
                   {categories.map((cat) => (
                     <li key={cat.name}>
                       <Link
+                        data-test={cat.name}
                         className={`${pathname === cat.link ? "underline" : ""} font-extrabold cursor-pointer hover:underline`}
                         href={cat.link}
                       >
@@ -60,6 +66,7 @@ export default function Header({ dataLength }: { dataLength: number }) {
             )}
             <div className="flex flex-row gap-5 justify-end">
               <Link
+                data-test="shopping-cart"
                 href="/shopping-cart"
                 className="cursor-pointer hover:underline"
               >

@@ -1,4 +1,5 @@
 import { createClient } from "@/src/utils/supabase/supabaseServer";
+import React from "react";
 
 export default async function OrderSummary() {
   const supabase = createClient();

@@ -1,11 +1,12 @@
-import CareersPreview from "@/src/components/Careers/CareersPreview";
-import Footer from "@/src/components/Footer/Footer";
-import Header from "@/src/components/Header/Header";
-import HeroImage from "@/src/components/HeroImage/HeroImage";
-import supabase from "@/src/config/supabaseClient";
+import CareersPreview from "../../../components/Careers/CareersPreview";
+import HeroImage from "../../../components/HeroImage/HeroImage";
+import { createClient } from "../../../utils/supabase/supabaseClient";
+import React from "react";
 
 const getCareersData = async () => {
   // "use server";
+
+  const supabase = createClient();
 
   let { data: open_jobs, error } = await supabase
     .from("open_jobs")
@@ -24,7 +25,6 @@ export default async function Careers() {
 
   return (
     <div>
-      <Header />
       <HeroImage location={"careers-home"} />
       <div className="w-full flex flex-col ">
         <h2 className="text-4xl font-extrabold text-center mt-20">
@@ -32,7 +32,6 @@ export default async function Careers() {
         </h2>
         <CareersPreview data={careers} />
       </div>
-      <Footer />
     </div>
   );
 }

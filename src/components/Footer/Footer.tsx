@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -78,7 +79,10 @@ export default function Footer() {
     },
   ];
   return (
-    <div className="flex flex-col md:flex-row w-full justify-between md:text-center	p-2 px-4 md:px-10 bg-gray-custom">
+    <div
+      data-test="footer"
+      className="flex flex-col md:flex-row w-full justify-between md:text-center	p-2 px-4 md:px-10 bg-gray-custom"
+    >
       {sections.map((section, index) => (
         <AccordionSection
           key={index}

@@ -1,11 +1,10 @@
-import supabase from "@/src/config/supabaseClient";
-import Footer from "../../../../components/Footer/Footer";
-import Header from "../../../../components/Header/Header";
-import { CareerProps } from "@/src/types";
+import { createClient } from "../../../../utils/supabase/supabaseClient";
+import { CareerProps } from "../../../../types";
 import { Button } from "../../../../tailwind";
-import HeroImage from "@/src/components/HeroImage/HeroImage";
-
+import React from "react";
 const getJobDetails = async (id: number) => {
+  const supabase = createClient();
+
   let { data, error } = await supabase
     .from("open_jobs")
     .select("")
@@ -91,11 +90,9 @@ export default async function JobDetails({
 
   return (
     <div>
-      <Header />
       <div className="m-20 flex flex-col items-center">
         {jobDetails && jobDetails?.map((job) => generateJobDetails(job))}
       </div>
-      <Footer />
     </div>
   );
 }

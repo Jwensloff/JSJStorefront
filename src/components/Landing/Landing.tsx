@@ -1,125 +1,154 @@
-"use client";
-import { ProductTypes } from "@/src/types";
+import { ProductTypes } from "../../types";
 import {
-  Button,
   Card,
   CardBody,
   CardFooter,
   CardHeader,
   Typography,
-} from "@material-tailwind/react";
+  Carousel,
+} from "../../tailwind";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-interface LandingProps {
-  products: ProductTypes[] | undefined;
-}
-
-export const Landing: React.FC<LandingProps> = ({ products }) => {
-  const highestRatedProduct = products?.reduce(
-    (prev: ProductTypes, current: ProductTypes) =>
-      prev.rate.rating > current.rate.rating ? prev : current,
-  );
-
-  const productUnder100 = products?.find(
-    (product: { price: number }) => product.price < 100,
-  );
-
-  const productWithGold = products?.find((product: { title: string }) =>
+export async function Landing({ products }: { products: ProductTypes[] }) {
+  const productsWithGold = products?.filter((product: { title: string }) =>
     product.title.includes("Gold"),
   );
 
-  const createProductCard = (product: ProductTypes) => {
-    return (
-      <>
-        <div className="flex items-center flex-col  z-10">
-          <Card
-            className="h-5/6 w-auto sm:w-96 transform hover:scale-110"
+  const highestRatedProducts = products?.filter((product) => {
+    return product.rate.rating <= 4;
+  });
+
+  const productsUnder100 = products?.filter(
+    (product: { price: number }) => product.price < 100,
+  );
+
+  const createProductCard = (products: ProductTypes[]) => {
+    return products.map((product) => (
+      <div
+        key={product.id}
+        className="flex items-center flex-col jusfity-center"
+      >
+        <Card
+          data-test={`${product.id}-card`}
+          className="h-5/6 w-[100%] sm:w-96 md:w-[70%]"
+          placeholder={undefined}
+          color="gray"
+        >
+          <CardHeader
+            shadow={true}
+            floated={false}
+            className="h-96"
             placeholder={undefined}
-            color="gray"
           >
-            <CardHeader
-              shadow={true}
-              floated={false}
-              className="h-96"
-              placeholder={undefined}
-            >
-              <Image
-                src={product.image}
-                width={250}
-                height={250}
-                alt="card-image"
-                className="h-full w-full object-scale-down"
-              />
-            </CardHeader>
-            <CardBody placeholder={undefined}>
-              <div className="mb-2 flex flex-col items-center justify-between">
-                <Typography
-                  color="white"
-                  className="font-medium"
-                  placeholder={undefined}
-                >
-                  {product.title}
-                </Typography>
-                <Typography
-                  color="white"
-                  className="font-medium"
-                  placeholder={undefined}
-                >
-                  ${product.price}
-                </Typography>
-              </div>
-            </CardBody>
-            <CardFooter className="pt-0" placeholder={undefined}>
-              <Button
-                ripple={false}
-                fullWidth={true}
-                className="bg-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            <Image
+              data-test={`${product.id}-card-image`}
+              src={product.image}
+              width={250}
+              height={250}
+              alt="card-image"
+              className="h-full w-full object-scale-down"
+            />
+          </CardHeader>
+          <CardBody placeholder={undefined}>
+            <div className="mb-2 flex flex-col items-center justify-between">
+              <Typography
+                color="white"
+                className="font-medium"
                 placeholder={undefined}
               >
-                Shop
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
-        <div className="absolute h-1/2 w-full align-bottom bg-gray-custom z-0"></div>
-      </>
-    );
+                {product.title}
+              </Typography>
+              <Typography
+                color="white"
+                className="font-medium"
+                placeholder={undefined}
+              >
+                ${product.price}
+              </Typography>
+            </div>
+          </CardBody>
+          <CardFooter
+            className="flex items-center justify-center"
+            placeholder={undefined}
+          >
+            <Link
+              href={`/product/${product.id}`}
+              data-test={`${product.id}-card-button`}
+              className=" w-[80%] py-[1rem] flex items-center justify-center rounded bg-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            >
+              Shop
+            </Link>
+          </CardFooter>
+        </Card>
+      </div>
+    ));
   };
 
+  const goldItems = createProductCard(productsWithGold);
+  const saleItems = createProductCard(productsUnder100);
+  const highestRatedItems = createProductCard(highestRatedProducts);
+
   return (
-    <>
-      {/* <HeroImage location={"landing"} /> */}
-      <div>
-        <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row  justify-evenly items-center gap-10 md:gap-60">
-          <Link
-            href={`/top-rated`}
-            className="text-2xl xs:text-4xl  z-10 text-black hover:underline "
+    <div className="w-full">
+      <div className=" bg-gray-custom p-[1rem] mt-20 mb-20 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
+        <Link
+          data-test="top-rated-link"
+          href={`/top-rated`}
+          className="text-2xl xs:text-4xl  z-10 text-black hover:underline "
+        >
+          Shop Top Rated {"->"}
+        </Link>
+        {highestRatedProducts && (
+          <Carousel
+            className="rounded-xl bg-gray-600 py-[1rem] w-[90%] lg:w-[50%]"
+            transition={{ duration: 0.5 }}
+            loop={true}
+            placeholder={undefined}
           >
-            Shop Top Rated {"->"}
-          </Link>
-          {highestRatedProduct && createProductCard(highestRatedProduct)}
-        </div>
-        <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col-reverse md:flex-row justify-evenly items-center gap-10 md:gap-60">
-          {productUnder100 && createProductCard(productUnder100)}
-          <Link
-            href={`/sale`}
-            className="text-2xl xs:text-4xl text-black z-10 hover:underline"
-          >
-            {"<-"} Shop Sale Items
-          </Link>
-        </div>
-        <div className="mt-20 mb-20 ml-5 mr-5 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-60">
-          <Link
-            href={`/gold`}
-            className="text-2xl xs:text-4xl z-10 text-black hover:underline"
-          >
-            Shop Gold {"->"}
-          </Link>
-          {productWithGold && createProductCard(productWithGold)}
-        </div>
+            {highestRatedItems}
+          </Carousel>
+        )}
       </div>
-    </>
+      <div className="mt-20 mb-20 flex flex-col-reverse md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
+        {productsUnder100 && (
+          <Carousel
+            className="rounded-xl bg-gray-600 py-[1rem] w-[90%] lg:w-[50%]"
+            transition={{ duration: 0.5 }}
+            loop={true}
+            placeholder={undefined}
+          >
+            {saleItems}
+          </Carousel>
+        )}
+        <Link
+          data-test="shop-sale-link"
+          href={`/sale`}
+          className="text-2xl xs:text-4xl text-black z-10 hover:underline"
+        >
+          {"<-"} Shop Sale Items
+        </Link>
+      </div>
+      <div className="bg-gray-custom p-[1rem] mt-20 mb-20 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
+        <Link
+          data-test="shop-gold-link"
+          href={`/gold`}
+          className="text-2xl xs:text-4xl z-10 text-black hover:underline"
+        >
+          Shop Gold {"->"}
+        </Link>
+        {productsWithGold && (
+          <Carousel
+            className="rounded-xl bg-gray-600 py-[1rem] w-[90%] lg:w-[50%]"
+            transition={{ duration: 0.5 }}
+            loop={true}
+            placeholder={undefined}
+          >
+            {goldItems}
+          </Carousel>
+        )}
+      </div>
+    </div>
   );
-};
+}
