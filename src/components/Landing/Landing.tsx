@@ -1,4 +1,4 @@
-import { ProductTypes } from "../../types";
+import { ProductTypes } from '../../types'
 import {
   Card,
   CardBody,
@@ -6,89 +6,82 @@ import {
   CardHeader,
   Typography,
   Carousel,
-} from "../../tailwind";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+} from '../../tailwind'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
 export async function Landing({ products }: { products: ProductTypes[] }) {
   const productsWithGold = products?.filter((product: { title: string }) =>
-    product.title.includes("Gold"),
-  );
+    product.title.includes('Gold')
+  )
 
   const highestRatedProducts = products?.filter((product) => {
-    return product.rate.rating <= 4;
-  });
+    return product.rate.rating <= 4
+  })
 
   const productsUnder100 = products?.filter(
-    (product: { price: number }) => product.price < 100,
-  );
+    (product: { price: number }) => product.price < 100
+  )
 
   const createProductCard = (products: ProductTypes[]) => {
     return products.map((product) => (
-      <div
-        key={product.id}
-        className="flex items-center flex-col jusfity-center"
+      <Link
+        data-test={`${product.id}-card-button`}
+        href={`/product/${product.id}`}
       >
-        <Card
-          data-test={`${product.id}-card`}
-          className="h-5/6 w-[100%] sm:w-96 md:w-[70%]"
-          placeholder={undefined}
-          color="gray"
+        <div
+          key={product.id}
+          className="flex items-center flex-col jusfity-center"
         >
-          <CardHeader
-            shadow={true}
-            floated={false}
-            className="h-96"
+          <Card
+            data-test={`${product.id}-card`}
+            className="h-5/6 w-[100%] sm:w-96 md:w-[70%]  hover:shadow-2xl  hover:shadow-blue-gray-900"
             placeholder={undefined}
+            color="gray"
           >
-            <Image
-              data-test={`${product.id}-card-image`}
-              src={product.image}
-              width={250}
-              height={250}
-              alt="card-image"
-              className="h-full w-full object-scale-down"
-            />
-          </CardHeader>
-          <CardBody placeholder={undefined}>
-            <div className="mb-2 flex flex-col items-center justify-between">
-              <Typography
-                color="white"
-                className="font-medium"
-                placeholder={undefined}
-              >
-                {product.title}
-              </Typography>
-              <Typography
-                color="white"
-                className="font-medium"
-                placeholder={undefined}
-              >
-                ${product.price}
-              </Typography>
-            </div>
-          </CardBody>
-          <CardFooter
-            className="flex items-center justify-center"
-            placeholder={undefined}
-          >
-            <Link
-              href={`/product/${product.id}`}
-              data-test={`${product.id}-card-button`}
-              className=" w-[80%] py-[1rem] flex items-center justify-center rounded bg-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            <CardHeader
+              shadow={true}
+              floated={false}
+              className="h-96"
+              placeholder={undefined}
             >
-              Shop
-            </Link>
-          </CardFooter>
-        </Card>
-      </div>
-    ));
-  };
+              <Image
+                data-test={`${product.id}-card-image`}
+                src={product.image}
+                width={250}
+                height={250}
+                alt="card-image"
+                className="h-full w-full object-scale-down"
+              />
+            </CardHeader>
+            <CardBody placeholder={undefined}>
+              <div className="mb-2 flex flex-col items-center justify-between">
+                <Typography
+                  color="white"
+                  className="font-medium"
+                  placeholder={undefined}
+                >
+                  {product.title}
+                </Typography>
+                <Typography
+                  color="white"
+                  className="font-medium"
+                  placeholder={undefined}
+                >
+                  ${product.price}
+                </Typography>
+              </div>
+            </CardBody>
+          </Card>
+        </div>
+      </Link>
+    ))
+  }
 
-  const goldItems = createProductCard(productsWithGold);
-  const saleItems = createProductCard(productsUnder100);
-  const highestRatedItems = createProductCard(highestRatedProducts);
+  const goldItems = createProductCard(productsWithGold)
+  const saleItems = createProductCard(productsUnder100)
+  const highestRatedItems = createProductCard(highestRatedProducts)
 
   return (
     <div className="w-full">
@@ -98,7 +91,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
           href={`/top-rated`}
           className="text-2xl xs:text-4xl  z-10 text-black hover:underline "
         >
-          Shop Top Rated {"->"}
+          Shop Top Rated {'->'}
         </Link>
         {highestRatedProducts && (
           <Carousel
@@ -127,7 +120,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
           href={`/sale`}
           className="text-2xl xs:text-4xl text-black z-10 hover:underline"
         >
-          {"<-"} Shop Sale Items
+          {'<-'} Shop Sale Items
         </Link>
       </div>
       <div className="bg-gray-custom p-[1rem] mt-20 mb-20 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
@@ -136,7 +129,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
           href={`/gold`}
           className="text-2xl xs:text-4xl z-10 text-black hover:underline"
         >
-          Shop Gold {"->"}
+          Shop Gold {'->'}
         </Link>
         {productsWithGold && (
           <Carousel
@@ -150,5 +143,5 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
         )}
       </div>
     </div>
-  );
+  )
 }

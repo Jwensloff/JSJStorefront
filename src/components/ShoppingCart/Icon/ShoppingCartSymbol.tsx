@@ -20,7 +20,7 @@ export default function ShoppingCartSymbol({
   };
 
   return (
-    <div className="pt-3 md:pt-1">
+    <div className="pt-3 md:pt-1 pr-5">
       <Badge
         aria-label="number of items in cart"
         className="text-[10px] sm:text-xs py-0 min-w-0 min-h-0 sm:min-h-5 sm:min-w-5 "
