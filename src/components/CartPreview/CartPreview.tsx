@@ -37,42 +37,41 @@ export default function CartPreview({
   const createCart = (shoppinCartItems: any) => {
     return (
       <Drawer
+        size={500}
         placement="right"
         placeholder="drawer"
         open={openSidebar}
         onClose={toggleSidebar}
-        className="p-4 w-[100vw]"
+        className="p-4 w-fulll overflow-y-auto"
       >
-        <div className="mb-6 flex items-center break-words gap-6">
-          <Typography
-            placeholder="Shop By Department"
-            variant="h5"
-            color="blue-gray"
-            className="text-md sm:text-lg"
-          >
-            Shopping Cart
-          </Typography>
-        </div>
-        <Card
-          placeholder="card"
-          className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-1 shadow-xl shadow-blue-gray-900/5"
+        <Typography
+          placeholder="Shopping Cart"
+          variant="h5"
+          color="blue-gray"
+          className="text-xl text-center bg-black text-white"
         >
-          <div className="flex flex-col gap-5">
+          Shopping Cart
+        </Typography>
+        <Card placeholder="card" className="w-full pt-10">
+          <div className="w-full h-96 overflow-scroll flex flex-col gap-5">
             {shoppinCartItems.map((product: any) => (
-              <div key={product.id} className="flex flex-row justify-between">
-                <div className="flex flex-row gap-5">
+              <div
+                key={product.id}
+                className="w-full pb-5 pr-5 flex flex-row justify-evenly border-b-4 border-black border-double"
+              >
+                <div className=" w-full flex flex-row justify-between gap-5">
                   <Image
                     src={product.image}
                     alt={product.title}
-                    width={75}
-                    height={40}
+                    width={100}
+                    height={75}
                   />
-                  <div className="flex flex-col gap-5">
+                  <div className="w-full flex flex-col gap-5">
                     <Typography
                       placeholder="product name"
                       variant="h6"
                       color="blue-gray"
-                      className="text-sm sm:text-md"
+                      className="text-md text-right"
                     >
                       {product.title}
                     </Typography>
@@ -80,12 +79,12 @@ export default function CartPreview({
                       placeholder="product price"
                       variant="paragraph"
                       color="blue-gray"
-                      className="text-sm sm:text-md"
+                      className="text-md font-bold text-right"
                     >
                       ${product.price.toFixed(2)}
                     </Typography>
                     <p
-                      className="hover:underline cursor-pointer"
+                      className="hover:underline cursor-pointer text-right"
                       onClick={() => handleClick(product.id)}
                     >
                       Remove
@@ -94,12 +93,13 @@ export default function CartPreview({
                 </div>
               </div>
             ))}
-            <div className="w-full h-1 bg-black"></div>
-            <p className="font-bold text-right">
-              Subtotal - ${cartTotal.toFixed(2)}
-            </p>
           </div>
-          <div className="flex flex-col gap-5 mt-5">
+          <div className="w-full h-1 bg-black mt-14"></div>
+          <p className="text-3xl font-bold text-center">
+            Subtotal - ${cartTotal.toFixed(2)}
+          </p>
+          <div className="w-full h-1 bg-black"></div>
+          <div className="flex flex-col gap-5 mt-14 mb-10">
             <Button
               className="w-full"
               onClick={toggleSidebar}

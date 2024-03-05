@@ -7,6 +7,9 @@ export default async function Product({ params }: { params: { id: string } }) {
   const supabase = createClient();
 
   const { data: allProducts } = await supabase.from("products").select("*");
+  const { data: shoppingCart } = await supabase
+    .from("shopping_cart")
+    .select("*");
 
   const singleProduct = allProducts?.find(
     (product) => product.id === Number(params.id),
@@ -86,6 +89,7 @@ export default async function Product({ params }: { params: { id: string } }) {
             title={singleProduct.title}
             price={singleProduct.price}
             image={singleProduct.image}
+            cart={shoppingCart}
           />
           {/* </a> */}
           <a>

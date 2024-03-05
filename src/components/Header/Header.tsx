@@ -10,7 +10,7 @@ import ShoppingCartSymbol from "../ShoppingCartSymbol/ShoppingCartSymbol";
 
 interface HeaderProps {
   dataLength: number;
-  products: any; // Type for products array
+  products: any;
 }
 
 export default function Header({ dataLength, products }: HeaderProps) {
