@@ -1,8 +1,9 @@
-export default function page() {
-  return <div>Shopping cart</div>;
-}
+"use client";
+import CartMain from "@/src/components/ShoppingCart/CartMain/CartMain";
+import { useRouter } from "next/navigation";
 
-// get the data
-// for each item
-// collect the title, image, price,
-// quantity coount the number that each item appears
+export default function ShoppingCart() {
+  const router = useRouter();
+
+  return <>{<CartMain router={router} />}</>;
+}

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Sidebar from "../Sidebar/Sidebar";
 import { useState } from "react";
-import ShoppingCartSymbol from "../ShoppingCartSymbol/ShoppingCartSymbol";
+import ShoppingCartSymbol from "../ShoppingCart/Icon/ShoppingCartSymbol";
 
 interface HeaderProps {
   dataLength: number;

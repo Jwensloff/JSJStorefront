@@ -99,19 +99,24 @@ export default function CartPreview({
             Subtotal - ${cartTotal.toFixed(2)}
           </p>
           <div className="w-full h-1 bg-black"></div>
-          <div className="flex flex-col gap-5 mt-14 mb-10">
-            <Button
-              className="w-full"
-              onClick={toggleSidebar}
-              placeholder={undefined}
-            >
-              Continue Shopping
-            </Button>
+          <div className="flex flex-col mt-10 mb-10">
             <a href="/shopping-cart">
-              <Button className="w-full" color="blue" placeholder={undefined}>
+              <Button
+                className="w-full"
+                color="blue-gray"
+                placeholder={undefined}
+              >
                 Go to Cart
               </Button>
             </a>
+            <Button
+              className="w-full mt-2"
+              onClick={toggleSidebar}
+              placeholder={undefined}
+              variant="outlined"
+            >
+              Continue Shopping
+            </Button>
           </div>
         </Card>
       </Drawer>
