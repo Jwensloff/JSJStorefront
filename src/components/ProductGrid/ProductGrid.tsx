@@ -2,6 +2,7 @@
 import Image from "next/image";
 import type { ProductTypes } from "@/src/types";
 import Link from "next/link";
+import React from "react";
 
 interface ProductGridProps {
   data: ProductTypes[] | undefined;
@@ -10,9 +11,13 @@ interface ProductGridProps {
 export default function ProductGrid({ data }: ProductGridProps) {
   const products = data?.map((product) => (
     <Link href={`/product/${product.id}`} key={product.id}>
-      <section className="flex justify-center m-[2rem] ">
+      <section
+        data-test={`${product.id}-individual-product-card`}
+        className="flex justify-center m-[2rem] "
+      >
         <div className="flex-col justify-center max-w-64 h-80 ">
           <Image
+            data-test={`${product.id}-image`}
             src={product.image}
             width={250}
             height={250}

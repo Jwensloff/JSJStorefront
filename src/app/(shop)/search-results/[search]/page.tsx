@@ -32,7 +32,7 @@ export default async function SearchResults({
     <div className="min-h-screen flex flex-col justify-between">
       {searchedProducts?.length === 0 && (
         <div className="flex justify-center items-center">
-          <p className="px-2">
+          <p data-test="search-error" className="px-2">
             Sorry, no products match your search. Please try something else!
           </p>
         </div>

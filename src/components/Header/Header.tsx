@@ -7,6 +7,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Sidebar from "../Sidebar/Sidebar";
 import { useState } from "react";
 import ShoppingCartSymbol from "../ShoppingCart/Icon/ShoppingCartSymbol";
+import React from "react";
 
 interface HeaderProps {
   dataLength: number;
@@ -37,9 +38,13 @@ export default function Header({ dataLength, products }: HeaderProps) {
   ];
 
   return (
-    <header className="flex flex-col w-full sm:justify-between pr-2">
+    <header
+      data-test="header"
+      className="flex flex-col w-full sm:justify-between"
+    >
       <div className="flex flex-row gap-2 pr-1 md:gap-3 md:pr-3">
         <Link
+          data-test="header_logo"
           href={"/"}
           className="p-3 text-5xl md:text-7xl bg-gray-custom md:p-5"
         >
@@ -53,6 +58,7 @@ export default function Header({ dataLength, products }: HeaderProps) {
                   {categories.map((cat) => (
                     <li key={cat.name}>
                       <Link
+                        data-test={cat.name}
                         className={`${pathname === cat.link ? "underline" : ""} font-extrabold cursor-pointer hover:underline`}
                         href={cat.link}
                       >
@@ -64,12 +70,7 @@ export default function Header({ dataLength, products }: HeaderProps) {
               </>
             )}
             <div className="flex flex-row gap-5 justify-end">
-              {/* <Link
-                href="/shopping-cart"
-                className="cursor-pointer hover:underline"
-              > */}
               <ShoppingCartSymbol dataLength={dataLength} products={products} />
-              {/* </Link> */}
               <button
                 aria-label="open side navigation"
                 className="sm:hidden cursor-pointer hover:text-blue-900"
