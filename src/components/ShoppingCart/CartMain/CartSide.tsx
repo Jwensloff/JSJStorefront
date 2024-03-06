@@ -1,6 +1,6 @@
 import { Button, Card, Typography } from "@material-tailwind/react";
 
-export default async function CartSide({
+export default function CartSide({
   cartTotal,
   totalItems,
 }: {
@@ -11,7 +11,7 @@ export default async function CartSide({
     return (
       <Card
         placeholder="card"
-        className="min-h-full flex justify-start items-center"
+        className="min-h-auto flex justify-start items-center sticky top-2"
       >
         <Typography
           placeholder="summary"
@@ -65,7 +65,7 @@ export default async function CartSide({
           placeholder="policy"
           variant="paragraph"
           color="blue-gray"
-          className="text-xs mt-10 p-5"
+          className="text-xs mt-10 p-5 text-center"
         >
           *To ensure the checkout process is transparent, please note that
           displayed prices are estimates and may not reflect final costs.

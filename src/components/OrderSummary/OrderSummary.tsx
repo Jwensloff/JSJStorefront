@@ -1,35 +1,87 @@
-import { createClient } from "@/src/utils/supabase/supabaseServer";
-import React from "react";
+"use client";
+import { createClient } from "@/src/utils/supabase/supabaseClient";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import ProductCardContainer from "../ShoppingCart/ProductCardContainer/ProductCardContainer";
+import { ShoppingCartProps } from "@/src/types";
+import { useRouter } from "next/navigation";
 
-export default async function OrderSummary() {
-  const supabase = createClient();
-  const { data, error } = await supabase.from("shopping_cart").select();
+export default function OrderSummary() {
+  const router = useRouter();
+  const [shoppingCartItems, setShoppingCartItems] = useState<
+    ShoppingCartProps[]
+  >([]);
+  const [shippingOption, setShippingOption] = useState({
+    shippingMethod: "",
+    price: 0,
+  });
 
-  if (error) {
-    throw error;
-  }
+  useEffect(() => {
+    const getShoppingCartItems = async () => {
+      const supabase = createClient();
+      const { data, error } = await supabase.from("shopping_cart").select();
 
-  const subtotalNum = data?.reduce(
+      if (error) {
+        throw error;
+      }
+      setShoppingCartItems(data);
+    };
+    if (shoppingCartItems.length === 0) {
+      setShippingOption({ shippingMethod: "", price: 0 });
+    }
+    getShoppingCartItems();
+  }, [shoppingCartItems]);
+
+  const handleClick = async (id: number) => {
+    const supabase = createClient();
+    const { error } = await supabase
+      .from("shopping_cart")
+      .delete()
+      .eq("id", id);
+
+    if (error) {
+      throw error;
+    }
+    router.refresh();
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, dataset } = e.target;
+    setShippingOption({
+      shippingMethod: value,
+      price: parseFloat(dataset.price || ""),
+    });
+  };
+
+  const subtotalNum = shoppingCartItems?.reduce(
     (total, product) => (total += product.price),
     0,
   );
   const subtotal = subtotalNum.toFixed(2);
-  const tax = (subtotal * 0.09).toFixed(2);
+  const tax = (subtotalNum * 0.09).toFixed(2);
 
-  const totalPrice = (subtotalNum + subtotalNum * 0.09 + 9.99).toFixed(2);
+  const totalPrice = (
+    shippingOption.price +
+    subtotalNum +
+    subtotalNum * 0.09
+  ).toFixed(2);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    router.push("/fallback");
+  };
 
   return (
-    <main className="flex flex-col px-2 justify-evenly md:flex-row">
-      <form>
-        <section className="flex flex-col p-4 border-2 border-gray-500 rounded-md">
+    <main className="flex flex-col px-2 sm:px-4 lg:px-8 justify-evenly gap-3 lg:gap-8 md:flex-row">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <section className="flex flex-col p-4 w-full border-2 border-gray-500 rounded-md">
           <fieldset className="flex flex-col gap-6">
             <legend className="text-lg font-bold pb-4">Delivery</legend>
             <span className="flex flex-col gap-5 md:flex-row justify-between ">
-              <div className="relative">
+              <div className="relative w-full">
                 <input
                   id="first name"
                   placeholder=""
-                  className="py-2 pl-2 border-2 w-full md:w-56 lg:w-64 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
+                  className="py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                 />
                 <label
                   htmlFor="first name"
@@ -38,11 +90,11 @@ export default async function OrderSummary() {
                   First Name
                 </label>
               </div>
-              <div className="relative ">
+              <div className="relative w-full ">
                 <input
                   id="last name"
                   placeholder=""
-                  className="py-2 pl-2 border-2 w-full md:w-56 lg:w-64 border-gray-500 rounded-md peer bg-transparent focus:ring-0 focus:border-blue-700"
+                  className="py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer bg-transparent focus:ring-0 focus:border-blue-700"
                 />
                 <label
                   htmlFor="last name"
@@ -53,11 +105,11 @@ export default async function OrderSummary() {
               </div>
             </span>
             <span className="flex flex-col gap-5 md:flex-row justify-between">
-              <div className="relative">
+              <div className="relative w-full">
                 <input
                   id="e-mail address"
                   placeholder=""
-                  className=" py-2 pl-2 border-2 w-full md:w-56 lg:w-64 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
+                  className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                 />
                 <label
                   htmlFor="e-mail address"
@@ -66,11 +118,11 @@ export default async function OrderSummary() {
                   E-mail Address
                 </label>
               </div>
-              <div className="relative">
+              <div className="relative w-full">
                 <input
                   id="phone number"
                   placeholder=""
-                  className=" py-2 pl-2 border-2 w-full md:w-56 lg:w-64 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
+                  className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                 />
                 <label
                   htmlFor="phone number"
@@ -81,7 +133,7 @@ export default async function OrderSummary() {
               </div>
             </span>
             <span>
-              <div className="relative">
+              <div className="relative w-full">
                 <input
                   id="street address"
                   placeholder=""
@@ -96,11 +148,11 @@ export default async function OrderSummary() {
               </div>
             </span>
             <span className="flex flex-col gap-5 md:flex-row justify-between">
-              <div className="relative">
+              <div className="relative w-full">
                 <input
                   id="city"
                   placeholder=""
-                  className=" py-2 pl-2 border-2 w-full md:w-56 lg:w-64 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
+                  className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                 />
                 <label
                   htmlFor="city"
@@ -109,11 +161,11 @@ export default async function OrderSummary() {
                   City
                 </label>
               </div>
-              <div className="relative">
+              <div className="relative w-full">
                 <input
                   id="postal code"
                   placeholder=""
-                  className=" py-2 pl-2 border-2 w-full md:w-56 lg:w-64 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
+                  className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                 />
                 <label
                   htmlFor="postal code"
@@ -124,11 +176,11 @@ export default async function OrderSummary() {
               </div>
             </span>
             <span className="flex flex-col gap-5 md:flex-row justify-between">
-              <div className="relative">
+              <div className="relative w-full">
                 <input
                   id="country"
                   placeholder=""
-                  className=" py-2 pl-2 border-2 w-full md:w-56 lg:w-64 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
+                  className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                 />
                 <label
                   htmlFor="country"
@@ -137,11 +189,11 @@ export default async function OrderSummary() {
                   Country
                 </label>
               </div>
-              <div className="relative">
+              <div className="relative w-full">
                 <input
                   id="state or province"
                   placeholder=""
-                  className=" py-2 pl-2 border-2 w-full md:w-56 lg:w-64 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
+                  className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                 />
                 <label
                   htmlFor="state or province"
@@ -153,53 +205,82 @@ export default async function OrderSummary() {
             </span>
           </fieldset>
         </section>
-        <section className="flex flex-col p-4 border-2 border-gray-500 rounded-md">
+        <section className="flex w-full md:w-[60vw] flex-col p-4 border-2 border-gray-500 rounded-md">
+          {shoppingCartItems.length > 0 && (
+            <div className="flex justify-center h-62 overflow-y-auto">
+              <ProductCardContainer
+                shoppingCartItems={shoppingCartItems}
+                handleClick={handleClick}
+              />
+            </div>
+          )}
           <fieldset>
             <legend className="text-lg font-bold pb-4"> Shipping Method</legend>
             <div className="flex justify-between">
-              <span className="flex flex-row-reverse gap-5">
-                <label htmlFor="no rush">No Rush (7-9 business days)</label>
+              <span className="flex gap-5">
                 <input
                   id="no rush"
+                  name="shipping"
                   type="radio"
+                  value="(7-9 business days)"
+                  data-price="5.99"
+                  checked={
+                    shippingOption.shippingMethod === "(7-9 business days)"
+                  }
+                  onChange={handleChange}
                   className="py-1 border-2 border-gray-500 rounded-md "
                 />
+                <label htmlFor="no rush">No Rush (7-9 business days)</label>
               </span>
               <p>$5.99</p>
             </div>
             <div className="flex justify-between">
-              <span className="flex flex-row-reverse gap-5">
-                <label htmlFor="standard">Standard (3-5 business days)</label>
+              <span className="flex gap-5">
                 <input
                   id="standard"
+                  name="shipping"
                   type="radio"
+                  value="(3-5 business days)"
+                  data-price="9.99"
+                  checked={
+                    shippingOption.shippingMethod === "(3-5 business days)"
+                  }
+                  onChange={handleChange}
                   className="py-1 border-2 border-gray-500 rounded-md "
                 />
+                <label htmlFor="standard">Standard (3-5 business days)</label>
               </span>
               <p>$9.99</p>
             </div>
             <div className="flex justify-between">
-              <span className="flex flex-row-reverse gap-5">
-                <label htmlFor="express">Express (1-2 business days)</label>
+              <span className="flex gap-5">
                 <input
                   id="express"
+                  name="shipping"
                   type="radio"
+                  value="(1-2 business days)"
+                  data-price="19.99"
+                  checked={
+                    shippingOption.shippingMethod === "(1-2 business days)"
+                  }
+                  onChange={handleChange}
                   className="py-1 border-2 border-gray-500 rounded-md "
                 />
+                <label htmlFor="express">Express (1-2 business days)</label>
               </span>
               <p>$19.99</p>
             </div>
           </fieldset>
         </section>
-        <section className="flex flex-col p-4 border-2 border-gray-500 rounded-md">
-          <fieldset className="flex flex-col gap-5">
+        <section className="flex flex-col p-4 w-full border-2 border-gray-500 rounded-md">
+          <fieldset className="flex flex-col gap-6">
             <legend className="text-lg font-bold pb-4">Payment</legend>
 
-            <div className="relative">
+            <div className="relative w-full">
               <input
                 id="credit card number"
                 placeholder=""
-                className="w-full py-2 pl-2 border-2 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
+                className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
               />
               <label
                 htmlFor="credit card number"
@@ -209,11 +290,11 @@ export default async function OrderSummary() {
               </label>
             </div>
 
-            <div className="relative">
+            <div className="relative w-full">
               <input
                 id="name on card"
                 placeholder=""
-                className="w-full py-2 pl-2 border-2 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
+                className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
               />
               <label
                 htmlFor="name on card"
@@ -222,13 +303,14 @@ export default async function OrderSummary() {
                 Name on card
               </label>
             </div>
-            <span className="flex justify-between">
-              <div className="relative">
+
+            <span className="flex flex-col gap-5 md:flex-row justify-between">
+              <div className="relative w-full">
                 <input
                   id="expiration month"
                   pattern="[0-9]{2}-[0-9]{2}"
                   type="month"
-                  className="py-2 pl-2 border-2 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
+                  className="py-2 pl-2 w-full border-2 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                 />
                 <label
                   htmlFor="expiration date"
@@ -237,11 +319,11 @@ export default async function OrderSummary() {
                   expiration date
                 </label>
               </div>
-              <div className="relative">
+              <div className="relative w-full">
                 <input
                   id="CVV"
                   placeholder=""
-                  className=" py-2 pl-2 border-2 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
+                  className=" py-2 pl-2 w-auto border-2 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                 />
                 <label
                   htmlFor="CVV"
@@ -253,23 +335,28 @@ export default async function OrderSummary() {
             </span>
           </fieldset>
         </section>
+        <button
+          type="submit"
+          className="self-center p-2 w-full md:w-1/2 text-white bg-black border-2 rounded-md"
+        >
+          Buy Now
+        </button>
       </form>
-      <section className="py-1 px-4 border-2 border-gray-500 rounded-md ">
+      <section className="sticky top-2 py-1 px-4 w-full h-full flex flex-col gap-4 border-2 border-gray-500 rounded-md ">
         <h2 className="font-bold pb-2">Order Summary</h2>
-        <div className="flex flex-row justify-between">
-          <p>Subtotal:</p>
+        <div className="flex flex-row gap-8 justify-between">
+          <p>Subtotal</p>
           <p>${subtotal}</p>
         </div>
-        <div className="flex flex-row justify-between">
-          <p>Shipping (3-5 business days)</p>
-          <p>$9.99</p>
+        <div className="flex flex-row gap-8 justify-between">
+          <p>Shipping {shippingOption.shippingMethod}</p>
+          <p>${shippingOption.price}</p>
         </div>
-        <div className="flex flex-row justify-between">
-          <p>Sales Tax:</p>
+        <div className="flex flex-row gap-8 justify-between">
+          <p>Sales Tax</p>
           <p>${tax}</p>
         </div>
-        <p>Discounts</p>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row gap-8 pt-4 border-t-4 border-gray-500 justify-between">
           <p>Total</p>
           <p>{totalPrice}</p>
         </div>
