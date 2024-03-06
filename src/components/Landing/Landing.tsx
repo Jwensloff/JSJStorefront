@@ -26,63 +26,54 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
 
   const createProductCard = (products: ProductTypes[]) => {
     return products.map((product) => (
-      <div
+      <Link
+        data-test={`${product.id}-card-button`}
+        href={`/product/${product.id}`}
         key={product.id}
-        className="flex items-center flex-col jusfity-center"
       >
-        <Card
-          data-test={`${product.id}-card`}
-          className="h-5/6 w-[100%] sm:w-96 md:w-[70%]"
-          placeholder={undefined}
-          color="gray"
-        >
-          <CardHeader
-            shadow={true}
-            floated={false}
-            className="h-96"
+        <div className="flex items-center flex-col jusfity-center">
+          <Card
+            data-test={`${product.id}-card`}
+            className="h-5/6 w-[100%] sm:w-96 md:w-[70%]  hover:shadow-2xl  hover:shadow-blue-gray-900"
             placeholder={undefined}
+            color="gray"
           >
-            <Image
-              data-test={`${product.id}-card-image`}
-              src={product.image}
-              width={250}
-              height={250}
-              alt="card-image"
-              className="h-full w-full object-scale-down"
-            />
-          </CardHeader>
-          <CardBody placeholder={undefined}>
-            <div className="mb-2 flex flex-col items-center justify-between">
-              <Typography
-                color="white"
-                className="font-medium"
-                placeholder={undefined}
-              >
-                {product.title}
-              </Typography>
-              <Typography
-                color="white"
-                className="font-medium"
-                placeholder={undefined}
-              >
-                ${product.price}
-              </Typography>
-            </div>
-          </CardBody>
-          <CardFooter
-            className="flex items-center justify-center"
-            placeholder={undefined}
-          >
-            <Link
-              href={`/product/${product.id}`}
-              data-test={`${product.id}-card-button`}
-              className=" w-[80%] py-[1rem] flex items-center justify-center rounded bg-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            <CardHeader
+              shadow={true}
+              floated={false}
+              className="h-96"
+              placeholder={undefined}
             >
-              Shop
-            </Link>
-          </CardFooter>
-        </Card>
-      </div>
+              <Image
+                data-test={`${product.id}-card-image`}
+                src={product.image}
+                width={250}
+                height={250}
+                alt="card-image"
+                className="h-full w-full object-scale-down"
+              />
+            </CardHeader>
+            <CardBody placeholder={undefined}>
+              <div className="mb-2 flex flex-col items-center justify-between">
+                <Typography
+                  color="white"
+                  className="font-medium"
+                  placeholder={undefined}
+                >
+                  {product.title}
+                </Typography>
+                <Typography
+                  color="white"
+                  className="font-medium"
+                  placeholder={undefined}
+                >
+                  ${product.price}
+                </Typography>
+              </div>
+            </CardBody>
+          </Card>
+        </div>
+      </Link>
     ));
   };
 
