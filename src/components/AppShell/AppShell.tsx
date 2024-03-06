@@ -11,9 +11,11 @@ export default async function AppShell({ children }: { children: ReactNode }) {
     .from("shopping_cart")
     .select();
   let productLength = 0;
+  let products;
 
   if (allProducts) {
     productLength = allProducts.length;
+    products = allProducts;
   }
 
   if (error) {
@@ -22,7 +24,7 @@ export default async function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <Header dataLength={productLength} />
+      <Header dataLength={productLength} products={products} />
       {children}
       <Footer />
     </>

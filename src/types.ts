@@ -38,3 +38,10 @@ export interface CareerPreviewProps {
   title: string;
   description: string;
 }
+
+export interface ShoppingCartProps {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+}

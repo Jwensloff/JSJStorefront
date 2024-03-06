@@ -1,29 +1,21 @@
-import { createClient } from "../../../../utils/supabase/supabaseClient";
-import { CareerProps } from "../../../../types";
+import { CareerProps } from "@/src/types";
 import { Button } from "../../../../tailwind";
-import React from "react";
-const getJobDetails = async (id: number) => {
-  const supabase = createClient();
-
-  let { data, error } = await supabase
-    .from("open_jobs")
-    .select("")
-    .eq("id", `${id}`);
-
-  if (error) {
-    throw error;
-  }
-  if (data) {
-    return data;
-  }
-};
+import { createClient } from "@/src/utils/supabase/supabaseServer";
+import { redirect } from "next/navigation";
 
 export default async function JobDetails({
   params,
 }: {
   params: { id: string };
 }) {
-  const jobDetails = await getJobDetails(Number(params.id));
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("open_jobs")
+    .select("*")
+    .eq("id", params.id);
+  if (error) {
+    redirect("/error");
+  }
 
   const generateJobDetails = (jobDesc: CareerProps | any) => {
     const formattedJobQ = jobDesc?.qualifications.split(/\//).filter(Boolean);
@@ -91,7 +83,7 @@ export default async function JobDetails({
   return (
     <div>
       <div className="m-20 flex flex-col items-center">
-        {jobDetails && jobDetails?.map((job) => generateJobDetails(job))}
+        {data && data?.map((job) => generateJobDetails(job))}
       </div>
     </div>
   );
