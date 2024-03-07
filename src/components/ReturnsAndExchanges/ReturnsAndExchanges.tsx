@@ -4,13 +4,10 @@ import Link from "next/link";
 
 export default function ReturnsAndExchanges() {
   return (
-    <>
-      <h1 className="text-center text-lg sm:text-2xl font-bold mb-2">
-        Return and Exchanges
-      </h1>
-      <div className="flex flex-col sm:flex-row items-center gap-4 sm:justify-evenly pb-2">
+    <div className="h-full flex flex-col justify-evenly">
+      <div className="flex flex-col sm:flex-row items-center sm:justify-evenly gap-4 pb-4">
         <Link href={"/fallback"}>
-          <section className="flex flex-col h-auto justify-around max-w-56 xs:h-56 rounded border border-gray-500 text-center">
+          <section className="flex flex-col px-4 justify-around w-56 md:w-64 h-48 xs:h-60 rounded border border-gray-500 text-center">
             <FontAwesomeIcon
               aria-hidden="true"
               icon={faBoxOpen}
@@ -21,7 +18,7 @@ export default function ReturnsAndExchanges() {
           </section>
         </Link>
         <Link href={"/fallback"}>
-          <section className="flex flex-col h-auto justify-around max-w-56 xs:h-56 rounded border border-gray-500 text-center">
+          <section className="flex flex-col px-4 justify-around w-56 md:w-64 h-48 xs:h-60 rounded border border-gray-500 text-center">
             <FontAwesomeIcon
               aria-hidden="true"
               icon={faGift}
@@ -32,6 +29,6 @@ export default function ReturnsAndExchanges() {
           </section>
         </Link>
       </div>
-    </>
+    </div>
   );
 }
