@@ -28,7 +28,7 @@ export default function page() {
     return (
       <div
         key={index}
-        className="flex flex-col items-center shadow rounded  p-[1rem] my-[1rem] hover:shadow-lg"
+        className="flex w-[70vw] md:w-auto text-center flex-col items-center shadow rounded  p-[1rem] my-[1rem] hover:shadow-lg bg-gray-200"
       >
         <p className="text-xl font-bold my-[1rem]">{dev.name}</p>
         <Image
@@ -62,9 +62,16 @@ export default function page() {
     );
   });
   return (
-    <div className="flex flex-col items-center justify-center min-h-[71vh]">
-      <h2 className="text-center text-4xl font-bold mb-[2rem]">Contact us</h2>
-      <div className="flex gap-10 justify-center w-full">{contactCards}</div>
+    <div className="flex flex-col items-center justify-center min-h-[71vh] mb-[2rem]">
+      <h2 className="text-center text-4xl font-bold my-[1rem] mb:mt-[0rem]">
+        Contact us
+      </h2>
+      <div
+        className="flex flex-col md:flex-row 
+      gap-2 items-center md:justify-evenly justify-center w-full px-[1rem]"
+      >
+        {contactCards}
+      </div>
     </div>
   );
 }
