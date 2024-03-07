@@ -4,7 +4,7 @@ import OrderStatuses from "@/src/components/OrderStatuses/OrderStatuses";
 
 export default function OrderStatus() {
   return (
-    <div className="min-h-screen flex flex-col justify-between ">
+    <div className="h-[80vh] flex flex-col justify-center">
       <OrderStatuses />
     </div>
   );

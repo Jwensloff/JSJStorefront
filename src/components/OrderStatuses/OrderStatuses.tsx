@@ -11,7 +11,7 @@ export default function OrderStatus() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-6 ">
       <h1 className="text-center text-lg sm:text-2xl font-bold mb-6">
         View Order Status
       </h1>
@@ -39,13 +39,13 @@ export default function OrderStatus() {
           <div className="flex flex-col gap-4 sm:flex-row justify-evenly my-6">
             <button
               type="submit"
-              className="p-1 sm:p-2 md:p-3 bg-blue-100 border-blue-500 border-2 rounded-md"
+              className="p-1 w-full md:w-52 sm:p-2 md:px-3 bg-blue-100 border-blue-500 border-2 rounded-md"
             >
               Order Information
             </button>
             <button
               type="submit"
-              className="p-1 sm:p-2 md:p-3 bg-red-100 border-red-500 border-2 rounded-md"
+              className="p-1 w-full md:w-52 sm:p-2 md:px-3 bg-red-100 border-red-500 border-2 rounded-md"
             >
               Cancel
             </button>
