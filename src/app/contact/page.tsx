@@ -26,7 +26,11 @@ export default function page() {
   ];
   const contactCards = devs.map((dev, index) => {
     return (
-      <div key={index} className="flex">
+      <div
+        key={index}
+        className="flex flex-col items-center shadow rounded  p-[1rem] my-[1rem] hover:shadow-lg"
+      >
+        <p className="text-xl font-bold my-[1rem]">{dev.name}</p>
         <Image
           src={dev.image}
           width={250}
@@ -34,17 +38,33 @@ export default function page() {
           alt={`${dev.name} head shot`}
           style={{ objectFit: "contain", maxHeight: "250px" }}
           className="justify-center pb-4 h-52 sm:h-56 md:h-72 lg:h-96"
-        ></Image>
-        <p>{dev.name}</p>
-        <FontAwesomeIcon icon={faLinkedin} />
-        <FontAwesomeIcon icon={faSquareGithub} />
+        />
+        <div className="flex flex-col justify-center">
+          <p>Software Engineer</p>
+          <div className="flex gap-3 justify-center my-[1rem]">
+            <a href={dev.linkedIn}>
+              <FontAwesomeIcon
+                icon={faLinkedin}
+                size="xl"
+                className="hover:text-gray-600"
+              />
+            </a>
+            <a href={dev.github}>
+              <FontAwesomeIcon
+                icon={faSquareGithub}
+                size="xl"
+                className="hover:text-gray-600"
+              />
+            </a>
+          </div>
+        </div>
       </div>
     );
   });
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h2 className="text-center text-4xl font-bold mb-[5rem]">Contact us</h2>
-      <div>{contactCards}</div>
+    <div className="flex flex-col items-center justify-center min-h-[71vh]">
+      <h2 className="text-center text-4xl font-bold mb-[2rem]">Contact us</h2>
+      <div className="flex gap-10 justify-center w-full">{contactCards}</div>
     </div>
   );
 }
