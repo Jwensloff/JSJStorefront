@@ -8,12 +8,7 @@ import { ShoppingCartProps } from "@/src/types";
 interface SidebarProps {
   openSidebar: boolean;
   toggleSidebar: () => void;
-  products: {
-    id: number;
-    title: string;
-    price: number;
-    image: string;
-  }[];
+  products: ShoppingCartProps[] | null;
 }
 
 export default function CartPreview({
@@ -38,12 +33,12 @@ export default function CartPreview({
 
   const cartTotal = products?.reduce(
     (acc: number, product: ShoppingCartProps) => {
-      return acc + product.price;
+      return acc + product.price * product.quantity;
     },
     0,
   );
 
-  const createCart = (shoppinCartItems: any) => {
+  const createCart = (shoppinCartItems: ShoppingCartProps[]) => {
     return (
       <Drawer
         size={500}
@@ -85,12 +80,28 @@ export default function CartPreview({
                       {product.title}
                     </Typography>
                     <Typography
+                      placeholder="product name"
+                      variant="h6"
+                      color="blue-gray"
+                      className="text-md text-right"
+                    >
+                      Size: {product.size}
+                    </Typography>
+                    <Typography
+                      placeholder="product name"
+                      variant="h6"
+                      color="blue-gray"
+                      className="text-md text-right"
+                    >
+                      Quantity: {product.quantity}
+                    </Typography>
+                    <Typography
                       placeholder="product price"
                       variant="paragraph"
                       color="blue-gray"
                       className="text-md font-bold text-right"
                     >
-                      ${product.price.toFixed(2)}
+                      Price: ${product.price.toFixed(2)}
                     </Typography>
                     <p
                       className="hover:underline cursor-pointer text-right"
@@ -105,7 +116,7 @@ export default function CartPreview({
           </div>
           <div className="w-full h-1 bg-black mt-14"></div>
           <p className="text-3xl font-bold text-center">
-            Subtotal - ${cartTotal.toFixed(2)}
+            Subtotal - ${cartTotal?.toFixed(2)}
           </p>
           <div className="w-full h-1 bg-black"></div>
           <div className="flex flex-col mt-10 mb-10">
