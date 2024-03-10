@@ -4,7 +4,10 @@ import ReturnsAndExchanges from "@/src/components/ReturnsAndExchanges/ReturnsAnd
 
 export default function ReturnAndExchange() {
   return (
-    <div className="min-h-screen flex flex-col justify-between ">
+    <div className="h-auto sm:h-screen flex flex-col">
+      <h1 className="text-center text-lg pt-5 pb-2 sm:text-3xl font-bold">
+        Return and Exchanges
+      </h1>
       <ReturnsAndExchanges />
     </div>
   );
