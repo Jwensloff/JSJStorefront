@@ -13,7 +13,11 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "unsplash.com",
-      }
+      },
+      {
+        protocol: "https",
+        hostname: "ca.slack-edge.com",
+      },
     ],
   },
   experimental: {
