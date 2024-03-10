@@ -1,35 +1,19 @@
 "use client";
 import { createClient } from "@/src/utils/supabase/supabaseClient";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import ProductCardContainer from "../ShoppingCart/ProductCardContainer/ProductCardContainer";
-import { ShoppingCartProps } from "@/src/types";
 import { useRouter } from "next/navigation";
+import { ShoppingCartProps } from "@/src/types";
 
-export default function OrderSummary() {
+export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
   const router = useRouter();
-  const [shoppingCartItems, setShoppingCartItems] = useState<
-    ShoppingCartProps[]
-  >([]);
+
   const [shippingOption, setShippingOption] = useState({
     shippingMethod: "",
     price: 0,
   });
 
-  useEffect(() => {
-    const getShoppingCartItems = async () => {
-      const supabase = createClient();
-      const { data, error } = await supabase.from("shopping_cart").select();
-
-      if (error) {
-        throw error;
-      }
-      setShoppingCartItems(data);
-    };
-    if (shoppingCartItems.length === 0) {
-      setShippingOption({ shippingMethod: "", price: 0 });
-    }
-    getShoppingCartItems();
-  }, [shoppingCartItems]);
+  const [qty, setQty] = useState<number | null>(null);
 
   const handleClick = async (id: number) => {
     const supabase = createClient();
@@ -43,6 +27,31 @@ export default function OrderSummary() {
     }
     router.refresh();
   };
+  const handleQtyUpdate = async (
+    id: number,
+    qty: number,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.preventDefault();
+    const supabase = createClient();
+    const { data, error } = await supabase
+      .from("shopping_cart")
+      .update({ quantity: qty })
+      .eq("id", id)
+      .select();
+
+    if (error) {
+      throw error;
+    }
+    // const updatedQty = data.map((item) => {
+    //   if (item.id === id) {
+    //     return { ...item, quantity: qty };
+    //   }
+    //   return item;
+    // });
+    // setQty(updatedQty);
+    router.refresh();
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, dataset } = e.target;
@@ -52,8 +61,8 @@ export default function OrderSummary() {
     });
   };
 
-  const subtotalNum = shoppingCartItems?.reduce(
-    (total, product) => (total += product.price),
+  const subtotalNum = data?.reduce(
+    (total, product) => (total += product.price * product.quantity),
     0,
   );
   const subtotal = subtotalNum.toFixed(2);
@@ -79,13 +88,14 @@ export default function OrderSummary() {
             <span className="flex flex-col gap-5 md:flex-row justify-between ">
               <div className="relative w-full">
                 <input
+                  required
                   id="first name"
                   placeholder=""
-                  className="py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
+                  className="py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer bg-transparent focus:ring-0 focus:border-blue-700"
                 />
                 <label
                   htmlFor="first name"
-                  className="absolute text-lg scale-c75 inset-y-0 px-2 flex items-center pointer-events-none text-gray-600 peer-focus:text-blue-700 peer-focus:-translate-y-6  bg-white transform -translate-y-6 peer-placeholder-shown:scale-75 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:top-0"
+                  className="absolute text-lg scale-75 inset-y-0 px-2 flex items-center pointer-events-none text-gray-600 peer-focus:text-blue-700 peer-focus:-translate-y-6  bg-white transform -translate-y-6 peer-placeholder-shown:scale-75 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:top-0"
                 >
                   First Name
                 </label>
@@ -206,11 +216,14 @@ export default function OrderSummary() {
           </fieldset>
         </section>
         <section className="flex w-full md:w-[60vw] flex-col p-4 border-2 border-gray-500 rounded-md">
-          {shoppingCartItems.length > 0 && (
-            <div className="flex justify-center h-62 overflow-y-auto">
+          {data.length > 0 && (
+            <div className="flex justify-center overflow-y-auto">
               <ProductCardContainer
-                shoppingCartItems={shoppingCartItems}
+                shoppingCartItems={data}
                 handleClick={handleClick}
+                handleQtyUpdate={handleQtyUpdate}
+                setqty={setQty}
+                qty={qty}
               />
             </div>
           )}

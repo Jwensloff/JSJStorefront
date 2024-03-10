@@ -1,5 +1,7 @@
 import { createClient } from "@/src/utils/supabase/supabaseServer";
 import CartMain from "../../components/ShoppingCart/CartMain/CartMain";
+import Loading from "./loading";
+import ProductCardContainerSkeleton from "@/src/components/ShoppingCart/ProductCardContainer/ProductCardContainerSkeleton";
 
 export default async function ShoppingCart() {
   const supabase = createClient();
@@ -9,5 +11,9 @@ export default async function ShoppingCart() {
     throw error;
   }
 
-  return <>{<CartMain data={data} />}</>;
+  return (
+    <>
+      <CartMain data={data} />
+    </>
+  );
 }
