@@ -37,7 +37,7 @@ export default function ProductCardContainer({
                     className="w-14 xs:w-24 sm:w-28"
                   />
                 </div>
-                <div className="w-full flex flex-col items-center justify-between gap-5 ">
+                <div className="w-full flex flex-col ">
                   <Typography
                     placeholder="product name"
                     variant="h6"
@@ -46,29 +46,48 @@ export default function ProductCardContainer({
                   >
                     {product.title}
                   </Typography>
-                  <Typography
-                    placeholder="product name"
-                    variant="h6"
-                    color="blue-gray"
-                    className="text-md text-right"
-                  >
-                    Size: {product.size}
-                  </Typography>
-                  <Typography
-                    placeholder="product name"
-                    variant="h6"
-                    color="blue-gray"
-                    className="text-md text-right"
-                  >
-                    Quantity: {product.quantity}
-                  </Typography>
+                  <div className="flex items-center justify-evenly">
+                    {product.size ? (
+                      <Typography
+                        placeholder="product name"
+                        variant="h6"
+                        color="blue-gray"
+                        className="text-md flex gap-2"
+                      >
+                        Size:{" "}
+                        <span>
+                          {" "}
+                          <Typography placeholder="product size">
+                            {product.size.charAt(0).toUpperCase() +
+                              product.size.slice(1)}
+                          </Typography>
+                        </span>
+                      </Typography>
+                    ) : (
+                      <div></div>
+                    )}
+                    <Typography
+                      placeholder="product name"
+                      variant="h6"
+                      color="blue-gray"
+                      className="text-md text-right flex gap-2"
+                    >
+                      Quantity:{" "}
+                      <span>
+                        {" "}
+                        <Typography placeholder="quantity">
+                          {product.quantity}
+                        </Typography>
+                      </span>
+                    </Typography>
+                  </div>
                   <input
+                    className="max-w-10 border-black border-2"
                     type="number"
                     min={1}
                     max={10}
                     onChange={(event) => setqty(Number(event.target.value))}
-                  >
-                  </input>
+                  ></input>
                   <button
                     onClick={() => handleQtyUpdate(product.id, Number(qty))}
                   >
@@ -82,10 +101,7 @@ export default function ProductCardContainer({
                   >
                     ${product.price.toFixed(2)}
                   </Typography>
-                  <p
-                    className="hover:underline cursor-pointer text-right"
-                    onClick={() => handleClick(product.id)}
-                  >
+                  <p className="hover:underline cursor-pointer text-right text-red-500">
                     Remove
                   </p>
                 </div>

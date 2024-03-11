@@ -79,14 +79,25 @@ export default function CartPreview({
                     >
                       {product.title}
                     </Typography>
-                    <Typography
-                      placeholder="product name"
-                      variant="h6"
-                      color="blue-gray"
-                      className="text-md text-right"
-                    >
-                      Size: {product.size}
-                    </Typography>
+                    {product.size ? (
+                      <Typography
+                        placeholder="product name"
+                        variant="h6"
+                        color="blue-gray"
+                        className="text-md flex gap-2"
+                      >
+                        Size:{" "}
+                        <span>
+                          {" "}
+                          <Typography placeholder="product size">
+                            {product.size.charAt(0).toUpperCase() +
+                              product.size.slice(1)}
+                          </Typography>
+                        </span>
+                      </Typography>
+                    ) : (
+                      <div></div>
+                    )}
                     <Typography
                       placeholder="product name"
                       variant="h6"
