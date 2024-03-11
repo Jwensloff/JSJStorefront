@@ -5,32 +5,19 @@ import { ShoppingCartProps } from "@/src/types";
 import ProductCardContainer from "../ProductCardContainer/ProductCardContainer";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function CartMain({ router }: { router: AppRouterInstance }) {
-  const [shoppingCartItems, setShoppingCartItems] = useState<
-    ShoppingCartProps[]
-  >([]);
+export default function CartMain({ data }: any) {
+  const cartTotal = data?.reduce((acc: number, product: ShoppingCartProps) => {
+    return acc + product.price * product.quantity;
+  }, 0);
 
-  useEffect(() => {
-    const getShoppingCartItems = async () => {
-      const supabase = createClient();
-      const { data, error } = await supabase.from("shopping_cart").select();
+  const totalItems = data.reduce((acc: number, product: ShoppingCartProps) => {
+    return acc + product.quantity;
+  }, 0);
+  const [qty, setqty] = useState<number | null>(null);
 
-      if (error) {
-        throw error;
-      }
-      setShoppingCartItems(data);
-    };
-    getShoppingCartItems();
-  }, []);
-
-  const cartTotal = shoppingCartItems?.reduce(
-    (acc: number, product: ShoppingCartProps) => {
-      return acc + product.price;
-    },
-    0,
-  );
-
+  const router = useRouter();
   const handleClick = async (id: number) => {
     const supabase = createClient();
     const { error } = await supabase
@@ -44,18 +31,32 @@ export default function CartMain({ router }: { router: AppRouterInstance }) {
     router.refresh();
   };
 
+  const handleQtyUpdate = async (id: number, qty: number) => {
+    const supabase = createClient();
+    const { data, error } = await supabase
+      .from("shopping_cart")
+      .update({ quantity: qty })
+      .eq("id", id)
+      .select();
+
+    if (error) {
+      throw error;
+    }
+    router.refresh();
+  };
+
   return (
     <div className="flex flex-col md:w-auto md:flex-row w-full min-h-screen">
       <ProductCardContainer
-        shoppingCartItems={shoppingCartItems}
+        shoppingCartItems={data}
         handleClick={handleClick}
+        handleQtyUpdate={handleQtyUpdate}
+        setqty={setqty}
+        qty={qty}
       />
-      <div className="w-full md:w-[40vw] p-5">
-        {shoppingCartItems && (
-          <CartSide
-            cartTotal={cartTotal}
-            totalItems={Number(shoppingCartItems?.length)}
-          />
+      <div className="w-full md:w-[30vw] p-5">
+        {data && (
+          <CartSide cartTotal={cartTotal} totalItems={Number(totalItems)} />
         )}
       </div>
     </div>

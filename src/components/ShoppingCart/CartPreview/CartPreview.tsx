@@ -8,12 +8,7 @@ import { ShoppingCartProps } from "@/src/types";
 interface SidebarProps {
   openSidebar: boolean;
   toggleSidebar: () => void;
-  products: {
-    id: number;
-    title: string;
-    price: number;
-    image: string;
-  }[];
+  products: ShoppingCartProps[] | null;
 }
 
 export default function CartPreview({
@@ -34,16 +29,17 @@ export default function CartPreview({
     }
 
     router.refresh();
+    // toggleSidebar()
   };
 
   const cartTotal = products?.reduce(
     (acc: number, product: ShoppingCartProps) => {
-      return acc + product.price;
+      return acc + product.price * product.quantity;
     },
     0,
   );
 
-  const createCart = (shoppinCartItems: any) => {
+  const createCart = (shoppinCartItems: ShoppingCartProps[]) => {
     return (
       <Drawer
         size={500}
@@ -75,12 +71,12 @@ export default function CartPreview({
                     width={100}
                     height={75}
                   />
-                  <div className="w-full flex flex-col gap-5">
+                  <div className="w-full flex flex-col items-center gap-2">
                     <Typography
                       placeholder="product name"
                       variant="h6"
                       color="blue-gray"
-                      className="text-md text-right"
+                      className="text-md text-center"
                     >
                       {product.title}
                     </Typography>
@@ -88,12 +84,58 @@ export default function CartPreview({
                       placeholder="product price"
                       variant="paragraph"
                       color="blue-gray"
-                      className="text-md font-bold text-right"
+                      className="text-md sm:text-2xl"
                     >
                       ${product.price.toFixed(2)}
                     </Typography>
+                    {product.size ? (
+                      <Typography
+                        placeholder="product name"
+                        variant="h6"
+                        color="blue-gray"
+                        className="text-md flex gap-2"
+                      >
+                        Size:{" "}
+                        <span>
+                          {" "}
+                          <Typography placeholder="product size">
+                            {product.size.charAt(0).toUpperCase() +
+                              product.size.slice(1)}
+                          </Typography>
+                        </span>
+                      </Typography>
+                    ) : (
+                      <Typography
+                        placeholder="product name"
+                        variant="h6"
+                        color="blue-gray"
+                        className="text-md flex gap-2"
+                      >
+                        Size:{" "}
+                        <span>
+                          {" "}
+                          <Typography placeholder="product size">
+                            N/A
+                          </Typography>
+                        </span>
+                      </Typography>
+                    )}
+                    <Typography
+                      placeholder="product name"
+                      variant="h6"
+                      color="blue-gray"
+                      className="text-md text-right flex gap-2"
+                    >
+                      Quantity:{" "}
+                      <span>
+                        {" "}
+                        <Typography placeholder="quantity">
+                          {product.quantity}
+                        </Typography>
+                      </span>
+                    </Typography>
                     <p
-                      className="hover:underline cursor-pointer text-right"
+                      className="hover:underline cursor-pointer text-red-400"
                       onClick={() => handleClick(product.id)}
                     >
                       Remove
@@ -105,7 +147,7 @@ export default function CartPreview({
           </div>
           <div className="w-full h-1 bg-black mt-14"></div>
           <p className="text-3xl font-bold text-center">
-            Subtotal - ${cartTotal.toFixed(2)}
+            Subtotal - ${cartTotal?.toFixed(2)}
           </p>
           <div className="w-full h-1 bg-black"></div>
           <div className="flex flex-col mt-10 mb-10">

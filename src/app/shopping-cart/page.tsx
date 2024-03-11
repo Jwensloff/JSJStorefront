@@ -1,9 +1,13 @@
-"use client";
+import { createClient } from "@/src/utils/supabase/supabaseServer";
 import CartMain from "../../components/ShoppingCart/CartMain/CartMain";
-import { useRouter } from "next/navigation";
 
-export default function ShoppingCart() {
-  const router = useRouter();
+export default async function ShoppingCart() {
+  const supabase = createClient();
+  const { data, error } = await supabase.from("shopping_cart").select();
 
-  return <>{<CartMain router={router} />}</>;
+  if (error) {
+    throw error;
+  }
+
+  return <>{<CartMain data={data} />}</>;
 }

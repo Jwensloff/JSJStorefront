@@ -57,41 +57,8 @@ export default async function Product({ params }: { params: { id: string } }) {
           </div>
         </div>
         <div className="border border-black w-full m-1"></div>
-        <div className="space-y-10">
-          {singleProduct.category !== "jewelery" && (
-            <Select
-              variant="static"
-              label="Select Size"
-              placeholder={undefined}
-            >
-              <Option value="xx-small">XX-Small</Option>
-              <Option value="x-small">X-Small</Option>
-              <Option value="small">Small</Option>
-              <Option value="medium">Medium</Option>
-              <Option value="large">Large</Option>
-              <Option value="x-large">X-Large</Option>
-              <Option value="xx-large">XX-Large</Option>
-              <Option value="xxx-large">XXX-Large</Option>
-            </Select>
-          )}
-          <Select variant="static" label="Quantity" placeholder={undefined}>
-            <Option value="1">1</Option>
-            <Option value="2">2</Option>
-            <Option value="3">3</Option>
-            <Option value="4">4</Option>
-            <Option value="5">5</Option>
-          </Select>
-        </div>
         <div className="space-x-5 flex">
-          {/* <a href="/shopping-cart"> */}
-          <CartButton
-            id={singleProduct.id}
-            title={singleProduct.title}
-            price={singleProduct.price}
-            image={singleProduct.image}
-            cart={shoppingCart}
-          />
-          {/* </a> */}
+          <CartButton singleProduct={singleProduct} cart={shoppingCart} />
           <a>
             <Button
               size="lg"
