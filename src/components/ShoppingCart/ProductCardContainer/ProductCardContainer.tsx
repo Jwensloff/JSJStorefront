@@ -4,7 +4,7 @@ import Image from "next/image";
 
 interface ProductCardContainerProps {
   shoppingCartItems: ShoppingCartProps[] | null;
-  handleClick: (id: number) => Promise<void>;
+  handleClick?: (id: number) => Promise<void>;
   handleQtyUpdate?: (id: number, qty: number) => Promise<void>;
   setqty?: React.Dispatch<React.SetStateAction<number | null>>;
   qty?: number | null;
@@ -112,7 +112,7 @@ export default function ProductCardContainer({
                       </span>
                     </Typography>
                   </div>
-                  {handleQtyUpdate && setqty && (
+                  {handleQtyUpdate && setqty && handleClick && (
                     <>
                       <div className="w-full flex flex-col md:flex-row justify-center gap-5 items-center m-2">
                         <div className="flex flex-col md:flex-row items-center">

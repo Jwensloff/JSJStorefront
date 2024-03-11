@@ -133,7 +133,7 @@ export default function Footer() {
       </div>
       <div className="hidden md:flex md:flex-col">
         <h2 className="font-extrabold">Contact Us</h2>
-        <p className="cursor-pointer hover:underline"> +1-(800)-123-4567</p>
+        <p> +1-(800)-123-4567</p>
         <div className="flex justify-evenly text-lg mt-1">
           <Link aria-label="Instagram" href={"/fallback"}>
             <FontAwesomeIcon icon={faInstagram} />
