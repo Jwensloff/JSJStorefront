@@ -33,9 +33,9 @@ export default function Sidebar({ openSidebar, toggleSidebar }: SidebarProps) {
         placeholder="drawer"
         open={openSidebar}
         onClose={toggleSidebar}
-        className="p-4 w-[50vw]"
+        className="p-4 w-full"
       >
-        <div className="mb-6 flex items-center break-words gap-6">
+        <div className="mb-6 flex justify-evenly break-words">
           <Typography
             placeholder="Shop By Department"
             variant="h5"
@@ -62,6 +62,7 @@ export default function Sidebar({ openSidebar, toggleSidebar }: SidebarProps) {
                 <Link
                   className={`${pathname === cat.link ? "underline" : ""} font-extrabold cursor-pointer hover:underline`}
                   href={cat.link}
+                  onClick={toggleSidebar}
                 >
                   {cat.name}
                 </Link>

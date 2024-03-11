@@ -29,6 +29,7 @@ export default function CartPreview({
     }
 
     router.refresh();
+    // toggleSidebar()
   };
 
   const cartTotal = products?.reduce(

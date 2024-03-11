@@ -111,35 +111,41 @@ export default function ProductCardContainer({
                       </span>
                     </Typography>
                   </div>
-                  <div className="w-full flex flex-col md:flex-row justify-center gap-5 items-center m-2">
-                    <div className="flex flex-col md:flex-row items-center">
-                      <Select
-                        size="md"
-                        variant="static"
-                        label="Update Quantity"
-                        placeholder={undefined}
-                        onChange={(e) => setqty(e ? Number(e) : null)}
+                  {handleQtyUpdate && (
+                    <>
+                      <div className="w-full flex flex-col md:flex-row justify-center gap-5 items-center m-2">
+                        <div className="flex flex-col md:flex-row items-center">
+                          <Select
+                            size="md"
+                            variant="static"
+                            label="Update Quantity"
+                            placeholder={undefined}
+                            onChange={(e) => setqty(e ? Number(e) : null)}
+                          >
+                            <Option value="1">1</Option>
+                            <Option value="2">2</Option>
+                            <Option value="3">3</Option>
+                            <Option value="4">4</Option>
+                            <Option value="5">5</Option>
+                          </Select>
+                          <button
+                            className="hover:underline cursor-pointer"
+                            onClick={() =>
+                              handleQtyUpdate(product.id, Number(qty))
+                            }
+                          >
+                            Update
+                          </button>
+                        </div>
+                      </div>
+                      <p
+                        className="hover:underline cursor-pointer text-center text-red-400"
+                        onClick={() => handleClick(product.id)}
                       >
-                        <Option value="1">1</Option>
-                        <Option value="2">2</Option>
-                        <Option value="3">3</Option>
-                        <Option value="4">4</Option>
-                        <Option value="5">5</Option>
-                      </Select>
-                      <button
-                        className="hover:underline cursor-pointer"
-                        onClick={() => handleQtyUpdate(product.id, Number(qty))}
-                      >
-                        Update
-                      </button>
-                    </div>
-                  </div>
-                  <p
-                    className="hover:underline cursor-pointer text-center text-red-400"
-                    onClick={() => handleClick(product.id)}
-                  >
-                    Remove
-                  </p>
+                        Remove
+                      </p>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
