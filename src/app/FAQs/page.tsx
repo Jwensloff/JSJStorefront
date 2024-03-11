@@ -123,7 +123,7 @@ export default function FAQs() {
   });
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col min-h-[71vh] mb-[5rem] items-center">
       <h2 className="text-center text-4xl font-bold my-5">
         Frequently Asked Questions
       </h2>

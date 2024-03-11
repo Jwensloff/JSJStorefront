@@ -11,41 +11,50 @@ export default function OrderStatus() {
   };
 
   return (
-    <div>
-      <h1 className="text-center text-lg sm:text-2xl font-bold mb-6">
-        View Order Status
-      </h1>
-      <div className="flex justify-center">
+    <div className="h-full flex flex-col justify-evenly">
+      <div className="flex justify-center pb-10 sm:pb-0">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col w-10/12 sm:w-1/2 gap-5 text-sm sm:text-base"
+          className="flex flex-col w-10/12 sm:w-7/12 gap-5 text-sm sm:text-base"
         >
-          <label className="sr-only" htmlFor="order number">
-            Order Number
-          </label>
-          <input
-            id="order number"
-            placeholder="Order Number"
-            className="py-2 border-2 border-gray-400 rounded-md pl-2 text-ellipsis"
-          />
-          <label className="sr-only" htmlFor="E-mail address">
-            E-mail Address
-          </label>
-          <input
-            id="E-mail address"
-            placeholder="E-mail Address"
-            className="py-2 border-2 border-gray-400 rounded-md pl-2 text-ellipsis"
-          />
+          <div className="relative">
+            <input
+              id="order number"
+              placeholder=""
+              className="py-2 pl-2 w-full border-2 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700 text-ellipsis"
+            />
+            <label
+              htmlFor="order number"
+              className="absolute text-lg scale-75 inset-y-0 px-2 flex items-center pointer-events-none text-gray-600 peer-focus:text-blue-700 peer-focus:-translate-y-6  bg-white transform -translate-y-6 peer-placeholder-shown:scale-75 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:top-0"
+            >
+              Order Number
+            </label>
+          </div>
+
+          <div className="relative">
+            <input
+              id="E-mail address"
+              placeholder=""
+              className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700 text-ellipsis"
+            />
+            <label
+              className="absolute text-lg scale-75 inset-y-0 px-2 flex items-center pointer-events-none text-gray-600 peer-focus:text-blue-700 peer-focus:-translate-y-6  bg-white transform -translate-y-6 peer-placeholder-shown:scale-75 peer-placeholder-shown:-translate-y-0 peer-placeholder-shown:top-0"
+              htmlFor="E-mail address"
+            >
+              E-mail Address
+            </label>
+          </div>
+
           <div className="flex flex-col gap-4 sm:flex-row justify-evenly my-6">
             <button
               type="submit"
-              className="p-1 sm:p-2 md:p-3 bg-blue-100 border-blue-500 border-2 rounded-md"
+              className="p-1 w-full md:w-52 sm:p-2 md:px-3 bg-blue-100 border-blue-500 border-2 rounded-md"
             >
               Order Information
             </button>
             <button
               type="submit"
-              className="p-1 sm:p-2 md:p-3 bg-red-100 border-red-500 border-2 rounded-md"
+              className="p-1 w-full md:w-52 sm:p-2 md:px-3 bg-red-100 border-red-500 border-2 rounded-md"
             >
               Cancel
             </button>
