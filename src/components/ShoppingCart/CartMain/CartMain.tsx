@@ -53,7 +53,7 @@ export default function CartMain({ data }: any) {
         setqty={setqty}
         qty={qty}
       />
-      <div className="w-full md:w-[40vw] p-5">
+      <div className="w-full md:w-[30vw] p-5">
         {data && (
           <CartSide cartTotal={cartTotal} totalItems={Number(totalItems)} />
         )}

@@ -29,6 +29,7 @@ export default function CartPreview({
     }
 
     router.refresh();
+    // toggleSidebar()
   };
 
   const cartTotal = products?.reduce(
@@ -70,41 +71,71 @@ export default function CartPreview({
                     width={100}
                     height={75}
                   />
-                  <div className="w-full flex flex-col gap-5">
+                  <div className="w-full flex flex-col items-center gap-2">
                     <Typography
                       placeholder="product name"
                       variant="h6"
                       color="blue-gray"
-                      className="text-md text-right"
+                      className="text-md text-center"
                     >
                       {product.title}
-                    </Typography>
-                    <Typography
-                      placeholder="product name"
-                      variant="h6"
-                      color="blue-gray"
-                      className="text-md text-right"
-                    >
-                      Size: {product.size}
-                    </Typography>
-                    <Typography
-                      placeholder="product name"
-                      variant="h6"
-                      color="blue-gray"
-                      className="text-md text-right"
-                    >
-                      Quantity: {product.quantity}
                     </Typography>
                     <Typography
                       placeholder="product price"
                       variant="paragraph"
                       color="blue-gray"
-                      className="text-md font-bold text-right"
+                      className="text-md sm:text-2xl"
                     >
-                      Price: ${product.price.toFixed(2)}
+                      ${product.price.toFixed(2)}
+                    </Typography>
+                    {product.size ? (
+                      <Typography
+                        placeholder="product name"
+                        variant="h6"
+                        color="blue-gray"
+                        className="text-md flex gap-2"
+                      >
+                        Size:{" "}
+                        <span>
+                          {" "}
+                          <Typography placeholder="product size">
+                            {product.size.charAt(0).toUpperCase() +
+                              product.size.slice(1)}
+                          </Typography>
+                        </span>
+                      </Typography>
+                    ) : (
+                      <Typography
+                        placeholder="product name"
+                        variant="h6"
+                        color="blue-gray"
+                        className="text-md flex gap-2"
+                      >
+                        Size:{" "}
+                        <span>
+                          {" "}
+                          <Typography placeholder="product size">
+                            N/A
+                          </Typography>
+                        </span>
+                      </Typography>
+                    )}
+                    <Typography
+                      placeholder="product name"
+                      variant="h6"
+                      color="blue-gray"
+                      className="text-md text-right flex gap-2"
+                    >
+                      Quantity:{" "}
+                      <span>
+                        {" "}
+                        <Typography placeholder="quantity">
+                          {product.quantity}
+                        </Typography>
+                      </span>
                     </Typography>
                     <p
-                      className="hover:underline cursor-pointer text-right"
+                      className="hover:underline cursor-pointer text-red-400"
                       onClick={() => handleClick(product.id)}
                     >
                       Remove

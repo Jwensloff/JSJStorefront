@@ -69,13 +69,17 @@ export default function Header({ dataLength, products }: HeaderProps) {
                 </ul>
               </>
             )}
-            <div className="flex flex-row gap-5 justify-end">
+            <div className="flex flex-row justify-end">
               <ShoppingCartSymbol dataLength={dataLength} products={products} />
               <button
                 aria-label="open side navigation"
                 className="sm:hidden cursor-pointer hover:text-blue-900"
               >
-                <FontAwesomeIcon icon={faBars} onClick={toggleSidebar} />
+                <FontAwesomeIcon
+                  className="mr-2"
+                  icon={faBars}
+                  onClick={toggleSidebar}
+                />
               </button>
             </div>
           </div>
