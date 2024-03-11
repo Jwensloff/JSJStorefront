@@ -5,11 +5,7 @@ import Image from "next/image";
 interface ProductCardContainerProps {
   shoppingCartItems: ShoppingCartProps[] | null;
   handleClick: (id: number) => Promise<void>;
-  handleQtyUpdate: (
-    id: number,
-    qty: number,
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => Promise<void>;
+  handleQtyUpdate: (id: number, qty: number) => Promise<void>;
   setqty: React.Dispatch<React.SetStateAction<number | null>>;
   qty: number | null;
 }
@@ -74,7 +70,7 @@ export default function ProductCardContainer({
                     onChange={(event) => setqty(Number(event.target.value))}
                   ></input>
                   <button
-                    onClick={(e) => handleQtyUpdate(product.id, Number(qty), e)}
+                    onClick={() => handleQtyUpdate(product.id, Number(qty))}
                   >
                     Update
                   </button>

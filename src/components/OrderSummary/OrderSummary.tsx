@@ -1,5 +1,4 @@
 "use client";
-import { createClient } from "@/src/utils/supabase/supabaseClient";
 import { ChangeEvent, useState } from "react";
 import ProductCardContainer from "../ShoppingCart/ProductCardContainer/ProductCardContainer";
 import { useRouter } from "next/navigation";
@@ -7,54 +6,10 @@ import { ShoppingCartProps } from "@/src/types";
 
 export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-  });
   const [shippingOption, setShippingOption] = useState({
     shippingMethod: "",
     price: 0,
   });
-
-  const [qty, setQty] = useState<number | null>(null);
-
-  const handleClick = async (id: number) => {
-    const supabase = createClient();
-    const { error } = await supabase
-      .from("shopping_cart")
-      .delete()
-      .eq("id", id);
-
-    if (error) {
-      throw error;
-    }
-    router.refresh();
-  };
-  const handleQtyUpdate = async (
-    id: number,
-    qty: number,
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    e.preventDefault();
-    const supabase = createClient();
-    const { data, error } = await supabase
-      .from("shopping_cart")
-      .update({ quantity: qty })
-      .eq("id", id)
-      .select();
-
-    if (error) {
-      throw error;
-    }
-    // const updatedQty = data.map((item) => {
-    //   if (item.id === id) {
-    //     return { ...item, quantity: qty };
-    //   }
-    //   return item;
-    // });
-    // setQty(updatedQty);
-    router.refresh();
-  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, dataset } = e.target;
@@ -85,17 +40,6 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
   return (
     <main className="flex flex-col px-2 sm:px-4 lg:px-8 justify-evenly gap-3 lg:gap-8 md:flex-row">
       <div>
-        {data.length > 0 && (
-          // <div className="flex justify-center overflow-y-auto">
-          <ProductCardContainer
-            shoppingCartItems={data}
-            handleClick={handleClick}
-            handleQtyUpdate={handleQtyUpdate}
-            setqty={setQty}
-            qty={qty}
-          />
-          // </div>
-        )}
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <section className="flex flex-col p-4 w-full border-2 border-gray-500 rounded-md">
             <fieldset className="flex flex-col gap-6">
@@ -103,7 +47,6 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <span className="flex flex-col gap-5 md:flex-row justify-between ">
                 <div className="relative w-full">
                   <input
-                  
                     id="first name"
                     placeholder=""
                     className="py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer bg-transparent focus:ring-0 focus:border-blue-700"
@@ -231,6 +174,11 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
             </fieldset>
           </section>
           <section className="flex w-full md:w-[60vw] flex-col p-4 border-2 border-gray-500 rounded-md">
+            {data.length > 0 && (
+              <div className="flex justify-center overflow-y-auto">
+                <ProductCardContainer shoppingCartItems={data} />
+              </div>
+            )}
             <fieldset>
               <legend className="text-lg font-bold pb-4">
                 {" "}
