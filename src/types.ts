@@ -44,6 +44,6 @@ export interface ShoppingCartProps {
   title: string;
   price: number;
   image: string;
-  size: string;
+  size?: string;
   quantity: number;
 }

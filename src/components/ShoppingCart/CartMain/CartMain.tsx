@@ -3,8 +3,7 @@ import { createClient } from "@/src/utils/supabase/supabaseClient";
 import CartSide from "./CartSide";
 import { ShoppingCartProps } from "@/src/types";
 import ProductCardContainer from "../ProductCardContainer/ProductCardContainer";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function CartMain({ data }: any) {

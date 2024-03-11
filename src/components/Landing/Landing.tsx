@@ -89,7 +89,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
           href={`/top-rated`}
           className="text-2xl xs:text-4xl  z-10 text-black hover:underline "
         >
-          Shop Top Rated {"->"}
+          Shop Top Rated
         </Link>
         {highestRatedProducts && (
           <Carousel
@@ -118,7 +118,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
           href={`/sale`}
           className="text-2xl xs:text-4xl text-black z-10 hover:underline"
         >
-          {"<-"} Shop Sale Items
+          Shop Sale Items
         </Link>
       </div>
       <div className="bg-gray-custom p-[1rem] mt-20 mb-20 flex flex-col md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
@@ -127,7 +127,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
           href={`/gold`}
           className="text-2xl xs:text-4xl z-10 text-black hover:underline"
         >
-          Shop Gold {"->"}
+          Shop Gold
         </Link>
         {productsWithGold && (
           <Carousel
