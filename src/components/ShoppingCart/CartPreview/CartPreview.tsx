@@ -64,12 +64,14 @@ export default function CartPreview({
                 key={product.id}
                 className="w-full pb-5 pr-5 flex flex-row justify-evenly border-b-4 border-black border-double"
               >
-                <div className=" w-full flex flex-row justify-between gap-5">
+                <div className=" w-full  items-center flex flex-row justify-between gap-5">
                   <Image
                     src={product.image}
                     alt={product.title}
-                    width={100}
+                    width={90}
                     height={75}
+                    style={{ objectFit: "contain", maxWidth: "90px" }}
+                    className="ml-3"
                   />
                   <div className="w-full flex flex-col items-center gap-2">
                     <Typography
@@ -145,11 +147,9 @@ export default function CartPreview({
               </div>
             ))}
           </div>
-          <div className="w-full h-1 bg-black mt-14"></div>
-          <p className="text-3xl font-bold text-center">
+          <p className="text-3xl mt-5 font-bold text-center">
             Subtotal - ${cartTotal?.toFixed(2)}
           </p>
-          <div className="w-full h-1 bg-black"></div>
           <div className="flex flex-col mt-10 mb-10">
             <a href="/shopping-cart">
               <Button
