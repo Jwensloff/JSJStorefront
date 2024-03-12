@@ -16,7 +16,6 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
     exp: "",
     cvv: "",
   });
-  const [fillCreditCard, setFillCreditCard] = useState(false);
 
   const handlePaymentClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -205,7 +204,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
           </section>
           <section className="flex w-full md:w-[60vw] flex-col p-4 border-2 border-gray-500 rounded-md">
             {data.length > 0 && (
-              <div className="flex justify-center overflow-y-auto">
+              <div className="flex justify-center ">
                 <ProductCardContainer shoppingCartItems={data} />
               </div>
             )}
@@ -320,7 +319,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
                 <div className="relative w-full">
                   <input
                     required
-                    id="expiration month"
+                    id="expiration date"
                     value={paymentData.exp}
                     className="py-2 pl-2 w-full border-2 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                   />

@@ -1,9 +1,4 @@
-// "use client";
-import Footer from "@/src/components/Footer/Footer";
-import Header from "@/src/components/Header/Header";
 import OrderSummary from "@/src/components/OrderSummary/OrderSummary";
-import OrderSummarySkeleton from "@/src/components/OrderSummary/OrderSummarySkeleton";
-import ProductCardContainerSkeleton from "@/src/components/ShoppingCart/ProductCardContainer/ProductCardContainerSkeleton";
 import { createClient } from "@/src/utils/supabase/supabaseServer";
 
 export default async function Checkout() {

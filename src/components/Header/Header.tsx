@@ -74,12 +74,9 @@ export default function Header({ dataLength, products }: HeaderProps) {
               <button
                 aria-label="open side navigation"
                 className="sm:hidden cursor-pointer hover:text-blue-900"
+                onClick={toggleSidebar}
               >
-                <FontAwesomeIcon
-                  className="mr-2"
-                  icon={faBars}
-                  onClick={toggleSidebar}
-                />
+                <FontAwesomeIcon className="mr-2" icon={faBars} />
               </button>
             </div>
           </div>

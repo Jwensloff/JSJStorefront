@@ -58,7 +58,10 @@ export default function CartPreview({
           Shopping Cart
         </Typography>
         <Card placeholder="card" className="w-full pt-10">
-          <div className="w-full h-96 overflow-scroll flex flex-col gap-5">
+          <div
+            tabIndex={0}
+            className="w-full h-96 overflow-scroll flex flex-col gap-5"
+          >
             {shoppinCartItems.map((product: ShoppingCartProps) => (
               <div
                 key={product.id}
@@ -137,7 +140,7 @@ export default function CartPreview({
                       </span>
                     </Typography>
                     <p
-                      className="hover:underline cursor-pointer text-red-400"
+                      className="hover:underline cursor-pointer text-red-900"
                       onClick={() => handleClick(product.id)}
                     >
                       Remove
@@ -153,8 +156,7 @@ export default function CartPreview({
           <div className="flex flex-col mt-10 mb-10">
             <a href="/shopping-cart">
               <Button
-                className="w-full"
-                color="blue-gray"
+                className="w-full bg-blue-gray-700"
                 placeholder={undefined}
               >
                 Go to Cart
