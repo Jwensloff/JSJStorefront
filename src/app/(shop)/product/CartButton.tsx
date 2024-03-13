@@ -2,7 +2,7 @@
 import CartPreview from "@/src/components/ShoppingCart/CartPreview/CartPreview";
 import { Button, Select, Option } from "@/src/tailwind";
 import { createClient } from "@/src/utils/supabase/supabaseClient";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface CartButtonProps {
@@ -20,13 +20,16 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedQuantity, setSelectedQuantity] = useState("");
+  const [isFormComplete, setIsFormComplete] = useState<boolean | null>(true);
 
   const handleSizeChange = (event: any) => {
     setSelectedSize(event);
+    setIsFormComplete(true);
   };
 
   const handleQuantityChange = (event: any) => {
     setSelectedQuantity(event);
+    setIsFormComplete(true);
   };
 
   const toggleSidebar = () => {
@@ -37,6 +40,13 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
   const handleClick = async (
     singleProduct: CartButtonProps["singleProduct"],
   ) => {
+    if (
+      (singleProduct.category !== "jewelery" && selectedSize === "") ||
+      selectedQuantity === ""
+    ) {
+      setIsFormComplete(false);
+      return;
+    }
     const supabase = createClient();
     const { id, title, price, image } = singleProduct;
     const { error } = await supabase.from("shopping_cart").insert({
@@ -54,10 +64,12 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
 
     router.refresh();
     toggleSidebar();
+    setSelectedQuantity("");
+    setSelectedSize("");
   };
   return (
     <>
-      <div className="space-y-10">
+      <div className="flex flex-col w-full md:w-2/5 gap-5">
         {singleProduct?.category !== "jewelery" && (
           <Select
             variant="static"
@@ -90,15 +102,22 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
           <Option value="5">5</Option>
         </Select>
       </div>
-      <Button
-        onClick={() => handleClick(singleProduct)}
-        size="lg"
-        color="gray"
-        variant="outlined"
-        placeholder={undefined}
-      >
-        Add to shopping cart
-      </Button>
+      <div className="flex justify-center items-center mt-5 md:mt-0 md:ml-[10%]">
+        <Button
+          onClick={() => handleClick(singleProduct)}
+          size="lg"
+          color="gray"
+          variant="outlined"
+          placeholder={undefined}
+        >
+          Add to cart
+        </Button>
+      </div>
+      {!isFormComplete && (
+        <p className="text-center flex flex-col justify-center pl-5 text-red-900">
+          *Please select size/quantity
+        </p>
+      )}
       <CartPreview
         openSidebar={openSidebar}
         toggleSidebar={toggleSidebar}
