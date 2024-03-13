@@ -57,7 +57,7 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
   };
   return (
     <>
-      <div className="flex flex-col  gap-5 w-full">
+      <div className="flex flex-col w-full md:w-2/5 gap-5">
         {singleProduct?.category !== "jewelery" && (
           <Select
             variant="static"
@@ -90,7 +90,7 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
           <Option value="5">5</Option>
         </Select>
       </div>
-      <div className="flex justify-center items-center mt-5 md:mt-0 md:ml-2">
+      <div className="flex justify-center items-center mt-5 md:mt-0 md:ml-[10%]">
         <Button
           onClick={() => handleClick(singleProduct)}
           size="lg"
