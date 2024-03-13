@@ -114,7 +114,7 @@ export default function ProductCardContainer({
                   </div>
                   {handleQtyUpdate && setqty && handleClick && (
                     <>
-                      <div className="w-full flex flex-col md:flex-row justify-center gap-5 items-center m-2">
+                      <div className="w-full flex flex-col md:flex-row justify-center gap-5 items-center">
                         <div className="flex flex-col md:flex-row items-center">
                           <Select
                             size="md"

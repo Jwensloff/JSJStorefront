@@ -58,7 +58,7 @@ export default function CartPreview({
           Shopping Cart
         </Typography>
         <Card placeholder="card" className="w-full pt-10">
-          <div
+          {shoppinCartItems.length ? <div
             tabIndex={0}
             className="w-full h-96 overflow-scroll flex flex-col gap-5"
           >
@@ -149,8 +149,8 @@ export default function CartPreview({
                 </div>
               </div>
             ))}
-          </div>
-          <p className="text-3xl mt-5 font-bold text-center">
+          </div>: <p className="text-center">Your cart is currently empty.</p>}
+          <p className="text-2xl mt-5 font-bold text-center">
             Subtotal - ${cartTotal?.toFixed(2)}
           </p>
           <div className="flex flex-col mt-10 mb-10">

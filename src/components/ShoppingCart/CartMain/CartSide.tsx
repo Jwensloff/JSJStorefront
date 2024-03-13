@@ -29,7 +29,7 @@ export default function CartSide({
             className="text-2xl font-bold"
           >
             Subtotal{" "}
-            <span className="text-xs align-middle font-thin">
+            <span className="flex flex-col text-xs align-middle font-thin">
               ({totalItems} items)
             </span>
           </Typography>

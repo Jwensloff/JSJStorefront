@@ -20,13 +20,16 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedQuantity, setSelectedQuantity] = useState("");
+  const [isFormComplete, setIsFormComplete] = useState<boolean | null>(true);
 
   const handleSizeChange = (event: any) => {
     setSelectedSize(event);
+    setIsFormComplete(true)
   };
 
   const handleQuantityChange = (event: any) => {
     setSelectedQuantity(event);
+    setIsFormComplete(true)
   };
 
   const toggleSidebar = () => {
@@ -37,6 +40,10 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
   const handleClick = async (
     singleProduct: CartButtonProps["singleProduct"],
   ) => {
+if (singleProduct.category !== "jewelery" && selectedSize === "" || selectedQuantity === "") {
+  setIsFormComplete(false)
+  return
+}
     const supabase = createClient();
     const { id, title, price, image } = singleProduct;
     const { error } = await supabase.from("shopping_cart").insert({
@@ -54,6 +61,8 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
 
     router.refresh();
     toggleSidebar();
+    setSelectedQuantity("")
+    setSelectedSize("")
   };
   return (
     <>
@@ -65,6 +74,7 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
             placeholder={undefined}
             value={selectedSize}
             onChange={handleSizeChange}
+            
           >
             <Option value="xx-small">XX-Small</Option>
             <Option value="x-small">X-Small</Option>
@@ -101,6 +111,7 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
           Add to cart
         </Button>
       </div>
+        {!isFormComplete &&  <p>Please select size/quantity</p>}
       <CartPreview
         openSidebar={openSidebar}
         toggleSidebar={toggleSidebar}
