@@ -2,7 +2,7 @@
 import CartPreview from "@/src/components/ShoppingCart/CartPreview/CartPreview";
 import { Button, Select, Option } from "@/src/tailwind";
 import { createClient } from "@/src/utils/supabase/supabaseClient";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface CartButtonProps {
@@ -57,7 +57,7 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
   };
   return (
     <>
-      <div className="space-y-10">
+      <div className="flex flex-col  gap-5 w-full">
         {singleProduct?.category !== "jewelery" && (
           <Select
             variant="static"
@@ -90,15 +90,17 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
           <Option value="5">5</Option>
         </Select>
       </div>
-      <Button
-        onClick={() => handleClick(singleProduct)}
-        size="lg"
-        color="gray"
-        variant="outlined"
-        placeholder={undefined}
-      >
-        Add to shopping cart
-      </Button>
+      <div className="flex justify-center items-center mt-5 md:mt-0 md:ml-2">
+        <Button
+          onClick={() => handleClick(singleProduct)}
+          size="lg"
+          color="gray"
+          variant="outlined"
+          placeholder={undefined}
+        >
+          Add to cart
+        </Button>
+      </div>
       <CartPreview
         openSidebar={openSidebar}
         toggleSidebar={toggleSidebar}
