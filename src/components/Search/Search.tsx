@@ -2,10 +2,12 @@
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function Search() {
   const [search, setSearch] = useState<string>("");
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -13,6 +15,18 @@ export function Search() {
 
   const handleClearSearch = () => {
     setSearch("");
+  };
+
+  const handleEnterKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      router.push(`/search-results/${search}`);
+      handleClearSearch();
+    }
+  };
+
+  const handleSearch = () => {
+    router.push(`/search-results/${search}`);
+    handleClearSearch();
   };
 
   return (
@@ -28,6 +42,7 @@ export function Search() {
           placeholder="Search products..."
           value={search}
           onChange={handleChange}
+          onKeyDown={handleEnterKeyPress}
           className="w-full text-lg md:text-xl outline-none"
         />
         {search && (
@@ -39,14 +54,14 @@ export function Search() {
             <FontAwesomeIcon size="lg" icon={faXmark} />
           </button>
         )}
-        <Link
+        <button
           data-test="search-icon"
           aria-label="search"
-          href={`/search-results/${search}`}
+          onClick={handleSearch}
           className="hover:text-blue-900"
         >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </Link>
+        </button>
       </div>
     </div>
   );

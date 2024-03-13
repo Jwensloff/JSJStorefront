@@ -10,6 +10,24 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
     shippingMethod: "",
     price: 0,
   });
+  const [paymentData, setPaymentData] = useState({
+    cc: "",
+    name: "",
+    exp: "",
+    cvv: "",
+  });
+
+  const handlePaymentClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.preventDefault();
+    setPaymentData({
+      cc: "1234 5678 9123 4567",
+      name: "Rick Roll",
+      exp: "01/99",
+      cvv: "321",
+    });
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, dataset } = e.target;
@@ -47,6 +65,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <span className="flex flex-col gap-5 md:flex-row justify-between ">
                 <div className="relative w-full">
                   <input
+                    required
                     id="first name"
                     placeholder=""
                     className="py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer bg-transparent focus:ring-0 focus:border-blue-700"
@@ -60,6 +79,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
                 </div>
                 <div className="relative w-full ">
                   <input
+                    required
                     id="last name"
                     placeholder=""
                     className="py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer bg-transparent focus:ring-0 focus:border-blue-700"
@@ -75,6 +95,8 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <span className="flex flex-col gap-5 md:flex-row justify-between">
                 <div className="relative w-full">
                   <input
+                    type="email"
+                    required
                     id="e-mail address"
                     placeholder=""
                     className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
@@ -88,6 +110,8 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
                 </div>
                 <div className="relative w-full">
                   <input
+                    type="tel"
+                    required
                     id="phone number"
                     placeholder=""
                     className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
@@ -103,6 +127,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <span>
                 <div className="relative w-full">
                   <input
+                    required
                     id="street address"
                     placeholder=""
                     className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
@@ -118,6 +143,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <span className="flex flex-col gap-5 md:flex-row justify-between">
                 <div className="relative w-full">
                   <input
+                    required
                     id="city"
                     placeholder=""
                     className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
@@ -131,6 +157,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
                 </div>
                 <div className="relative w-full">
                   <input
+                    required
                     id="postal code"
                     placeholder=""
                     className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
@@ -146,6 +173,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <span className="flex flex-col gap-5 md:flex-row justify-between">
                 <div className="relative w-full">
                   <input
+                    required
                     id="country"
                     placeholder=""
                     className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
@@ -159,6 +187,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
                 </div>
                 <div className="relative w-full">
                   <input
+                    required
                     id="state or province"
                     placeholder=""
                     className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
@@ -175,7 +204,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
           </section>
           <section className="flex w-full md:w-[60vw] flex-col p-4 border-2 border-gray-500 rounded-md">
             {data.length > 0 && (
-              <div className="flex justify-center overflow-y-auto">
+              <div className="flex justify-center ">
                 <ProductCardContainer shoppingCartItems={data} />
               </div>
             )}
@@ -187,6 +216,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <div className="flex justify-between">
                 <span className="flex gap-5">
                   <input
+                    required
                     id="no rush"
                     name="shipping"
                     type="radio"
@@ -205,6 +235,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <div className="flex justify-between">
                 <span className="flex gap-5">
                   <input
+                    required
                     id="standard"
                     name="shipping"
                     type="radio"
@@ -223,6 +254,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <div className="flex justify-between">
                 <span className="flex gap-5">
                   <input
+                    required
                     id="express"
                     name="shipping"
                     type="radio"
@@ -242,11 +274,20 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
           </section>
           <section className="flex flex-col p-4 w-full border-2 border-gray-500 rounded-md">
             <fieldset className="flex flex-col gap-6">
-              <legend className="text-lg font-bold pb-4">Payment</legend>
-
+              <span className="flex justify-between">
+                <legend className="text-lg font-bold pb-4">Payment</legend>
+                <button
+                  className="flex italic"
+                  onClick={(e) => handlePaymentClick(e)}
+                >
+                  Click Me to Fill Payment Information
+                </button>
+              </span>
               <div className="relative w-full">
                 <input
+                  required
                   id="credit card number"
+                  value={paymentData.cc}
                   placeholder=""
                   className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                 />
@@ -260,7 +301,9 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
 
               <div className="relative w-full">
                 <input
+                  required
                   id="name on card"
+                  value={paymentData.name}
                   placeholder=""
                   className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                 />
@@ -275,9 +318,9 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <span className="flex flex-col gap-5 md:flex-row justify-between">
                 <div className="relative w-full">
                   <input
-                    id="expiration month"
-                    pattern="[0-9]{2}-[0-9]{2}"
-                    type="month"
+                    required
+                    id="expiration date"
+                    value={paymentData.exp}
                     className="py-2 pl-2 w-full border-2 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                   />
                   <label
@@ -289,7 +332,9 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
                 </div>
                 <div className="relative w-full">
                   <input
+                    required
                     id="CVV"
+                    value={paymentData.cvv}
                     placeholder=""
                     className=" py-2 pl-2 w-auto border-2 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
                   />
@@ -327,7 +372,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
         </div>
         <div className="flex flex-row gap-8 pt-4 border-t-4 border-gray-500 justify-between">
           <p>Total</p>
-          <p>{totalPrice}</p>
+          <p>${totalPrice}</p>
         </div>
       </section>
     </main>

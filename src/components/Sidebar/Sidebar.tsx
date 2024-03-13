@@ -44,12 +44,8 @@ export default function Sidebar({ openSidebar, toggleSidebar }: SidebarProps) {
           >
             Shop By Department
           </Typography>
-          <button onClick={toggleSidebar}>
-            <FontAwesomeIcon
-              tabIndex={0}
-              icon={faClose}
-              aria-label="close navigation"
-            />
+          <button aria-label="close navigation" onClick={toggleSidebar}>
+            <FontAwesomeIcon icon={faClose} />
           </button>
         </div>
         <Card
