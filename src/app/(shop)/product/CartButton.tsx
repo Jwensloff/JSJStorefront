@@ -24,12 +24,12 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
 
   const handleSizeChange = (event: any) => {
     setSelectedSize(event);
-    setIsFormComplete(true)
+    setIsFormComplete(true);
   };
 
   const handleQuantityChange = (event: any) => {
     setSelectedQuantity(event);
-    setIsFormComplete(true)
+    setIsFormComplete(true);
   };
 
   const toggleSidebar = () => {
@@ -40,10 +40,13 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
   const handleClick = async (
     singleProduct: CartButtonProps["singleProduct"],
   ) => {
-if (singleProduct.category !== "jewelery" && selectedSize === "" || selectedQuantity === "") {
-  setIsFormComplete(false)
-  return
-}
+    if (
+      (singleProduct.category !== "jewelery" && selectedSize === "") ||
+      selectedQuantity === ""
+    ) {
+      setIsFormComplete(false);
+      return;
+    }
     const supabase = createClient();
     const { id, title, price, image } = singleProduct;
     const { error } = await supabase.from("shopping_cart").insert({
@@ -61,8 +64,8 @@ if (singleProduct.category !== "jewelery" && selectedSize === "" || selectedQuan
 
     router.refresh();
     toggleSidebar();
-    setSelectedQuantity("")
-    setSelectedSize("")
+    setSelectedQuantity("");
+    setSelectedSize("");
   };
   return (
     <>
@@ -74,7 +77,6 @@ if (singleProduct.category !== "jewelery" && selectedSize === "" || selectedQuan
             placeholder={undefined}
             value={selectedSize}
             onChange={handleSizeChange}
-            
           >
             <Option value="xx-small">XX-Small</Option>
             <Option value="x-small">X-Small</Option>
@@ -111,7 +113,11 @@ if (singleProduct.category !== "jewelery" && selectedSize === "" || selectedQuan
           Add to cart
         </Button>
       </div>
-        {!isFormComplete &&  <p>Please select size/quantity</p>}
+      {!isFormComplete && (
+        <p className="text-center flex flex-col justify-center pl-5 text-red-900">
+          *Please select size/quantity
+        </p>
+      )}
       <CartPreview
         openSidebar={openSidebar}
         toggleSidebar={toggleSidebar}

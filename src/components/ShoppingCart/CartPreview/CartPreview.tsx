@@ -58,98 +58,102 @@ export default function CartPreview({
           Shopping Cart
         </Typography>
         <Card placeholder="card" className="w-full pt-10">
-          {shoppinCartItems.length ? <div
-            tabIndex={0}
-            className="w-full h-96 overflow-scroll flex flex-col gap-5"
-          >
-            {shoppinCartItems.map((product: ShoppingCartProps) => (
-              <div
-                key={product.id}
-                className="w-full pb-5 pr-5 flex flex-row justify-evenly border-b-4 border-black border-double"
-              >
-                <div className=" w-full  items-center flex flex-row justify-between gap-5">
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    width={90}
-                    height={75}
-                    style={{ objectFit: "contain", maxWidth: "90px" }}
-                    className="ml-3"
-                  />
-                  <div className="w-full flex flex-col items-center gap-2">
-                    <Typography
-                      placeholder="product name"
-                      variant="h6"
-                      color="blue-gray"
-                      className="text-md text-center"
-                    >
-                      {product.title}
-                    </Typography>
-                    <Typography
-                      placeholder="product price"
-                      variant="paragraph"
-                      color="blue-gray"
-                      className="text-md sm:text-2xl"
-                    >
-                      ${product.price.toFixed(2)}
-                    </Typography>
-                    {product.size ? (
+          {shoppinCartItems.length ? (
+            <div
+              tabIndex={0}
+              className="w-full h-96 overflow-scroll flex flex-col gap-5"
+            >
+              {shoppinCartItems.map((product: ShoppingCartProps) => (
+                <div
+                  key={product.id}
+                  className="w-full pb-5 pr-5 flex flex-row justify-evenly border-b-4 border-black border-double"
+                >
+                  <div className=" w-full  items-center flex flex-row justify-between gap-5">
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      width={90}
+                      height={75}
+                      style={{ objectFit: "contain", maxWidth: "90px" }}
+                      className="ml-3"
+                    />
+                    <div className="w-full flex flex-col items-center gap-2">
                       <Typography
                         placeholder="product name"
                         variant="h6"
                         color="blue-gray"
-                        className="text-md flex gap-2"
+                        className="text-md text-center"
                       >
-                        Size:{" "}
-                        <span>
-                          {" "}
-                          <Typography placeholder="product size">
-                            {product.size.charAt(0).toUpperCase() +
-                              product.size.slice(1)}
-                          </Typography>
-                        </span>
+                        {product.title}
                       </Typography>
-                    ) : (
                       <Typography
-                        placeholder="product name"
-                        variant="h6"
+                        placeholder="product price"
+                        variant="paragraph"
                         color="blue-gray"
-                        className="text-md flex gap-2"
+                        className="text-md sm:text-2xl"
                       >
-                        Size:{" "}
-                        <span>
-                          {" "}
-                          <Typography placeholder="product size">
-                            N/A
-                          </Typography>
-                        </span>
+                        ${product.price.toFixed(2)}
                       </Typography>
-                    )}
-                    <Typography
-                      placeholder="product name"
-                      variant="h6"
-                      color="blue-gray"
-                      className="text-md text-right flex gap-2"
-                    >
-                      Quantity:{" "}
-                      <span>
-                        {" "}
-                        <Typography placeholder="quantity">
-                          {product.quantity}
+                      {product.size ? (
+                        <Typography
+                          placeholder="product name"
+                          variant="h6"
+                          color="blue-gray"
+                          className="text-md flex gap-2"
+                        >
+                          Size:{" "}
+                          <span>
+                            {" "}
+                            <Typography placeholder="product size">
+                              {product.size.charAt(0).toUpperCase() +
+                                product.size.slice(1)}
+                            </Typography>
+                          </span>
                         </Typography>
-                      </span>
-                    </Typography>
-                    <p
-                      className="hover:underline cursor-pointer text-red-900"
-                      onClick={() => handleClick(product.id)}
-                    >
-                      Remove
-                    </p>
+                      ) : (
+                        <Typography
+                          placeholder="product name"
+                          variant="h6"
+                          color="blue-gray"
+                          className="text-md flex gap-2"
+                        >
+                          Size:{" "}
+                          <span>
+                            {" "}
+                            <Typography placeholder="product size">
+                              N/A
+                            </Typography>
+                          </span>
+                        </Typography>
+                      )}
+                      <Typography
+                        placeholder="product name"
+                        variant="h6"
+                        color="blue-gray"
+                        className="text-md text-right flex gap-2"
+                      >
+                        Quantity:{" "}
+                        <span>
+                          {" "}
+                          <Typography placeholder="quantity">
+                            {product.quantity}
+                          </Typography>
+                        </span>
+                      </Typography>
+                      <p
+                        className="hover:underline cursor-pointer text-red-900"
+                        onClick={() => handleClick(product.id)}
+                      >
+                        Remove
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>: <p className="text-center">Your cart is currently empty.</p>}
+              ))}
+            </div>
+          ) : (
+            <p className="text-center">Your cart is currently empty.</p>
+          )}
           <p className="text-2xl mt-5 font-bold text-center">
             Subtotal - ${cartTotal?.toFixed(2)}
           </p>

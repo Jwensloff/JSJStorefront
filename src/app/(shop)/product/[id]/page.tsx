@@ -36,9 +36,9 @@ export default async function Product({ params }: { params: { id: string } }) {
         />
       </div>
       <div className="flex-col space-y-10 w-auto">
-        <h2 className="text-4xl text-center font-bold">
+        <h1 className="text-4xl text-center font-bold">
           {singleProduct.title}
-        </h2>
+        </h1>
         <div className="flex w-full">
           <div className="w-full flex flex-col justify-center items-center sm:flex-row gap-1 ">
             <p className="font-bold text-4xl ">
