@@ -2,15 +2,14 @@
 
 # JSJ - Online Storefront 
 ### Created by 
-
-**Team [Judy Ye](https://github.com/judy0ye)**
-**and [Scotty Brown](https://github.com/scotty-brown)**
-**and [Jocelyn Wensloff](https://github.com/Jwensloff)**
+ [Judy Ye](https://github.com/judy0ye)
+**// [Scotty Brown](https://github.com/scotty-brown)**
+**// [Jocelyn Wensloff](https://github.com/Jwensloff)**
   
 </div>
 
 ## 📝 Description
-Description of JSJ goes here!
+JSJ E-commerce storefront is a collaborative project undertaken by Judy, Jocelyn, and Scotty to hone their e-commerce development expertise. Utilizing a modern tech stack comprised of Next.js 14, TypeScript, Supabase, and Tailwind CSS, they're building a robust online store from scratch. This project serves a dual purpose: it provides practical experience in e-commerce development while fostering exploration of cutting-edge technologies. Through their combined efforts, they aim to create a feature-rich platform that showcases their proficiency in the latest web development tools and frameworks.
 
 ## 📚 Learning Goals
 
