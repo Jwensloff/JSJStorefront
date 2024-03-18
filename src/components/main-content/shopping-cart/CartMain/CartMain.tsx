@@ -1,6 +1,6 @@
 "use client";
 import { createClient } from "@/src/utils/supabase/supabaseClient";
-import CartSide from "./CartSide";
+import CartSide from "../CartSide/CartSide";
 import { ShoppingCartProps } from "@/src/types";
 import ProductCardContainer from "../ProductCardContainer/ProductCardContainer";
 import { useState } from "react";

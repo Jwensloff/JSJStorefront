@@ -1,4 +1,4 @@
-import ProductCardContainerSkeleton from "@/src/components/ShoppingCart/ProductCardContainer/ProductCardContainerSkeleton";
+import ProductCardContainerSkeleton from "@/src/components/loading/ProductCardContainerSkeleton/ProductCardContainerSkeleton";
 
 export default function Loading() {
   return (

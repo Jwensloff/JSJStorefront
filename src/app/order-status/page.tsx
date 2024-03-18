@@ -1,6 +1,4 @@
-import Footer from "@/src/components/Footer/Footer";
-import Header from "@/src/components/Header/Header";
-import OrderStatuses from "@/src/components/OrderStatuses/OrderStatuses";
+import OrderStatuses from "@/src/components/main-content/OrderStatuses/OrderStatuses";
 
 export default function OrderStatus() {
   return (

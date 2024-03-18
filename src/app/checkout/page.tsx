@@ -1,4 +1,4 @@
-import OrderSummary from "@/src/components/OrderSummary/OrderSummary";
+import OrderSummary from "@/src/components/main-content/OrderSummary/OrderSummary";
 import { createClient } from "@/src/utils/supabase/supabaseServer";
 
 export default async function Checkout() {

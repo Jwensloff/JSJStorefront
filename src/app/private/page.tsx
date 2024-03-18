@@ -1,3 +1,4 @@
+// delete if auth is not used
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/src/utils/supabase/supabaseServer";

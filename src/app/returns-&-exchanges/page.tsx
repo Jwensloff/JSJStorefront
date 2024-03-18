@@ -1,6 +1,4 @@
-import Footer from "@/src/components/Footer/Footer";
-import Header from "@/src/components/Header/Header";
-import ReturnsAndExchanges from "@/src/components/ReturnsAndExchanges/ReturnsAndExchanges";
+import ReturnsAndExchanges from "@/src/components/main-content/ReturnsAndExchanges/ReturnsAndExchanges";
 
 export default function ReturnAndExchange() {
   return (

@@ -1,4 +1,4 @@
-import HeroImage from "@/src/components/HeroImage/HeroImage";
+import HeroImage from "@/src/components/main-content/HeroImage/HeroImage";
 
 import Link from "next/link";
 

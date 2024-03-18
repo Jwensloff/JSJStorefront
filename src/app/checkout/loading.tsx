@@ -1,4 +1,4 @@
-import OrderSummarySkeleton from "@/src/components/OrderSummary/OrderSummarySkeleton";
+import OrderSummarySkeleton from "@/src/components/loading/OrderSummarySkeleton/OrderSummarySkeleton";
 
 export default function Loading() {
   return <OrderSummarySkeleton />;

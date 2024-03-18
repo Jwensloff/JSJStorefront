@@ -2,7 +2,7 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Badge } from "@material-tailwind/react";
 import { useState } from "react";
-import CartPreview from "../CartPreview/CartPreview";
+import CartPreview from "../../main-content/shopping-cart/CartPreview/CartPreview";
 
 interface HeaderProps {
   dataLength: number;

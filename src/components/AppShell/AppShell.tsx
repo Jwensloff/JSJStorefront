@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import Footer from "../Footer/Footer";
+import Footer from "../footer-content/Footer/Footer";
 import { createClient } from "@/src/utils/supabase/supabaseServer";
-import Header from "../Header/Header";
+import Header from "../header-content/Header/Header";
 import { redirect } from "next/navigation";
 import React from "react";
 export default async function AppShell({ children }: { children: ReactNode }) {

@@ -1,4 +1,4 @@
-import { ProductTypes } from "../../types";
+import { ProductTypes } from "../../../types";
 import {
   Card,
   CardBody,
@@ -6,7 +6,7 @@ import {
   CardHeader,
   Typography,
   Carousel,
-} from "../../tailwind";
+} from "../../../tailwind";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
