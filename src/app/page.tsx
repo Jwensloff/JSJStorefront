@@ -1,6 +1,5 @@
-import { Landing } from "../components/Landing/Landing";
-import React from "react";
-import HeroImage from "../components/HeroImage/HeroImage";
+import { Landing } from "../components/main-content/Landing/Landing";
+import HeroImage from "../components/main-content/HeroImage/HeroImage";
 import { createClient } from "../utils/supabase/supabaseServer";
 import { redirect } from "next/navigation";
 

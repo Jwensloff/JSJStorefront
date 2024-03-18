@@ -1,5 +1,5 @@
-import HeroImage from "@/src/components/HeroImage/HeroImage";
-import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
+import HeroImage from "@/src/components/main-content/HeroImage/HeroImage";
+import ProductGrid from "@/src/components/main-content/ProductGrid/ProductGrid";
 import { createClient } from "@/src/utils/supabase/supabaseServer";
 import { redirect } from "next/navigation";
 

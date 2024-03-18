@@ -1,6 +1,6 @@
 import { Rating } from "../../../../tailwind";
 import Image from "next/image";
-import CartButton from "../CartButton";
+import CartButton from "../../../../components/main-content/shopping-cart/CartButton/CartButton";
 import { createClient } from "../../../../utils/supabase/supabaseClient";
 
 export default async function Product({ params }: { params: { id: string } }) {

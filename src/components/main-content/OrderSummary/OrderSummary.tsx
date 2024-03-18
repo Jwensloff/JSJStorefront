@@ -1,6 +1,6 @@
 "use client";
 import { ChangeEvent, useState } from "react";
-import ProductCardContainer from "../ShoppingCart/ProductCardContainer/ProductCardContainer";
+import ProductCardContainer from "../shopping-cart/ProductCardContainer/ProductCardContainer";
 import { useRouter } from "next/navigation";
 import { ShoppingCartProps } from "@/src/types";
 

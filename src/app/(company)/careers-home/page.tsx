@@ -1,5 +1,5 @@
-import CareersPreview from "@/src/components/Careers/CareersPreview";
-import HeroImage from "@/src/components/HeroImage/HeroImage";
+import CareersPreview from "@/src/components/main-content/CareersPreview/CareersPreview";
+import HeroImage from "@/src/components/main-content/HeroImage/HeroImage";
 import { createClient } from "@/src/utils/supabase/supabaseServer";
 import { redirect } from "next/navigation";
 

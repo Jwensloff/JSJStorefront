@@ -1,5 +1,5 @@
 "use client";
-import CartPreview from "@/src/components/ShoppingCart/CartPreview/CartPreview";
+import CartPreview from "@/src/components/main-content/shopping-cart/CartPreview/CartPreview";
 import { Button, Select, Option } from "@/src/tailwind";
 import { createClient } from "@/src/utils/supabase/supabaseClient";
 import { useRouter } from "next/navigation";

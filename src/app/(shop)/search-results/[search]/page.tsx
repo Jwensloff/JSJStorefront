@@ -1,4 +1,4 @@
-import ProductGrid from "@/src/components/ProductGrid/ProductGrid";
+import ProductGrid from "@/src/components/main-content/ProductGrid/ProductGrid";
 import { ProductTypes } from "@/src/types";
 import { createClient } from "@/src/utils/supabase/supabaseServer";
 import { redirect } from "next/navigation";
