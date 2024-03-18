@@ -33,9 +33,11 @@ JSJ E-commerce storefront is a collaborative project undertaken by Judy, Jocelyn
 
 # 💻 Technologies Used
   
-![TypeScript](https://img.shields.io/badge/-TypeScript-05122A?style=flat&logo=typescript) 
-![HTML5](https://img.shields.io/badge/-HTML5-05122A?style=flat&logo=html5)
-![Github](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)
-![VSCode](https://img.shields.io/badge/-VS_Code-05122A?style=flat&logo=visualstudio)
-![Cypress](https://img.shields.io/badge/-Cypress-05122A?style=flat&logo=cypress)
-![React Router](https://img.shields.io/badge/-React_Router-05122A?style=flat&logo=reactrouter)
+![Next.js](https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) 
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Github Actions](https://img.shields.io/badge/Github%20Actions-282a2e?style=for-the-badge&logo=githubactions&logoColor=367cfe)
+![VSCode](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Cypress](https://img.shields.io/badge/Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-181818?style=for-the-badge&logo=supabase&logoColor=white)
