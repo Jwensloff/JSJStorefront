@@ -1,23 +1,15 @@
 import { CareerProps } from "@/src/types";
 import { Button } from "../../../../tailwind";
-import { createClient } from "@/src/utils/supabase/supabaseServer";
-import { redirect } from "next/navigation";
+import { getIndividualJob } from "@/src/app/lib/data";
 
 export default async function JobDetails({
   params,
 }: {
   params: { id: string };
 }) {
-  const supabase = createClient();
-  const { data, error } = await supabase
-    .from("open_jobs")
-    .select("*")
-    .eq("id", params.id);
-  if (error) {
-    redirect("/error");
-  }
+  const data = await getIndividualJob(params);
 
-  const generateJobDetails = (jobDesc: CareerProps | any) => {
+  const generateJobDetails = (jobDesc: CareerProps) => {
     const formattedJobQ = jobDesc?.qualifications.split(/\//).filter(Boolean);
 
     const formattedJobR = jobDesc?.responsibilities.split(/\//).filter(Boolean);

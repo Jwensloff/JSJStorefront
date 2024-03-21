@@ -1,21 +1,13 @@
+import { getAllProducts } from "@/src/app/lib/data";
 import ProductGrid from "@/src/components/main-content/ProductGrid/ProductGrid";
 import { ProductTypes } from "@/src/types";
-import { createClient } from "@/src/utils/supabase/supabaseServer";
-import { redirect } from "next/navigation";
 
 export default async function SearchResults({
   params,
 }: {
   params: { search: string };
 }) {
-  const supabase = createClient();
-  const { data: allProducts, error } = await supabase
-    .from("products")
-    .select("*");
-
-  if (error) {
-    redirect("/error");
-  }
+  const allProducts = await getAllProducts();
 
   const searchedProducts = allProducts?.filter((product: ProductTypes) => {
     return (

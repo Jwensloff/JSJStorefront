@@ -1,16 +1,9 @@
 import CareersPreview from "@/src/components/main-content/CareersPreview/CareersPreview";
 import HeroImage from "@/src/components/main-content/HeroImage/HeroImage";
-import { createClient } from "@/src/utils/supabase/supabaseServer";
-import { redirect } from "next/navigation";
+import { getCareers } from "../../lib/data";
 
 export default async function Careers() {
-  const supabase = createClient();
-  const { data: open_jobs, error } = await supabase
-    .from("open_jobs")
-    .select("id,title,description");
-  if (error) {
-    redirect("/error");
-  }
+  const data = await getCareers();
 
   return (
     <div>
@@ -19,7 +12,7 @@ export default async function Careers() {
         <h2 className="text-4xl font-extrabold text-center mt-20">
           Open Positions
         </h2>
-        <CareersPreview data={open_jobs} />
+        <CareersPreview data={data} />
       </div>
     </div>
   );

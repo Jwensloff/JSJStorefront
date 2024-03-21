@@ -1,19 +1,9 @@
 import HeroImage from "@/src/components/main-content/HeroImage/HeroImage";
 import ProductGrid from "@/src/components/main-content/ProductGrid/ProductGrid";
-import { redirect } from "next/navigation";
-import { createClient } from "@/src/utils/supabase/supabaseServer";
+import { getProductsByCategory } from "../../lib/data";
 
 export default async function Gold() {
-  const supabase = createClient();
-
-  const { data: allProducts, error } = await supabase
-    .from("products")
-    .select("*")
-    .eq("category", "jewelery");
-
-  if (error) {
-    redirect("/error");
-  }
+  const allProducts = await getProductsByCategory("jewelery");
 
   const productsWithGold = allProducts
     ?.filter((product: { title: string } | undefined) => {

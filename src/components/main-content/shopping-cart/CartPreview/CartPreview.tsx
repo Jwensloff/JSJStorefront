@@ -4,6 +4,7 @@ import Image from "next/image";
 import { createClient } from "@/src/utils/supabase/supabaseClient";
 import { useRouter } from "next/navigation";
 import { ShoppingCartProps } from "@/src/types";
+import { removeProduct } from "@/src/app/lib/actions";
 
 interface SidebarProps {
   openSidebar: boolean;
@@ -17,19 +18,10 @@ export default function CartPreview({
   products,
 }: SidebarProps) {
   const router = useRouter();
+
   const handleClick = async (id: number) => {
-    const supabase = createClient();
-    const { error } = await supabase
-      .from("shopping_cart")
-      .delete()
-      .eq("id", id);
-
-    if (error) {
-      throw error;
-    }
-
+    removeProduct(id);
     router.refresh();
-    // toggleSidebar()
   };
 
   const cartTotal = products?.reduce(

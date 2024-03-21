@@ -1,17 +1,9 @@
 import HeroImage from "@/src/components/main-content/HeroImage/HeroImage";
 import ProductGrid from "@/src/components/main-content/ProductGrid/ProductGrid";
-import { createClient } from "@/src/utils/supabase/supabaseServer";
-import { redirect } from "next/navigation";
+import { getAllProducts } from "../../lib/data";
 
 export default async function TopRated() {
-  const supabase = createClient();
-  const { data: allProducts, error } = await supabase
-    .from("products")
-    .select("*");
-
-  if (error) {
-    redirect("/error");
-  }
+  const allProducts = await getAllProducts();
 
   const highestRatedProducts = allProducts?.filter(
     (product: { rate: { rating: number }; category: string }) => {
