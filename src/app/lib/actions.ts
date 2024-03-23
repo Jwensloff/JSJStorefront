@@ -23,3 +23,26 @@ export async function updateProduct(id: number, qty: number) {
     throw error;
   }
 }
+
+export async function addProduct(
+  id: number,
+  title: string,
+  price: number,
+  image: string,
+  selectedQuantity: string,
+  selectedSize: string,
+) {
+  const supabase = createClient();
+  const { error } = await supabase.from("shopping_cart").insert({
+    id,
+    title,
+    price,
+    image,
+    quantity: selectedQuantity,
+    size: selectedSize,
+  });
+
+  if (error) {
+    throw error;
+  }
+}
