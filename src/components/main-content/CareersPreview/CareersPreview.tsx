@@ -1,4 +1,4 @@
-import { CareerPreviewProps } from "../../../types";
+import { CareerPreviewProps } from "../../../app/lib/definitions";
 import {
   Button,
   Card,

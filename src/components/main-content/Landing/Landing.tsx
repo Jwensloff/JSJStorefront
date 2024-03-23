@@ -1,4 +1,4 @@
-import { ProductTypes } from "../../../types";
+import { ProductTypes } from "../../../app/lib/definitions";
 import {
   Card,
   CardBody,
@@ -13,7 +13,7 @@ import React from "react";
 
 export async function Landing({ products }: { products: ProductTypes[] }) {
   const productsWithGold = products?.filter((product: { title: string }) =>
-    product.title.includes("Gold"),
+    product.title.includes("Gold")
   );
 
   const highestRatedProducts = products?.filter((product) => {
@@ -21,7 +21,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
   });
 
   const productsUnder100 = products?.filter(
-    (product: { price: number }) => product.price < 100,
+    (product: { price: number }) => product.price < 100
   );
 
   const createProductCard = (products: ProductTypes[]) => {

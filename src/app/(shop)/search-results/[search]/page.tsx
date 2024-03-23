@@ -1,6 +1,6 @@
 import { getAllProducts } from "@/src/app/lib/data";
 import ProductGrid from "@/src/components/main-content/ProductGrid/ProductGrid";
-import { ProductTypes } from "@/src/types";
+import { ProductTypes } from "@/src/app/lib/definitions";
 
 export default async function SearchResults({
   params,

@@ -2,7 +2,7 @@
 import { ChangeEvent, useState } from "react";
 import ProductCardContainer from "../shopping-cart/ProductCardContainer/ProductCardContainer";
 import { useRouter } from "next/navigation";
-import { ShoppingCartProps } from "@/src/types";
+import { ShoppingCartProps } from "@/src/app/lib/definitions";
 
 export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
   });
 
   const handlePaymentClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
     setPaymentData({
@@ -39,7 +39,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
 
   const subtotalNum = data?.reduce(
     (total, product) => (total += product.price * product.quantity),
-    0,
+    0
   );
   const subtotal = subtotalNum.toFixed(2);
   const tax = (subtotalNum * 0.09).toFixed(2);

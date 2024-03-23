@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Badge } from "@material-tailwind/react";
 import { useState } from "react";
 import CartPreview from "../../main-content/shopping-cart/CartPreview/CartPreview";
+import { ProductTypes, ShoppingCartProps } from "@/src/app/lib/definitions";
 
 interface HeaderProps {
   dataLength: number;
-  products: any;
+  products: ShoppingCartProps[];
 }
 
 export default function ShoppingCartSymbol({
@@ -14,7 +15,6 @@ export default function ShoppingCartSymbol({
   products,
 }: HeaderProps) {
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
-
   const toggleSidebar = () => {
     setOpenSidebar(!openSidebar);
   };
