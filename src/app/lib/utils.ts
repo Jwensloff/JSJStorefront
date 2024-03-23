@@ -30,3 +30,15 @@ export const filterSaleItems = (products: ProductTypes[]) => {
         }
       })
 }
+
+// Searched Products
+export const searchProducts = (products: ProductTypes[], params: {search: string}) => {
+    return products?.filter((product) => {
+        return (
+          params.search &&
+          (product.title || product.description || product.category)
+            .toLowerCase()
+            .includes(params.search.toLowerCase())
+        );
+      });
+}

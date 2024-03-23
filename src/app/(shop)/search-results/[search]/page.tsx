@@ -1,6 +1,7 @@
 import { getAllProducts } from "@/src/app/lib/data";
 import ProductGrid from "@/src/components/main-content/ProductGrid/ProductGrid";
 import { ProductTypes } from "@/src/types";
+import { searchProducts } from "@/src/app/lib/utils";
 
 export default async function SearchResults({
   params,
@@ -9,14 +10,7 @@ export default async function SearchResults({
 }) {
   const allProducts = await getAllProducts();
 
-  const searchedProducts = allProducts?.filter((product: ProductTypes) => {
-    return (
-      params.search &&
-      (product.title || product.description || product.category)
-        .toLowerCase()
-        .includes(params.search.toLowerCase())
-    );
-  });
+  const searchedProducts = searchProducts(allProducts, params)
 
   return (
     <>
