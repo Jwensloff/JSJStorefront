@@ -11,7 +11,7 @@ import { ShoppingCartProps } from "@/src/app/lib/definitions";
 
 interface HeaderProps {
   dataLength: number;
-  products: ShoppingCartProps[] | null;
+  products: ShoppingCartProps[];
 }
 
 export default function Header({ dataLength, products }: HeaderProps) {

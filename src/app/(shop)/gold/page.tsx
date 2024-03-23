@@ -3,18 +3,12 @@ import ProductGrid from "@/src/components/main-content/ProductGrid/ProductGrid";
 import { getProductsByCategory } from "../../lib/data";
 
 export default async function Gold() {
-  const allProducts = await getProductsByCategory("jewelery");
-
-  const productsWithGold = allProducts
-    ?.filter((product: { title: string } | undefined) => {
-      return product?.title.includes("Gold");
-    })
-    .filter(Boolean);
+  const goldProducts = await getProductsByCategory("jewelery");
 
   return (
     <div>
       <HeroImage location="gold" />
-      <ProductGrid data={productsWithGold} />
+      <ProductGrid data={goldProducts} />
     </div>
   );
 }
