@@ -2,7 +2,6 @@ import { ProductTypes } from "../../../types";
 import {
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   Typography,
   Carousel,
@@ -10,19 +9,16 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { filterHighestRated, filterSaleItems } from "@/src/app/lib/utils";
 
 export async function Landing({ products }: { products: ProductTypes[] }) {
   const productsWithGold = products?.filter((product: { title: string }) =>
     product.title.includes("Gold"),
   );
 
-  const highestRatedProducts = products?.filter((product) => {
-    return product.rate.rating <= 4;
-  });
+  const highestRatedProducts = filterHighestRated(products)
 
-  const productsUnder100 = products?.filter(
-    (product: { price: number }) => product.price < 100,
-  );
+  const productsUnder20 = filterSaleItems(products)
 
   const createProductCard = (products: ProductTypes[]) => {
     return products.map((product) => (
@@ -78,7 +74,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
   };
 
   const goldItems = createProductCard(productsWithGold);
-  const saleItems = createProductCard(productsUnder100);
+  const saleItems = createProductCard(productsUnder20);
   const highestRatedItems = createProductCard(highestRatedProducts);
 
   return (
@@ -103,7 +99,7 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
         )}
       </div>
       <div className="mt-20 mb-20 flex flex-col-reverse md:flex-row justify-evenly items-center gap-10 md:gap-20 lg:gap-60">
-        {productsUnder100 && (
+        {productsUnder20 && (
           <Carousel
             className="rounded-xl bg-gray-600 py-[1rem] w-[90%] lg:w-[50%]"
             transition={{ duration: 0.5 }}

@@ -25,7 +25,7 @@ export const formatJobBenefits = (jobListing: CareerProps) => {
 // Sale Items
 export const filterSaleItems = (products: ProductTypes[]) => {
     return products?.filter((product) => {
-        if (product.price <= 50) {
+        if (product.price <= 20) {
           return product;
         }
       })
