@@ -1,4 +1,4 @@
-import { ProductTypes, CareerProps } from "@/src/types";
+import { ProductTypes, CareerProps, ShoppingCartProps } from "@/src/types";
 
 // Single Product Page Utilities
 export const roundRating = (num: number) => {
@@ -52,4 +52,20 @@ export const filterHighestRated = (products: ProductTypes[]) => {
           }
         },
       );
+}
+
+// Order Summary
+export const generateSubTotal = (shoppingCartItems: ShoppingCartProps[]) => {
+    return shoppingCartItems?.reduce(
+        (total, product) => (total += product.price * product.quantity),
+        0,
+      );
+}
+
+export const generateTotal = (subTotal: number, shippingOption: any) => {
+    return (
+        shippingOption.price +
+        subTotal +
+        subTotal * 0.09
+      ).toFixed(2);
 }
