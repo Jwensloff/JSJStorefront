@@ -22,3 +22,11 @@ export const formatJobBenefits = (jobListing: CareerProps) => {
   return jobListing?.benefits.split(/,/).filter(Boolean);
 };
 
+// Sale Items
+export const filterSaleItems = (products: ProductTypes[]) => {
+    return products?.filter((product) => {
+        if (product.price <= 50) {
+          return product;
+        }
+      })
+}

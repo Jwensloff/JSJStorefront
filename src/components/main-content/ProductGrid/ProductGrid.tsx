@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 
 interface ProductGridProps {
-  data: ProductTypes[] | undefined;
+  data: ProductTypes[];
 }
 
 export default function ProductGrid({ data }: ProductGridProps) {
