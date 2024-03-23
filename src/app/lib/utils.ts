@@ -42,3 +42,14 @@ export const searchProducts = (products: ProductTypes[], params: {search: string
         );
       });
 }
+
+// Top-Rated
+export const filterHighestRated = (products: ProductTypes[]) => {
+    return products?.filter(
+        (product: { rate: { rating: number }; category: string }) => {
+          if (product.rate.rating >= 4) {
+            return product;
+          }
+        },
+      );
+}
