@@ -13,7 +13,7 @@ import { filterHighestRated, filterSaleItems } from "@/src/app/lib/utils";
 
 export async function Landing({ products }: { products: ProductTypes[] }) {
   const productsWithGold = products?.filter((product: { title: string }) =>
-    product.title.includes("Gold")
+    product.title.includes("Gold"),
   );
 
   const highestRatedProducts = filterHighestRated(products);

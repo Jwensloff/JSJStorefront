@@ -23,16 +23,16 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
   const [selectedQuantity, setSelectedQuantity] = useState("");
   const [isFormComplete, setIsFormComplete] = useState<boolean | null>(true);
 
-  const handleSizeChange = (event: string | undefined) => {
-    if (event !== undefined) {
-      setSelectedSize(event);
+  const handleSizeChange = (e: string | undefined) => {
+    if (e !== undefined) {
+      setSelectedSize(e);
       setIsFormComplete(true);
     }
   };
 
-  const handleQuantityChange = (event: string | undefined) => {
-    if (event !== undefined) {
-      setSelectedQuantity(event);
+  const handleQuantityChange = (e: string | undefined) => {
+    if (e !== undefined) {
+      setSelectedQuantity(e);
       setIsFormComplete(true);
     }
   };
