@@ -6,7 +6,7 @@ export const roundRating = (num: number) => {
   return Math.round(num);
 };
 
-export const formatDescription = (product: ProductTypes) => {
+export const formatProductDescription = (product: ProductTypes) => {
   return product?.description.split(/,|\/|\./).filter(Boolean);
 };
 
