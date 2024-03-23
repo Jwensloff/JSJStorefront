@@ -1,15 +1,11 @@
 import { Rating } from "../../../../tailwind";
 import Image from "next/image";
 import CartButton from "../../../../components/main-content/shopping-cart/CartButton/CartButton";
-import { createClient } from "../../../../utils/supabase/supabaseClient";
+import { getAllProducts, getShoppingCartItems } from "@/src/app/lib/data";
 
 export default async function Product({ params }: { params: { id: string } }) {
-  const supabase = createClient();
-
-  const { data: allProducts } = await supabase.from("products").select("*");
-  const { data: shoppingCart } = await supabase
-    .from("shopping_cart")
-    .select("*");
+  const allProducts = await getAllProducts();
+  const shoppingCart = await getShoppingCartItems();
 
   const singleProduct = allProducts?.find(
     (product) => product.id === Number(params.id),
