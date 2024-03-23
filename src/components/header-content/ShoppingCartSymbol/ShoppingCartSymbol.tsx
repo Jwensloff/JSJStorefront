@@ -28,6 +28,7 @@ export default function ShoppingCartSymbol({
         content={dataLength}
       >
         <FontAwesomeIcon
+          data-test="shopping-cart"
           aria-label="shopping cart"
           className="text-xl sm:text-2xl md:text-3xl"
           icon={faCartShopping}
