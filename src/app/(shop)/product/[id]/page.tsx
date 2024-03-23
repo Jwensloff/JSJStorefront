@@ -2,21 +2,18 @@ import { Rating } from "../../../../tailwind";
 import Image from "next/image";
 import CartButton from "../../../../components/main-content/shopping-cart/CartButton/CartButton";
 import { getAllProducts, getShoppingCartItems } from "@/src/app/lib/data";
+import { roundRating, formatDescription } from "@/src/app/lib/utils";
 
 export default async function Product({ params }: { params: { id: string } }) {
+  // should we use getsingleitem here?
   const allProducts = await getAllProducts();
+
   const shoppingCart = await getShoppingCartItems();
 
   const singleProduct = allProducts?.find(
     (product) => product.id === Number(params.id),
   );
-  const formattedDescription = singleProduct?.description
-    .split(/,|\/|\./)
-    .filter(Boolean);
-
-  const roundRating = (num: number) => {
-    return Math.round(num);
-  };
+  const formattedDescription = formatDescription(singleProduct)
 
   const roundedRating = roundRating(singleProduct.rate.rating);
 
