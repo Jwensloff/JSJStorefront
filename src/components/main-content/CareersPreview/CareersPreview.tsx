@@ -9,7 +9,7 @@ import {
 import React from "react";
 
 interface CareersProps {
-  data: CareerPreviewProps[] | undefined;
+  data: CareerPreviewProps[];
 }
 
 export default function CareersPreview({ data }: CareersProps) {
