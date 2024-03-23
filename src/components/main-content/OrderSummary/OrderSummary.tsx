@@ -2,8 +2,8 @@
 import { ChangeEvent, useState } from "react";
 import ProductCardContainer from "../shopping-cart/ProductCardContainer/ProductCardContainer";
 import { useRouter } from "next/navigation";
-import { ShoppingCartProps } from "@/src/types";
 import { generateSubTotal, generateTotal } from "@/src/app/lib/utils";
+import { ShoppingCartProps } from "@/src/app/lib/definitions";
 
 export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
   const router = useRouter();

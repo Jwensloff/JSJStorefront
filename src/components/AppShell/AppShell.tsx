@@ -3,7 +3,7 @@ import Footer from "../footer-content/Footer/Footer";
 
 import Header from "../header-content/Header/Header";
 import { getShoppingCartItems } from "@/src/app/lib/data";
-import { ShoppingCartProps } from "@/src/types";
+import { ShoppingCartProps } from "@/src/app/lib/definitions";
 
 export default async function AppShell({ children }: { children: ReactNode }) {
   const allProducts: ShoppingCartProps[] = await getShoppingCartItems();

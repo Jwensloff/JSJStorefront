@@ -3,7 +3,7 @@ import { Drawer, Typography, Card, Button } from "@material-tailwind/react";
 import Image from "next/image";
 import { createClient } from "@/src/utils/supabase/supabaseClient";
 import { useRouter } from "next/navigation";
-import { ShoppingCartProps } from "@/src/types";
+import { ShoppingCartProps } from "@/src/app/lib/definitions";
 import { removeProduct } from "@/src/app/lib/actions";
 import { generateSubTotal } from "@/src/app/lib/utils";
 

@@ -1,4 +1,4 @@
-import { ProductTypes } from "../../../types";
+import { ProductTypes } from "../../../app/lib/definitions";
 import {
   Card,
   CardBody,

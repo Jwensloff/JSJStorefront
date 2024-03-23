@@ -1,4 +1,4 @@
-import { ProductTypes, CareerProps, ShoppingCartProps } from "@/src/types";
+import { ProductTypes, CareerProps, ShoppingCartProps } from "./definitions";
 
 // Single Product Page Utilities
 export const roundRating = (num: number) => {
@@ -65,7 +65,13 @@ export const generateSubTotal = (shoppingCartItems: ShoppingCartProps[]) => {
   );
 };
 
-export const generateTotal = (subTotal: number, shippingOption: any) => {
+export const generateTotal = (
+  subTotal: number,
+  shippingOption: {
+    shippingMethod: string;
+    price: number;
+  },
+) => {
   return (shippingOption.price + subTotal + subTotal * 0.09).toFixed(2);
 };
 
