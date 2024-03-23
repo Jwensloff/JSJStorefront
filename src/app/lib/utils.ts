@@ -24,55 +24,57 @@ export const formatJobBenefits = (jobListing: CareerProps) => {
 
 // Sale Items
 export const filterSaleItems = (products: ProductTypes[]) => {
-    return products?.filter((product) => {
-        if (product.price <= 20) {
-          return product;
-        }
-      })
-}
+  return products?.filter((product) => {
+    if (product.price <= 20) {
+      return product;
+    }
+  });
+};
 
 // Searched Products
-export const searchProducts = (products: ProductTypes[], params: {search: string}) => {
-    return products?.filter((product) => {
-        return (
-          params.search &&
-          (product.title || product.description || product.category)
-            .toLowerCase()
-            .includes(params.search.toLowerCase())
-        );
-      });
-}
+export const searchProducts = (
+  products: ProductTypes[],
+  params: { search: string },
+) => {
+  return products?.filter((product) => {
+    return (
+      params.search &&
+      (product.title || product.description || product.category)
+        .toLowerCase()
+        .includes(params.search.toLowerCase())
+    );
+  });
+};
 
 // Top-Rated
 export const filterHighestRated = (products: ProductTypes[]) => {
-    return products?.filter(
-        (product: { rate: { rating: number }; category: string }) => {
-          if (product.rate.rating >= 4) {
-            return product;
-          }
-        },
-      );
-}
+  return products?.filter(
+    (product: { rate: { rating: number }; category: string }) => {
+      if (product.rate.rating >= 4) {
+        return product;
+      }
+    },
+  );
+};
 
 // Order Summary
 export const generateSubTotal = (shoppingCartItems: ShoppingCartProps[]) => {
-    return shoppingCartItems?.reduce(
-        (total, product) => (total += product.price * product.quantity),
-        0,
-      );
-}
+  return shoppingCartItems?.reduce(
+    (total, product) => (total += product.price * product.quantity),
+    0,
+  );
+};
 
 export const generateTotal = (subTotal: number, shippingOption: any) => {
-    return (
-        shippingOption.price +
-        subTotal +
-        subTotal * 0.09
-      ).toFixed(2);
-}
+  return (shippingOption.price + subTotal + subTotal * 0.09).toFixed(2);
+};
 
 // Cart Main
 export const generateTotalItems = (shoppingCartItems: ShoppingCartProps[]) => {
-    return shoppingCartItems?.reduce((acc: number, product: ShoppingCartProps) => {
-        return acc + product.quantity;
-      }, 0);
-}
+  return shoppingCartItems?.reduce(
+    (acc: number, product: ShoppingCartProps) => {
+      return acc + product.quantity;
+    },
+    0,
+  );
+};

@@ -38,10 +38,10 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
     });
   };
 
-  const subtotalNum = Number(generateSubTotal(data).toFixed(2))
+  const subtotalNum = Number(generateSubTotal(data).toFixed(2));
   const tax = (subtotalNum * 0.09).toFixed(2);
 
-  const totalPrice = generateTotal(subtotalNum, shippingOption)
+  const totalPrice = generateTotal(subtotalNum, shippingOption);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -16,9 +16,9 @@ export async function Landing({ products }: { products: ProductTypes[] }) {
     product.title.includes("Gold"),
   );
 
-  const highestRatedProducts = filterHighestRated(products)
+  const highestRatedProducts = filterHighestRated(products);
 
-  const productsUnder20 = filterSaleItems(products)
+  const productsUnder20 = filterSaleItems(products);
 
   const createProductCard = (products: ProductTypes[]) => {
     return products.map((product) => (

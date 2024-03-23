@@ -1,7 +1,11 @@
 import { CareerProps } from "@/src/types";
 import { Button } from "../../../../tailwind";
 import { getIndividualJob } from "@/src/app/lib/data";
-import { formatJobQualifications, formatJobResponsibilites, formatJobBenefits } from "@/src/app/lib/utils";
+import {
+  formatJobQualifications,
+  formatJobResponsibilites,
+  formatJobBenefits,
+} from "@/src/app/lib/utils";
 
 export default async function JobDetails({
   params,
@@ -11,11 +15,11 @@ export default async function JobDetails({
   const data = await getIndividualJob(params);
 
   const generateJobDetails = (jobDesc: CareerProps) => {
-    const formattedJobQ = formatJobQualifications(jobDesc)
+    const formattedJobQ = formatJobQualifications(jobDesc);
 
-    const formattedJobR = formatJobResponsibilites(jobDesc)
+    const formattedJobR = formatJobResponsibilites(jobDesc);
 
-    const formattedBenefits = formatJobBenefits(jobDesc)
+    const formattedBenefits = formatJobBenefits(jobDesc);
 
     return (
       <div key={jobDesc.id} className="flex flex-col gap-5 xl:w-1/2">

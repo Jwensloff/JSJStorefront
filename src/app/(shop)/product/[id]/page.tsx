@@ -13,7 +13,7 @@ export default async function Product({ params }: { params: { id: string } }) {
   const singleProduct = allProducts?.find(
     (product) => product.id === Number(params.id),
   );
-  const formattedDescription = formatProductDescription(singleProduct)
+  const formattedDescription = formatProductDescription(singleProduct);
 
   const roundedRating = roundRating(singleProduct.rate.rating);
 

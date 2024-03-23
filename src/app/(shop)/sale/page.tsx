@@ -6,7 +6,7 @@ import { filterSaleItems } from "../../lib/utils";
 export default async function Sale() {
   const allProducts = await getAllProducts();
 
-  const productsOnSale = filterSaleItems(allProducts)
+  const productsOnSale = filterSaleItems(allProducts);
 
   return (
     <div>

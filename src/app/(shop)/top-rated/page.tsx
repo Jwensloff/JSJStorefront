@@ -6,7 +6,7 @@ import { filterHighestRated } from "../../lib/utils";
 export default async function TopRated() {
   const allProducts = await getAllProducts();
 
-  const highestRatedProducts = filterHighestRated(allProducts)
+  const highestRatedProducts = filterHighestRated(allProducts);
 
   return (
     <div>

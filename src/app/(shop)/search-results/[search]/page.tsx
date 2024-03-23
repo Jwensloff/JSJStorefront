@@ -10,7 +10,7 @@ export default async function SearchResults({
 }) {
   const allProducts = await getAllProducts();
 
-  const searchedProducts = searchProducts(allProducts, params)
+  const searchedProducts = searchProducts(allProducts, params);
 
   return (
     <>

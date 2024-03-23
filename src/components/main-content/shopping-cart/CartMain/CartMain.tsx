@@ -10,9 +10,9 @@ import { generateSubTotal, generateTotalItems } from "@/src/app/lib/utils";
 export default function CartMain({ data }: { data: ShoppingCartProps[] }) {
   const [qty, setqty] = useState<number | null>(null);
   const router = useRouter();
-  
-  const cartTotal = generateSubTotal(data)
-  const totalItems = generateTotalItems(data)
+
+  const cartTotal = generateSubTotal(data);
+  const totalItems = generateTotalItems(data);
 
   const handleClick = async (id: number) => {
     removeProduct(id);

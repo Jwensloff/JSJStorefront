@@ -25,7 +25,7 @@ export default function CartPreview({
     router.refresh();
   };
 
-  const cartTotal = generateSubTotal(products)
+  const cartTotal = generateSubTotal(products);
 
   const createCart = (shoppinCartItems: ShoppingCartProps[]) => {
     return (
