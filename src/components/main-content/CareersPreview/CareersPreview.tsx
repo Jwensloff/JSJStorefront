@@ -1,4 +1,4 @@
-import { CareerPreviewProps } from "../../../types";
+import { CareerPreviewProps } from "../../../app/lib/definitions";
 import {
   Button,
   Card,
@@ -9,7 +9,7 @@ import {
 import React from "react";
 
 interface CareersProps {
-  data: CareerPreviewProps[] | undefined;
+  data: CareerPreviewProps[];
 }
 
 export default function CareersPreview({ data }: CareersProps) {

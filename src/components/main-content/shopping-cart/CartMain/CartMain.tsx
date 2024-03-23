@@ -1,21 +1,18 @@
 "use client";
 import CartSide from "../CartSide/CartSide";
-import { ShoppingCartProps } from "@/src/types";
+import { ShoppingCartProps } from "@/src/app/lib/definitions";
 import ProductCardContainer from "../ProductCardContainer/ProductCardContainer";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { removeProduct, updateProduct } from "@/src/app/lib/actions";
+import { generateSubTotal, generateTotalItems } from "@/src/app/lib/utils";
 
 export default function CartMain({ data }: { data: ShoppingCartProps[] }) {
-  const cartTotal = data?.reduce((acc: number, product: ShoppingCartProps) => {
-    return acc + product.price * product.quantity;
-  }, 0);
-
-  const totalItems = data.reduce((acc: number, product: ShoppingCartProps) => {
-    return acc + product.quantity;
-  }, 0);
   const [qty, setqty] = useState<number | null>(null);
   const router = useRouter();
+
+  const cartTotal = generateSubTotal(data);
+  const totalItems = generateTotalItems(data);
 
   const handleClick = async (id: number) => {
     removeProduct(id);

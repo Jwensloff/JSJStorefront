@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import type { ProductTypes } from "@/src/types";
+import type { ProductTypes } from "@/src/app/lib/definitions";
 import Link from "next/link";
 import React from "react";
 

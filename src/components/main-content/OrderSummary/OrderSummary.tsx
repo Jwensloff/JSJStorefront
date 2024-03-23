@@ -2,7 +2,8 @@
 import { ChangeEvent, useState } from "react";
 import ProductCardContainer from "../shopping-cart/ProductCardContainer/ProductCardContainer";
 import { useRouter } from "next/navigation";
-import { ShoppingCartProps } from "@/src/types";
+import { generateSubTotal, generateTotal } from "@/src/app/lib/utils";
+import { ShoppingCartProps } from "@/src/app/lib/definitions";
 
 export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
   const router = useRouter();
@@ -37,18 +38,10 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
     });
   };
 
-  const subtotalNum = data?.reduce(
-    (total, product) => (total += product.price * product.quantity),
-    0,
-  );
-  const subtotal = subtotalNum.toFixed(2);
+  const subtotalNum = Number(generateSubTotal(data).toFixed(2));
   const tax = (subtotalNum * 0.09).toFixed(2);
 
-  const totalPrice = (
-    shippingOption.price +
-    subtotalNum +
-    subtotalNum * 0.09
-  ).toFixed(2);
+  const totalPrice = generateTotal(subtotalNum, shippingOption);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -360,7 +353,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
         <h2 className="font-bold pb-2">Order Summary</h2>
         <div className="flex flex-row gap-8 justify-between">
           <p>Subtotal</p>
-          <p>${subtotal}</p>
+          <p>${subtotalNum}</p>
         </div>
         <div className="flex flex-row gap-8 justify-between">
           <p>Shipping {shippingOption.shippingMethod}</p>

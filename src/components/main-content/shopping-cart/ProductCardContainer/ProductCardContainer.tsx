@@ -1,4 +1,4 @@
-import { ShoppingCartProps } from "@/src/types";
+import { ShoppingCartProps } from "@/src/app/lib/definitions";
 import { Card, Select, Typography, Option } from "@material-tailwind/react";
 import Image from "next/image";
 

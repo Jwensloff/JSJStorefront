@@ -1,10 +1,11 @@
 "use client";
 import { addProduct } from "@/src/app/lib/actions";
+import { ShoppingCartProps } from "@/src/app/lib/definitions";
 import CartPreview from "@/src/components/main-content/shopping-cart/CartPreview/CartPreview";
 import { Button, Select, Option } from "@/src/tailwind";
 import { createClient } from "@/src/utils/supabase/supabaseClient";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 interface CartButtonProps {
   singleProduct: {
@@ -14,7 +15,7 @@ interface CartButtonProps {
     image: string;
     category: string;
   };
-  cart: any;
+  cart: ShoppingCartProps[];
 }
 
 export default function CartButton({ singleProduct, cart }: CartButtonProps) {
@@ -23,14 +24,18 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
   const [selectedQuantity, setSelectedQuantity] = useState("");
   const [isFormComplete, setIsFormComplete] = useState<boolean | null>(true);
 
-  const handleSizeChange = (event: any) => {
-    setSelectedSize(event);
-    setIsFormComplete(true);
+  const handleSizeChange = (e: string | undefined) => {
+    if (e !== undefined) {
+      setSelectedSize(e);
+      setIsFormComplete(true);
+    }
   };
 
-  const handleQuantityChange = (event: any) => {
-    setSelectedQuantity(event);
-    setIsFormComplete(true);
+  const handleQuantityChange = (e: string | undefined) => {
+    if (e !== undefined) {
+      setSelectedQuantity(e);
+      setIsFormComplete(true);
+    }
   };
 
   const toggleSidebar = () => {
