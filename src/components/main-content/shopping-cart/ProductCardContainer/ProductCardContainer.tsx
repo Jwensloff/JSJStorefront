@@ -152,6 +152,11 @@ export default function ProductCardContainer({
             </div>
           ))}
         </div>
+        {shoppingCartItems?.length === 0 && (
+          <p className="flex justify-center">
+            There are no items in your cart.
+          </p>
+        )}
       </Card>
     );
   };
