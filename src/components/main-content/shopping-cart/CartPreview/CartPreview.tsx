@@ -5,11 +5,12 @@ import { createClient } from "@/src/utils/supabase/supabaseClient";
 import { useRouter } from "next/navigation";
 import { ShoppingCartProps } from "@/src/types";
 import { removeProduct } from "@/src/app/lib/actions";
+import { generateSubTotal } from "@/src/app/lib/utils";
 
 interface SidebarProps {
   openSidebar: boolean;
   toggleSidebar: () => void;
-  products: ShoppingCartProps[] | null;
+  products: ShoppingCartProps[];
 }
 
 export default function CartPreview({
@@ -24,12 +25,7 @@ export default function CartPreview({
     router.refresh();
   };
 
-  const cartTotal = products?.reduce(
-    (acc: number, product: ShoppingCartProps) => {
-      return acc + product.price * product.quantity;
-    },
-    0,
-  );
+  const cartTotal = generateSubTotal(products)
 
   const createCart = (shoppinCartItems: ShoppingCartProps[]) => {
     return (

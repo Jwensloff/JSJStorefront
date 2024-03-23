@@ -69,3 +69,10 @@ export const generateTotal = (subTotal: number, shippingOption: any) => {
         subTotal * 0.09
       ).toFixed(2);
 }
+
+// Cart Main
+export const generateTotalItems = (shoppingCartItems: ShoppingCartProps[]) => {
+    return shoppingCartItems?.reduce((acc: number, product: ShoppingCartProps) => {
+        return acc + product.quantity;
+      }, 0);
+}
