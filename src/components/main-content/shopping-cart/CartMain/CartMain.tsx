@@ -1,6 +1,6 @@
 "use client";
 import CartSide from "../CartSide/CartSide";
-import { ShoppingCartProps } from "@/src/types";
+import { ShoppingCartProps } from "@/src/app/lib/definitions";
 import ProductCardContainer from "../ProductCardContainer/ProductCardContainer";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

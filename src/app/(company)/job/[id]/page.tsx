@@ -1,4 +1,4 @@
-import { CareerProps } from "@/src/types";
+import { CareerProps } from "@/src/app/lib/definitions";
 import { Button } from "../../../../tailwind";
 import { getIndividualJob } from "@/src/app/lib/data";
 import {

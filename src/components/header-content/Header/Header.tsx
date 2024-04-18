@@ -7,7 +7,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Sidebar from "../Sidebar/Sidebar";
 import { useState } from "react";
 import ShoppingCartSymbol from "../ShoppingCartSymbol/ShoppingCartSymbol";
-import { ShoppingCartProps } from "@/src/types";
+import { ShoppingCartProps } from "@/src/app/lib/definitions";
 
 interface HeaderProps {
   dataLength: number;
