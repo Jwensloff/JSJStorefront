@@ -11,7 +11,7 @@ describe("template spec", () => {
     cy.visit("http://localhost:3000/");
   });
 
-  it.skip("should contain the landing page content", () => {
+  it("should contain the landing page content", () => {
     // Header
     cy.get('[data-test="header"]').should("exist");
     cy.get('[data-test="header_logo"]').should("exist");

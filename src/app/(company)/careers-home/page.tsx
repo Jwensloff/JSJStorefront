@@ -4,7 +4,6 @@ import { getCareers } from "../../lib/data";
 
 export default async function Careers() {
   const data = await getCareers();
-
   return (
     <div>
       <HeroImage location={"careers-home"} />
