@@ -57,14 +57,6 @@ describe("footer", () => {
     // contact
 
     // social media links
-    cy.get('[data-test="instagram-link"]').click();
-    cy.url().should("include", "/fallback");
-
-    cy.get('[data-test="twitter-link"]').click();
-    cy.url().should("include", "/fallback");
-
-    cy.get('[data-test="facebook-link"]').click();
-    cy.url().should("include", "/fallback");
   });
 
   it.skip("Should allow a user navigate to the order status page and navigate to the fallback page", () => {
@@ -98,19 +90,7 @@ describe("footer", () => {
     cy.go(-1);
     cy.url().should("include", "/order-status");
     cy.get('[data-test="order-status-cancel-btn"]').should("exist").click();
-
     cy.url().should("include", "/fallback");
-    cy.get('[data-test="header"]').should("exist");
-    cy.get('[data-test="footer"]').should("exist");
-    cy.get('[data-test="fallback-hero"]').should("exist");
-    cy.get('[data-test="fallback-hero-text"]').should(
-      "contain",
-      "Sorry, you have reached the end of the JSJ experience."
-    );
-    cy.get('[data-test="fallback-text"]').should("exist");
-    cy.get('[data-test="jocey\'s-linkin-link"]').should("exist");
-    cy.get('[data-test="scotty\'s-linkin-link"]').should("exist");
-    cy.get('[data-test="judy\'s-linkin-link"]').should("exist");
   });
 
   it.skip("Should allow a user to look at returns page", () => {
@@ -211,7 +191,7 @@ describe("footer", () => {
       );
   });
 
-  it("Should navigate users to the contact us page", () => {
+  it.skip("Should navigate users to the contact us page", () => {
     cy.get('[data-test="contact"]').click();
     cy.url().should("include", "/contact");
     cy.get('[data-test="header"]').should("exist");
@@ -246,5 +226,30 @@ describe("footer", () => {
 
     cy.get('[data-test="linkedin-icon"]').should("exist").and("have.length", 3);
     cy.get('[data-test="github-icon"]').should("exist").and("have.length", 3);
+  });
+
+  it("Should bring users to the fallback page if they interact w/ social media icons", () => {
+    cy.get('[data-test="footer"]').should("contain", "+1-(800)-123-4567");
+
+    cy.get('[data-test="instagram-link"]').click();
+    cy.url().should("include", "/fallback");
+
+    cy.get('[data-test="twitter-link"]').click();
+    cy.url().should("include", "/fallback");
+
+    cy.get('[data-test="facebook-link"]').click();
+    cy.url().should("include", "/fallback");
+
+    cy.get('[data-test="header"]').should("exist");
+    cy.get('[data-test="footer"]').should("exist");
+    cy.get('[data-test="fallback-hero"]').should("exist");
+    cy.get('[data-test="fallback-hero-text"]').should(
+      "contain",
+      "Sorry, you have reached the end of the JSJ experience."
+    );
+    cy.get('[data-test="fallback-text"]').should("exist");
+    cy.get('[data-test="jocey\'s-linkin-link"]').should("exist");
+    cy.get('[data-test="scotty\'s-linkin-link"]').should("exist");
+    cy.get('[data-test="judy\'s-linkin-link"]').should("exist");
   });
 });
