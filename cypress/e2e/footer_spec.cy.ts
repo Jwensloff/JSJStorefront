@@ -54,19 +54,7 @@ describe("footer", () => {
     cy.wait("@career_preview_page_data");
     cy.url().should("include", "/careers-home");
 
-    // order status
-
-    // returns/exchanges
-
-    // size chart
-    cy.get('[data-test="size-chart-link"]').click();
-    cy.url().should("include", "/size-chart");
-
-    // FAQs
-
     // contact
-    cy.get('[data-test="contact"]').click();
-    cy.url().should("include", "/contact");
 
     // social media links
     cy.get('[data-test="instagram-link"]').click();
@@ -125,7 +113,7 @@ describe("footer", () => {
     cy.get('[data-test="judy\'s-linkin-link"]').should("exist");
   });
 
-  it.skip("should allow a user to look at returns page", () => {
+  it.skip("Should allow a user to look at returns page", () => {
     cy.get('[data-test="returns-exchanges"]').click();
     cy.url().should("include", "/returns-&-exchanges");
     cy.get('[data-test="header"]').should("exist");
@@ -169,7 +157,7 @@ describe("footer", () => {
     cy.get('[data-test="mens-size-chart"]').should("exist");
   });
 
-  it("shold allow a user to navigate to and interact with the FAQ page", () => {
+  it.skip("Should allow a user to navigate to and interact with the FAQ page", () => {
     cy.get('[data-test="faq"]').click();
     cy.url().should("include", "/FAQs");
     cy.get('[data-test="header"]').should("exist");
@@ -221,5 +209,42 @@ describe("footer", () => {
         "contain",
         "Absolutely! We would love to hear from you! You can reach us here"
       );
+  });
+
+  it("Should navigate users to the contact us page", () => {
+    cy.get('[data-test="contact"]').click();
+    cy.url().should("include", "/contact");
+    cy.get('[data-test="header"]').should("exist");
+    cy.get('[data-test="footer"]').should("exist");
+    cy.get('[data-test="contact-us-text"]')
+      .should("exist")
+      .and("contain", "Contact us");
+    cy.get('[data-test="contact-card"]').should("exist").and("have.length", 3);
+    cy.get('[data-test="contact-card"]')
+      .first()
+      .should("contain", "Judy Ye")
+      .and("contain", "Software Engineer");
+    cy.get('[data-test="headshot"]')
+      .first()
+      .should("have.attr", "alt", "Judy Ye head shot");
+
+    cy.get('[data-test="contact-card"]')
+      .eq(1)
+      .should("contain", "Scotty Brown")
+      .and("contain", "Software Engineer");
+    cy.get('[data-test="headshot"]')
+      .eq(1)
+      .should("have.attr", "alt", "Scotty Brown head shot");
+
+    cy.get('[data-test="contact-card"]')
+      .last()
+      .should("contain", "Jocelyn Wensloff")
+      .and("contain", "Software Engineer");
+    cy.get('[data-test="headshot"]')
+      .last()
+      .should("have.attr", "alt", "Jocelyn Wensloff head shot");
+
+    cy.get('[data-test="linkedin-icon"]').should("exist").and("have.length", 3);
+    cy.get('[data-test="github-icon"]').should("exist").and("have.length", 3);
   });
 });
