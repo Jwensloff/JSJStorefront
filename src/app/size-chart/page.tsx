@@ -6,16 +6,18 @@ export default function page() {
       <div>
         <div className="relative w-[95vw] h-[50vh] md:h-[90vh]">
           <Image
+            data-test="womens-size-chart"
             src="/sizechart_women.jpg"
-            alt="womens size chart"
+            alt="womens-size-chart"
             fill
             objectFit="contain"
           />
         </div>
         <div className="relative w-[95vw] h-[50vh] md:h-[90vh]">
           <Image
+            data-test="mens-size-chart"
             src="/sizechart_men.jpg"
-            alt="womens size chart"
+            alt="mens-size-chart"
             fill
             objectFit="contain"
           />

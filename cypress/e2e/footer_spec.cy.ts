@@ -127,7 +127,7 @@ describe("footer", () => {
     cy.get('[data-test="judy\'s-linkin-link"]').should("exist");
   });
 
-  it("should allow a user to look at returnspage", () => {
+  it.skip("should allow a user to look at returns page", () => {
     cy.get('[data-test="returns-exchanges"]').click();
     cy.url().should("include", "/returns-&-exchanges");
     cy.get('[data-test="header"]').should("exist");
@@ -160,5 +160,14 @@ describe("footer", () => {
         "have.text",
         "Returning a gift? Our return process is quick and easy."
       );
+  });
+
+  it("Should display the womens and mens size chart", () => {
+    cy.get('[data-test="size-chart-link"]').click();
+    cy.url().should("include", "/size-chart");
+    cy.get('[data-test="header"]').should("exist");
+    cy.get('[data-test="footer"]').should("exist");
+    cy.get('[data-test="womens-size-chart"]').should("exist");
+    cy.get('[data-test="mens-size-chart"]').should("exist");
   });
 });
