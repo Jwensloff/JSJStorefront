@@ -13,7 +13,6 @@ export default async function JobDetails({
   params: { id: string };
 }) {
   const data = await getIndividualJob(params);
-
   const generateJobDetails = (jobDesc: CareerProps) => {
     const formattedJobQ = formatJobQualifications(jobDesc);
 
@@ -22,7 +21,11 @@ export default async function JobDetails({
     const formattedBenefits = formatJobBenefits(jobDesc);
 
     return (
-      <div key={jobDesc.id} className="flex flex-col gap-5 xl:w-1/2">
+      <div
+        data-test="individual-job"
+        key={jobDesc.id}
+        className="flex flex-col gap-5 xl:w-1/2"
+      >
         <h2 className="font-extrabold text-4xl">{jobDesc.title}</h2>
         <div className="flex flex-col gap-2 md:flex-row">
           <p className="font-bold">Location:</p>
@@ -45,7 +48,7 @@ export default async function JobDetails({
         </div>
         <p>{jobDesc.description}</p>
         <p className="font-bold">Responsibilities -</p>
-        <ul>
+        <ul data-test="responsibilities-list">
           {formattedJobR.map((item: string, index: number) => (
             <li key={index} className="list-disc list-inside">
               {item}
@@ -53,7 +56,7 @@ export default async function JobDetails({
           ))}
         </ul>
         <p className="font-bold">Qualifications -</p>
-        <ul>
+        <ul data-test="qualifications-list">
           {formattedJobQ.map((item: string, index: number) => (
             <li key={index} className="list-disc list-inside">
               {item}
@@ -61,7 +64,7 @@ export default async function JobDetails({
           ))}
         </ul>
         <p className="font-bold">Benefits -</p>
-        <ul>
+        <ul data-test="benefits-list">
           {formattedBenefits.map((item: string, index: number) => (
             <li key={index} className="list-disc list-inside">
               {item}
@@ -69,7 +72,12 @@ export default async function JobDetails({
           ))}
         </ul>
         <a href="/fallback">
-          <Button color="blue" className="w-1/2 mt-10" placeholder={undefined}>
+          <Button
+            data-test="apply-btn"
+            color="blue"
+            className="w-1/2 mt-10"
+            placeholder={undefined}
+          >
             APPLY
           </Button>
         </a>

@@ -156,7 +156,7 @@ export default function HeroImage({ location }: HeroImageProps) {
       );
     } else if (location === "careers-home") {
       return (
-        <div>
+        <div data-test="career-page-hero">
           <Image
             src="https://images.pexels.com/photos/4008717/pexels-photo-4008717.jpeg"
             alt="A woman typing on a laptop"

@@ -11,57 +11,231 @@ describe("footer", () => {
     cy.visit("http://localhost:3000/");
   });
 
-  it.skip("should navigate users to the proper pages", () => {
-    cy.get('[data-test="footer"]').should("exist");
-
-    //womens page intercept
-    cy.intercept("GET", "/womens?_rsc=acgkz", {
-      fixture: "womens_clothing_mock_data.json",
-    }).as("womens_page_data");
-
-    // mens page intercept
-    cy.intercept("GET", "/mens?_rsc=1lth5", {
-      fixture: "mens_clothing_mock_data.json",
-    }).as("mens_page_data");
-
-    // jewelry intercept
-    cy.intercept("GET", "/jewelry?_rsc=1gprc", {
-      fixture: "jewelry_mock_data.json",
-    }).as("jewelry_page_data");
-
+  it("Should allow users to navigate to careers page, select a job, and apply", () => {
     // careers intercept
-    cy.intercept("GET", "/careers-home?_rsc=bmzfm", {
+    cy.intercept("GET", "/careers-home?_rsc=acgkz", {
       fixture: "career_preview_mock_data.json",
     }).as("career_preview_page_data");
 
-    // womens page
-    cy.get('[data-test="womens-link"]').click();
-    cy.wait("@womens_page_data");
-    cy.url().should("include", "/womens");
+    cy.get('[data-test="footer"]').should("exist");
+    cy.get('[data-test="footer"]').should("contain", "Company");
 
-    // mens page
-    cy.get('[data-test="mens-link"]').click();
-    cy.wait("@mens_page_data");
-    cy.url().should("include", "/mens");
-
-    // mens page
-    cy.get('[data-test="jewelry-link"]').click();
-    cy.wait("@jewelry_page_data");
-    cy.url().should("include", "/jewelry");
-
-    // careers
+    // career home page
     cy.get('[data-test="careers-link"]').click();
     cy.wait("@career_preview_page_data");
     cy.url().should("include", "/careers-home");
+    cy.get('[data-test="career-page-hero"]')
+      .should("exist")
+      .and("contain", "Grow")
+      .and("contain", "Collaborate")
+      .and("contain", "Achieve");
+    cy.get('[data-test="career-page-text"]')
+      .should("exist")
+      .and("contain", "Open Positions");
+    cy.get('[data-test="career-card"]').should("exist").and("have.length", 2);
+    cy.get('[data-test="career-name"]')
+      .eq(0)
+      .should("exist")
+      .and("contain", "Software Engineer");
+    cy.get('[data-test="career-name"]')
+      .eq(1)
+      .should("exist")
+      .and("contain", "Sales Manager");
 
-    // contact
+    cy.get('[data-test="career-description"]')
+      .eq(0)
+      .should("exist")
+      .and(
+        "contain",
+        "We are seeking a talented and motivated Software Engineer to join our growing team."
+      );
+    cy.get('[data-test="career-description"]')
+      .eq(1)
+      .should("exist")
+      .and(
+        "contain",
+        "We are seeking a driven and results-oriented Sales Manager to lead and motivate our sales team in achieving ambitious sales goals."
+      );
 
-    // social media links
+    // navigate to the software engineering job
+    cy.get('[data-test="learn-more-btn"]').eq(0).click();
+    cy.url().should("include", "/job/2");
+    cy.get('[data-test="individual-job"] h2')
+      .should("exist")
+      .and("contain", "Software Engineer");
+    cy.get('[data-test="individual-job"] p')
+      .eq(0)
+      .should("contain", "Location");
+    cy.get('[data-test="individual-job"] p')
+      .eq(1)
+      .should("contain", "California, USA");
+    cy.get('[data-test="individual-job"] p').eq(2).should("contain", "Remote");
+    cy.get('[data-test="individual-job"] p').eq(3).should("contain", "Yes");
+    cy.get('[data-test="individual-job"] p')
+      .eq(4)
+      .should("contain", "Job Type");
+    cy.get('[data-test="individual-job"] p')
+      .eq(5)
+      .should("contain", "Full-time");
+    cy.get('[data-test="individual-job"] p').eq(6).should("contain", "Salary");
+    cy.get('[data-test="individual-job"] p').eq(7).should("contain", "100000");
+    cy.get('[data-test="individual-job"] p')
+      .eq(8)
+      .should("contain", "Expected Start");
+    cy.get('[data-test="individual-job"] p')
+      .eq(9)
+      .should("contain", "May - 2024");
+    cy.get('[data-test="individual-job"] p')
+      .eq(10)
+      .should(
+        "contain",
+        "We are seeking a talented and motivated Software Engineer to join our growing team. You will play a key role in developing and maintaining our e-commerce platform, ensuring a high-performing and user-friendly "
+      );
+
+    cy.get('[data-test="individual-job"] p')
+      .eq(11)
+      .should("contain", "Responsibilities");
+    cy.get('[data-test="responsibilities-list"] li')
+      .should("exist")
+      .and("have.length", 7);
+    cy.get('[data-test="responsibilities-list"] li')
+      .first()
+      .and(
+        "contain",
+        "Design, develop, and maintain features for our e-commerce platform, utilizing modern web technologies (e.g., React, Node.js, Python)"
+      );
+    cy.get('[data-test="responsibilities-list"] li')
+      .last()
+      .and(
+        "contain",
+        "Stay up-to-date with the latest advancements in e-commerce technologies and best practices"
+      );
+
+    cy.get('[data-test="individual-job"] p')
+      .eq(12)
+      .should("contain", "Qualifications");
+    cy.get('[data-test="qualifications-list"] li')
+      .should("exist")
+      .and("have.length", 9);
+    cy.get('[data-test="qualifications-list"] li')
+      .first()
+      .and(
+        "contain",
+        "Bachelor's degree in Computer Science, Software Engineering, or a related field (or equivalent Bootcamp experience)"
+      );
+    cy.get('[data-test="qualifications-list"] li')
+      .last()
+      .and(
+        "contain",
+        "Passion for building user-friendly and engaging e-commerce experiences"
+      );
+
+    cy.get('[data-test="individual-job"] p')
+      .eq(13)
+      .should("contain", "Benefits");
+    cy.get('[data-test="benefits-list"] li')
+      .should("exist")
+      .and("have.length", 3);
+    cy.get('[data-test="benefits-list"] li')
+      .first()
+      .and("contain", "Flexible work schedule");
+    cy.get('[data-test="benefits-list"] li')
+      .last()
+      .and("contain", "and competitive salary");
+    cy.get('[data-test="apply-btn"]').should("exist").click();
+    cy.url().should("include", "/fallback");
+
+    // navigate back to the careers home page
+    cy.go(-2);
+    cy.url().should("include", "/careers-home");
+
+    //navigate to the sales manager job
+    cy.get('[data-test="learn-more-btn"]').eq(1).click();
+    cy.url().should("include", "/job/3");
+
+    cy.get('[data-test="individual-job"] h2')
+      .should("exist")
+      .and("contain", "Sales Manager");
+    cy.get('[data-test="individual-job"] p')
+      .eq(0)
+      .should("contain", "Location");
+    cy.get('[data-test="individual-job"] p')
+      .eq(1)
+      .should("contain", "Texas, USA");
+    cy.get('[data-test="individual-job"] p').eq(2).should("contain", "Remote");
+    cy.get('[data-test="individual-job"] p').eq(3).should("contain", "Yes");
+    cy.get('[data-test="individual-job"] p')
+      .eq(4)
+      .should("contain", "Job Type");
+    cy.get('[data-test="individual-job"] p')
+      .eq(5)
+      .should("contain", "Full-time");
+    cy.get('[data-test="individual-job"] p').eq(6).should("contain", "Salary");
+    cy.get('[data-test="individual-job"] p').eq(7).should("contain", "85000");
+    cy.get('[data-test="individual-job"] p')
+      .eq(8)
+      .should("contain", "Expected Start");
+    cy.get('[data-test="individual-job"] p')
+      .eq(9)
+      .should("contain", "June - 2024");
+    cy.get('[data-test="individual-job"] p')
+      .eq(10)
+      .should(
+        "contain",
+        "We are seeking a driven and results-oriented Sales Manager to lead and motivate our sales team in achieving ambitious sales goals. You will play a crucial role in developing and implementing sales strategies, managing and coaching individual team members, and fostering a positive and collaborative sales environment."
+      );
+
+    cy.get('[data-test="individual-job"] p')
+      .eq(11)
+      .should("contain", "Responsibilities");
+    cy.get('[data-test="responsibilities-list"] li')
+      .should("exist")
+      .and("have.length", 8);
+    cy.get('[data-test="responsibilities-list"] li')
+      .first()
+      .and(
+        "contain",
+        "Develop and implement effective sales strategies to achieve company objectives"
+      );
+    cy.get('[data-test="responsibilities-list"] li')
+      .last()
+      .and("contain", "Monitor sales performance metrics and reports");
+
+    cy.get('[data-test="individual-job"] p')
+      .eq(12)
+      .should("contain", "Qualifications");
+    cy.get('[data-test="qualifications-list"] li')
+      .should("exist")
+      .and("have.length", 8);
+    cy.get('[data-test="qualifications-list"] li')
+      .first()
+      .and(
+        "contain",
+        "Bachelor's degree in Business Administration, Marketing, or a related field (or equivalent experience)"
+      );
+    cy.get('[data-test="qualifications-list"] li')
+      .last()
+      .and("contain", "Proficiency in CRM software and sales tools");
+
+    cy.get('[data-test="individual-job"] p')
+      .eq(13)
+      .should("contain", "Benefits");
+    cy.get('[data-test="benefits-list"] li')
+      .should("exist")
+      .and("have.length", 3);
+    cy.get('[data-test="benefits-list"] li')
+      .first()
+      .and("contain", "Competitive salary and commission structure");
+    cy.get('[data-test="benefits-list"] li')
+      .last()
+      .and("contain", "paid time off");
+    cy.get('[data-test="apply-btn"]').should("exist").click();
+    cy.url().should("include", "/fallback");
   });
 
-  it.skip("Should allow a user navigate to the order status page and navigate to the fallback page", () => {
+  it("Should allow a user navigate to the order status page and navigate to the fallback page", () => {
     cy.get('[data-test="header"]').should("exist");
-    cy.get('[data-test="footer"]').should("exist");
+    cy.get('[data-test="footer"]').should("exist").and("contain", "Help");
 
     cy.get('[data-test="order-status"]').click();
     cy.url().should("include", "/order-status");
@@ -93,7 +267,7 @@ describe("footer", () => {
     cy.url().should("include", "/fallback");
   });
 
-  it.skip("Should allow a user to look at returns page", () => {
+  it("Should allow a user to look at returns page", () => {
     cy.get('[data-test="returns-exchanges"]').click();
     cy.url().should("include", "/returns-&-exchanges");
     cy.get('[data-test="header"]').should("exist");
@@ -128,7 +302,7 @@ describe("footer", () => {
       );
   });
 
-  it.skip("Should display the womens and mens size chart", () => {
+  it("Should display the womens and mens size chart", () => {
     cy.get('[data-test="size-chart-link"]').click();
     cy.url().should("include", "/size-chart");
     cy.get('[data-test="header"]').should("exist");
@@ -137,7 +311,7 @@ describe("footer", () => {
     cy.get('[data-test="mens-size-chart"]').should("exist");
   });
 
-  it.skip("Should allow a user to navigate to and interact with the FAQ page", () => {
+  it("Should allow a user to navigate to and interact with the FAQ page", () => {
     cy.get('[data-test="faq"]').click();
     cy.url().should("include", "/FAQs");
     cy.get('[data-test="header"]').should("exist");
@@ -191,7 +365,7 @@ describe("footer", () => {
       );
   });
 
-  it.skip("Should navigate users to the contact us page", () => {
+  it("Should navigate users to the contact us page", () => {
     cy.get('[data-test="contact"]').click();
     cy.url().should("include", "/contact");
     cy.get('[data-test="header"]').should("exist");
@@ -242,6 +416,8 @@ describe("footer", () => {
 
     cy.get('[data-test="header"]').should("exist");
     cy.get('[data-test="footer"]').should("exist");
+    cy.get('[data-test="footer"]').should("contain", "Contact Us");
+
     cy.get('[data-test="fallback-hero"]').should("exist");
     cy.get('[data-test="fallback-hero-text"]').should(
       "contain",

@@ -8,7 +8,10 @@ export default async function Careers() {
     <div>
       <HeroImage location={"careers-home"} />
       <div className="w-full flex flex-col ">
-        <h2 className="text-4xl font-extrabold text-center mt-20">
+        <h2
+          data-test="career-page-text"
+          className="text-4xl font-extrabold text-center mt-20"
+        >
           Open Positions
         </h2>
         <CareersPreview data={data} />
