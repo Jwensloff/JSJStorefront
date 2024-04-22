@@ -87,7 +87,7 @@ describe("template spec", () => {
       .and("contain", "Contact Us");
   });
 
-  it.skip("Should allow a user to search for products", () => {
+  it("Should allow a user to search for products", () => {
     cy.intercept("GET", "/search-results/jacket?_rsc=acgkz", {
       fixture: "search_results.json",
     }).as("search_results");
@@ -121,7 +121,7 @@ describe("template spec", () => {
       .and("contain", "Rating: 3.8");
   });
 
-  it.skip("should display error when there is nothing that matches the search criteria", () => {
+  it("should display error when there is nothing that matches the search criteria", () => {
     cy.intercept("GET", "/search-results/randommmmm?_rsc=acgkz", {
       fixture: "search_results.json",
     }).as("search_results");
