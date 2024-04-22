@@ -98,11 +98,15 @@ export default function HeroImage({ location }: HeroImageProps) {
       return (
         <div>
           <div className="flex flex-col">
-            <h1 className="z-10 text-center font-semibold text-3xl py-3 ">
+            <h1
+              data-test="fallback-hero-text"
+              className="z-10 text-center font-semibold text-3xl py-3 "
+            >
               Sorry, you have reached the end of the JSJ experience.{" "}
             </h1>
           </div>
           <Image
+            data-test="fallback-hero"
             src="https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt="A dog peaking up from below"
             fill
