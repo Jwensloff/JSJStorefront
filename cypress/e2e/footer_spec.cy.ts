@@ -22,7 +22,6 @@ describe("footer", () => {
 
     // career home page
     cy.get('[data-test="careers-link"]').click();
-    cy.wait("@career_preview_page_data");
     cy.url().should("include", "/careers-home");
     cy.get('[data-test="career-page-hero"]')
       .should("exist")
