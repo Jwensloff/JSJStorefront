@@ -1,4 +1,5 @@
 "use client";
+import { addProduct } from "@/src/app/lib/actions";
 import { ShoppingCartProps } from "@/src/app/lib/definitions";
 import CartPreview from "@/src/components/main-content/shopping-cart/CartPreview/CartPreview";
 import { Button, Select, Option } from "@/src/tailwind";
@@ -52,21 +53,9 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
       setIsFormComplete(false);
       return;
     }
-    const supabase = createClient();
     const { id, title, price, image } = singleProduct;
-    const { error } = await supabase.from("shopping_cart").insert({
-      id,
-      title,
-      price,
-      image,
-      quantity: selectedQuantity,
-      size: selectedSize,
-    });
 
-    if (error) {
-      throw error;
-    }
-
+    addProduct(id, title, price, image, selectedQuantity, selectedSize);
     router.refresh();
     toggleSidebar();
     setSelectedQuantity("");

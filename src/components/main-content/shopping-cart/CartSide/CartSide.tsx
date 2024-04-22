@@ -46,8 +46,7 @@ export default function CartSide({
         <a href="/checkout" className="mt-10 w-full">
           <Button
             placeholder="proceed to checkout"
-            color="blue-gray"
-            className="w-full"
+            className="w-full bg-blue-gray-700"
           >
             Proceed to Checkout
           </Button>
