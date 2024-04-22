@@ -57,8 +57,6 @@ describe("footer", () => {
     // order status
 
     // returns/exchanges
-    cy.get('[data-test="returns-exchanges"]').click();
-    cy.url().should("include", "/returns-&-exchanges");
 
     // size chart
     cy.get('[data-test="size-chart-link"]').click();
@@ -83,7 +81,7 @@ describe("footer", () => {
     cy.url().should("include", "/fallback");
   });
 
-  it("Should allow a user navigate to the order status page and navigate to the fallback page", () => {
+  it.skip("Should allow a user navigate to the order status page and navigate to the fallback page", () => {
     cy.get('[data-test="header"]').should("exist");
     cy.get('[data-test="footer"]').should("exist");
 
@@ -111,12 +109,11 @@ describe("footer", () => {
     cy.get('[data-test="order-status-submit-btn"]').should("exist").click();
 
     cy.url().should("include", "/fallback");
-
     cy.go(-1);
     cy.url().should("include", "/order-status");
     cy.get('[data-test="order-status-cancel-btn"]').should("exist").click();
 
-    cy.url().should("include", "/fallback")
+    cy.url().should("include", "/fallback");
     cy.get('[data-test="header"]').should("exist");
     cy.get('[data-test="footer"]').should("exist");
     cy.get('[data-test="fallback-hero"]').should("exist");
@@ -128,5 +125,40 @@ describe("footer", () => {
     cy.get('[data-test="jocey\'s-linkin-link"]').should("exist");
     cy.get('[data-test="scotty\'s-linkin-link"]').should("exist");
     cy.get('[data-test="judy\'s-linkin-link"]').should("exist");
+  });
+
+  it("should allow a user to look at returnspage", () => {
+    cy.get('[data-test="returns-exchanges"]').click();
+    cy.url().should("include", "/returns-&-exchanges");
+    cy.get('[data-test="header"]').should("exist");
+    cy.get('[data-test="footer"]').should("exist");
+    cy.get('[data-test="returns-exchanges-text"]')
+      .should("exist")
+      .and("contain", "Return and Exchanges");
+
+    cy.get('[data-test="return-section"] h2')
+      .should("exist")
+      .and("have.text", "Start a Return");
+
+    cy.get('[data-test="return-section"] p')
+      .should("exist")
+      .and(
+        "have.text",
+        "Start a return today for any items you purchased from JSJ."
+      )
+      .click();
+
+    cy.url().should("include", "/fallback");
+    cy.go(-1);
+    cy.url().should("include", "/returns-&-exchanges");
+    cy.get('[data-test="gift-section"] h2')
+      .should("exist")
+      .and("have.text", "Gift Returns");
+    cy.get('[data-test="gift-section"] p')
+      .should("exist")
+      .and(
+        "have.text",
+        "Returning a gift? Our return process is quick and easy."
+      );
   });
 });

@@ -7,8 +7,12 @@ export default function ReturnsAndExchanges() {
     <div className="h-full flex flex-col justify-evenly">
       <div className="flex flex-col sm:flex-row items-center sm:justify-evenly gap-4 pb-4">
         <Link href={"/fallback"}>
-          <section className="flex flex-col px-4 justify-around w-56 md:w-64 h-48 xs:h-60 rounded border border-gray-500 text-center">
+          <section
+            data-test="return-section"
+            className="flex flex-col px-4 justify-around w-56 md:w-64 h-48 xs:h-60 rounded border border-gray-500 text-center"
+          >
             <FontAwesomeIcon
+              data-test="open-box-icon"
               aria-hidden="true"
               icon={faBoxOpen}
               className="text-3xl pt-3"
@@ -18,8 +22,12 @@ export default function ReturnsAndExchanges() {
           </section>
         </Link>
         <Link href={"/fallback"}>
-          <section className="flex flex-col px-4 justify-around w-56 md:w-64 h-48 xs:h-60 rounded border border-gray-500 text-center">
+          <section
+            data-test="gift-section"
+            className="flex flex-col px-4 justify-around w-56 md:w-64 h-48 xs:h-60 rounded border border-gray-500 text-center"
+          >
             <FontAwesomeIcon
+              data-test="gift-icon"
               aria-hidden="true"
               icon={faGift}
               className="text-3xl pt-3"
