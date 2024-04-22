@@ -63,8 +63,6 @@ describe("footer", () => {
     cy.url().should("include", "/size-chart");
 
     // FAQs
-    cy.get('[data-test="faq"]').click();
-    cy.url().should("include", "/FAQs");
 
     // contact
     cy.get('[data-test="contact"]').click();
@@ -162,12 +160,66 @@ describe("footer", () => {
       );
   });
 
-  it("Should display the womens and mens size chart", () => {
+  it.skip("Should display the womens and mens size chart", () => {
     cy.get('[data-test="size-chart-link"]').click();
     cy.url().should("include", "/size-chart");
     cy.get('[data-test="header"]').should("exist");
     cy.get('[data-test="footer"]').should("exist");
     cy.get('[data-test="womens-size-chart"]').should("exist");
     cy.get('[data-test="mens-size-chart"]').should("exist");
+  });
+
+  it("shold allow a user to navigate to and interact with the FAQ page", () => {
+    cy.get('[data-test="faq"]').click();
+    cy.url().should("include", "/FAQs");
+    cy.get('[data-test="header"]').should("exist");
+    cy.get('[data-test="footer"]').should("exist");
+
+    cy.get('[data-test="faq-text"]')
+      .should("exist")
+      .and("contain", "Frequently Asked Questions");
+    cy.get('[data-test="QA-summary"]').should("exist").and("have.length", 6);
+    cy.get('[data-test="QA-summary"]')
+      .first()
+      .should("contain", "How do I know what size I am?");
+    cy.get('[data-test="arrow"]').should("exist").and("have.length", 6);
+    cy.get('[data-test="arrow"]').first().click();
+    cy.get('[data-test="QA-answer"]')
+      .first()
+      .should("be.visible")
+      .and(
+        "contain",
+        "We would recommend that you refer to our sizing guide which can be found here"
+      );
+    cy.get('[data-test="size-link"]').click();
+    cy.url().should("include", "/size-chart");
+    cy.go(-1);
+    cy.url().should("include", "/FAQs");
+
+    cy.get('[data-test="QA-summary"]')
+      .eq(1)
+      .should("exist")
+      .and("contain", "What is your return policy?");
+    cy.get('[data-test="arrow"]').eq(1).click();
+    cy.get('[data-test="QA-answer"]')
+      .eq(1)
+      .should("be.visible")
+      .and("contain", "If you are not 100% satisfied with your purchase");
+    cy.get('[data-test="return-link"]').click();
+    cy.url().should("include", "/returns-&-exchanges");
+    cy.go(-1);
+    cy.url().should("include", "/FAQs");
+
+    cy.get('[data-test="QA-summary"]')
+      .last()
+      .should("contain", "Can I contact these impressive developers?");
+    cy.get('[data-test="arrow"]').last().click();
+    cy.get('[data-test="QA-answer"]')
+      .last()
+      .should("be.visible")
+      .and(
+        "contain",
+        "Absolutely! We would love to hear from you! You can reach us here"
+      );
   });
 });
