@@ -6,11 +6,15 @@ export default function Fallback() {
   return (
     <>
       <HeroImage location="fallback" />
-      <p className="text-center font-medium text-lg py-3">
+      <p
+        data-test="fallback-text"
+        className="text-center font-medium text-lg py-3"
+      >
         BUT feel free to connect with us:
       </p>
       <section className="flex justify-evenly py-5">
         <Link
+          data-test="jocey's-linkin-link"
           href={"https://www.linkedin.com/in/jocelynwensloff/"}
           target="_blank"
           className="hover:text-blue-800 hover:underline text-xl"
@@ -18,6 +22,7 @@ export default function Fallback() {
           Jocelyn
         </Link>
         <Link
+          data-test="scotty's-linkin-link"
           href={"https://www.linkedin.com/in/scotty-brown-2140b3278/"}
           target="_blank"
           className="hover:text-blue-800 hover:underline text-xl"
@@ -25,6 +30,7 @@ export default function Fallback() {
           Scotty
         </Link>
         <Link
+          data-test="judy's-linkin-link"
           href={"https://www.linkedin.com/in/judy0ye/"}
           target="_blank"
           className="hover:text-blue-800 hover:underline text-xl"

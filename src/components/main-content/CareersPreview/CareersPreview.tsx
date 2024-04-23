@@ -15,10 +15,11 @@ interface CareersProps {
 export default function CareersPreview({ data }: CareersProps) {
   const createCard = (career: CareerPreviewProps) => {
     return (
-      <div key={career.id} className="xl:w-1/2">
+      <div data-test="career-card" key={career.id} className="xl:w-1/2">
         <Card key={career.id} className="m-20" placeholder={undefined}>
           <CardBody placeholder={undefined}>
             <Typography
+              data-test="career-name"
               placeholder={undefined}
               variant="h5"
               color="blue-gray"
@@ -26,13 +27,14 @@ export default function CareersPreview({ data }: CareersProps) {
             >
               {career.title}
             </Typography>
-            <Typography placeholder={undefined}>
+            <Typography data-test="career-description" placeholder={undefined}>
               {career.description}
             </Typography>
           </CardBody>
           <CardFooter placeholder={undefined} className="pt-0">
             <a href={`/job/${career.id}`} className="inline-block">
               <Button
+                data-test="learn-more-btn"
                 placeholder={undefined}
                 size="sm"
                 variant="text"

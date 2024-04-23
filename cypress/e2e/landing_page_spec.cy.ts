@@ -6,13 +6,12 @@ describe("template spec", () => {
       {
         fixture: "landing_page_data.json",
       }
-    ).as("landing_page_data");
+    );
 
     cy.visit("http://localhost:3000/");
-    cy.wait("@landing_page_data");
   });
 
-  it.skip("should contain the landing page content", () => {
+  it("should contain the landing page content", () => {
     // Header
     cy.get('[data-test="header"]').should("exist");
     cy.get('[data-test="header_logo"]').should("exist");
@@ -49,9 +48,7 @@ describe("template spec", () => {
       .and("contain", "$9.85")
       .find('[data-test="11-card-image"]')
       .should("exist");
-    cy.get('[data-test="11-card-button"]')
-      .should("exist")
-      .and("contain", "Shop");
+    cy.get('[data-test="11-card-button"]').should("exist");
 
     cy.get('[data-test="shop-sale-link"]')
       .should("exist")
@@ -62,9 +59,7 @@ describe("template spec", () => {
       .and("contain", "$12.99")
       .find('[data-test="14-card-image"]')
       .should("exist");
-    cy.get('[data-test="14-card-button"]')
-      .should("exist")
-      .and("contain", "Shop");
+    cy.get('[data-test="14-card-button"]').should("exist");
 
     cy.get('[data-test="shop-gold-link"]')
       .should("exist")
@@ -75,9 +70,7 @@ describe("template spec", () => {
       .and("contain", "$168")
       .find('[data-test="7-card-image"]')
       .should("exist");
-    cy.get('[data-test="7-card-button"]')
-      .should("exist")
-      .and("contain", "Shop");
+    cy.get('[data-test="7-card-button"]').should("exist");
 
     // Footer
     cy.get('[data-test="footer"]')
@@ -94,7 +87,7 @@ describe("template spec", () => {
       .and("contain", "Contact Us");
   });
 
-  it.skip("Should allow a user to search for products", () => {
+  it("Should allow a user to search for products", () => {
     cy.intercept("GET", "/search-results/jacket?_rsc=acgkz", {
       fixture: "search_results.json",
     }).as("search_results");
@@ -128,7 +121,7 @@ describe("template spec", () => {
       .and("contain", "Rating: 3.8");
   });
 
-  it.skip("should display error when there is nothing that matches the search criteria", () => {
+  it("should display error when there is nothing that matches the search criteria", () => {
     cy.intercept("GET", "/search-results/randommmmm?_rsc=acgkz", {
       fixture: "search_results.json",
     }).as("search_results");

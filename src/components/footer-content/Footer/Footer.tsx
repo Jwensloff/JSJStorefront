@@ -94,40 +94,73 @@ export default function Footer() {
 
       <div className="hidden md:flex md:flex-col">
         <h2 className="font-extrabold">Shop</h2>
-        <Link href="/womens" className="cursor-pointer hover:underline">
+        <Link
+          href="/womens"
+          data-test="womens-link"
+          className="cursor-pointer hover:underline"
+        >
           Women&apos;s
         </Link>
-        <Link href="/mens" className="cursor-pointer hover:underline">
+        <Link
+          href="/mens"
+          data-test="mens-link"
+          className="cursor-pointer hover:underline"
+        >
           Men&apos;s
         </Link>
-        <Link href="/jewelry" className="cursor-pointer hover:underline">
+        <Link
+          href="/jewelry"
+          data-test="jewelry-link"
+          className="cursor-pointer hover:underline"
+        >
           Jewelry
         </Link>
       </div>
       <div className="hidden md:flex md:flex-col">
         <h2 className="font-extrabold">Company</h2>
-        <Link href="/careers-home" className="cursor-pointer hover:underline">
+        <Link
+          href="/careers-home"
+          data-test="careers-link"
+          className="cursor-pointer hover:underline"
+        >
           Careers
         </Link>
       </div>
       <div className="hidden md:flex md:flex-col">
         <h2 className="font-extrabold">Help</h2>
-        <Link href="/order-status" className="cursor-pointer hover:underline">
+        <Link
+          href="/order-status"
+          data-test="order-status"
+          className="cursor-pointer hover:underline"
+        >
           Order Status
         </Link>
         <Link
           href="/returns-&-exchanges"
+          data-test="returns-exchanges"
           className="cursor-pointer hover:underline"
         >
           Returns
         </Link>
-        <Link href="/size-chart" className="cursor-pointer hover:underline">
+        <Link
+          href="/size-chart"
+          data-test="size-chart-link"
+          className="cursor-pointer hover:underline"
+        >
           Size Chart
         </Link>
-        <Link href="/FAQs" className="cursor-pointer hover:underline">
+        <Link
+          href="/FAQs"
+          data-test="faq"
+          className="cursor-pointer hover:underline"
+        >
           FAQs
         </Link>
-        <Link href="/contact" className="cursor-pointer hover:underline">
+        <Link
+          href="/contact"
+          data-test="contact"
+          className="cursor-pointer hover:underline"
+        >
           Contact Us
         </Link>
       </div>
@@ -135,13 +168,25 @@ export default function Footer() {
         <h2 className="font-extrabold">Contact Us</h2>
         <p> +1-(800)-123-4567</p>
         <div className="flex justify-evenly text-lg mt-1">
-          <Link aria-label="Instagram" href={"/fallback"}>
+          <Link
+            aria-label="Instagram"
+            data-test="instagram-link"
+            href={"/fallback"}
+          >
             <FontAwesomeIcon icon={faInstagram} />
           </Link>
-          <Link aria-label="Twitter" href={"/fallback"}>
+          <Link
+            aria-label="Twitter"
+            data-test="twitter-link"
+            href={"/fallback"}
+          >
             <FontAwesomeIcon icon={faTwitter} />
           </Link>
-          <Link aria-label="Facebook" href={"/fallback"}>
+          <Link
+            aria-label="Facebook"
+            data-test="facebook-link"
+            href={"/fallback"}
+          >
             <FontAwesomeIcon icon={faFacebook} />
           </Link>
         </div>

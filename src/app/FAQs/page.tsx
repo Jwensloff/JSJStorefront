@@ -9,7 +9,11 @@ export default function FAQs() {
         <span>
           We would recommend that you refer to our sizing guide which can be
           found{" "}
-          <a className="font-bold underline" href="/size-chart">
+          <a
+            data-test="size-link"
+            className="font-bold underline"
+            href="/size-chart"
+          >
             here
           </a>
           .
@@ -23,7 +27,11 @@ export default function FAQs() {
           If you are not 100% satisfied with your purchase, you can return or
           exhange your purchase within 30 days. For more information, refer to
           our returns and exhanges page which can be found{" "}
-          <a className="font-bold underline" href="/returns-&-exchanges">
+          <a
+            data-test="return-link"
+            className="font-bold underline"
+            href="/returns-&-exchanges"
+          >
             here
           </a>
         </span>
@@ -109,14 +117,20 @@ export default function FAQs() {
         className="bg-gray-custom shadow rounded group w-[100%]"
         key={index}
       >
-        <summary className="list-none flex flex-wrap items-center cursor-pointer">
+        <summary
+          data-test="QA-summary"
+          className="list-none flex flex-wrap items-center cursor-pointer"
+        >
           <h3 className="flex flex-1 p-4 font-semibold">{object.q}</h3>
           <div className="flex w-10 items-center justify-center">
-            <div className="border-8 border-transparent border-l-black ml-2 group-open:rotate-90 transition-transform origin-left"></div>
+            <div
+              data-test="arrow"
+              className="border-8 border-transparent border-l-black ml-2 group-open:rotate-90 transition-transform origin-left"
+            ></div>
           </div>
         </summary>
         <div className="p-4">
-          <p>{object.a}</p>
+          <p data-test="QA-answer">{object.a}</p>
         </div>
       </details>
     );
@@ -124,7 +138,7 @@ export default function FAQs() {
 
   return (
     <div className="flex flex-col min-h-[71vh] mb-[5rem] items-center">
-      <h2 className="text-center text-4xl font-bold my-5">
+      <h2 data-test="faq-text" className="text-center text-4xl font-bold my-5">
         Frequently Asked Questions
       </h2>
       <div className="flex flex-col align-center min-h-[55vh] w-[85vw] gap-4 mb-4">

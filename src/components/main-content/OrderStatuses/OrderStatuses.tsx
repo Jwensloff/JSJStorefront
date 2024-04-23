@@ -20,6 +20,7 @@ export default function OrderStatus() {
           <div className="relative">
             <input
               id="order number"
+              data-test="order-status-number-input"
               placeholder=""
               className="py-2 pl-2 w-full border-2 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700 text-ellipsis"
             />
@@ -34,6 +35,7 @@ export default function OrderStatus() {
           <div className="relative">
             <input
               id="E-mail address"
+              data-test="order-status-email-input"
               placeholder=""
               className=" py-2 pl-2 border-2 w-full border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700 text-ellipsis"
             />
@@ -48,12 +50,14 @@ export default function OrderStatus() {
           <div className="flex flex-col gap-4 sm:flex-row justify-evenly my-6">
             <button
               type="submit"
+              data-test="order-status-submit-btn"
               className="p-1 w-full md:w-52 sm:p-2 md:px-3 bg-blue-100 border-blue-500 border-2 rounded-md"
             >
               Order Information
             </button>
             <button
               type="submit"
+              data-test="order-status-cancel-btn"
               className="p-1 w-full md:w-52 sm:p-2 md:px-3 bg-red-100 border-red-500 border-2 rounded-md"
             >
               Cancel

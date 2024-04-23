@@ -1,0 +1,30 @@
+[
+  {
+    "id": 2,
+    "created_at": "2024-02-28T14:46:40",
+    "department": "Engineering",
+    "title": "Software Engineer",
+    "description": "We are seeking a talented and motivated Software Engineer to join our growing team. You will play a key role in developing and maintaining our e-commerce platform, ensuring a high-performing and user-friendly experience for our customers. You will collaborate closely with designers, product managers, and other engineers to build features, troubleshoot issues, and contribute to the continuous improvement of our platform.",
+    "location": { "state": "California", "remote": true, "country": "USA" },
+    "salary": 100000,
+    "type": "Full-time",
+    "qualifications": "Bachelor's degree in Computer Science, Software Engineering, or a related field (or equivalent Bootcamp experience) /\n2+ years of professional experience as a software engineer or similar role /\nStrong proficiency in at least one modern web development framework (e.g., React, Angular, Vue.js) /\nExperience with backend technologies (e.g., Node.js, Python, Java) and databases (e.g., MySQL, PostgreSQL) /\nExperience with API development and integration /\nExcellent problem-solving and analytical skills /\nStrong communication and collaboration skills /\nAbility to work independently and as part of a team /\nPassion for building user-friendly and engaging e-commerce experiences /",
+    "responsibilities": "Design, develop, and maintain features for our e-commerce platform, utilizing modern web technologies (e.g., React, Node.js, Python) /\nImplement and optimize backend APIs to support various functionalities (e.g., product listings, shopping cart, user accounts) /\nCollaborate with designers and product managers to translate product requirements into technical specifications /\nParticipate in code reviews and ensure adherence to coding standards and best practices /\nWrite clean, efficient, and maintainable code /\nActively identify and troubleshoot technical issues /\nStay up-to-date with the latest advancements in e-commerce technologies and best practices /",
+    "benefits": "Flexible work schedule, on-the-job training, and competitive salary",
+    "start_date": { "year": 2024, "month": "May" }
+  },
+  {
+    "id": 3,
+    "created_at": "2024-02-28T16:10:59",
+    "department": "Sales",
+    "title": "Sales Manager",
+    "description": "We are seeking a driven and results-oriented Sales Manager to lead and motivate our sales team in achieving ambitious sales goals. You will play a crucial role in developing and implementing sales strategies, managing and coaching individual team members, and fostering a positive and collaborative sales environment. You will have a strong track record of success in sales and a passion for building and maintaining relationships with clients.",
+    "location": { "state": "Texas", "remote": true, "country": "USA" },
+    "salary": 85000,
+    "type": "Full-time",
+    "qualifications": "Bachelor's degree in Business Administration, Marketing, or a related field (or equivalent experience) /\n3+ years of experience in sales management or a similar role /\nProven track record of exceeding sales targets /\nStrong understanding of sales methodologies and strategies /\nExcellent communication, presentation, and interpersonal skills /\nAbility to build and maintain strong relationships with clients /\nLeadership skills and the ability to motivate and coach a team /\nProficiency in CRM software and sales tools /",
+    "responsibilities": "Develop and implement effective sales strategies to achieve company objectives /\nManage and oversee the performance of a sales team /\nCoach and mentor individual team members to help them achieve their sales goals /\nIdentify and qualify new sales leads and opportunities /\nNegotiate and close deals with clients /\nBuild and maintain strong relationships with existing and potential clients /\nPrepare and deliver sales presentations /\nMonitor sales performance metrics and reports /",
+    "benefits": "Competitive salary and commission structure, health insurance, paid time off",
+    "start_date": { "year": 2024, "month": "June" }
+  }
+]
