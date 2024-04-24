@@ -133,13 +133,14 @@ export default function HeroImage({ location }: HeroImageProps) {
       return (
         <div>
           <Image
+            data-test="gold-page-hero"
             src="https://images.pexels.com/photos/5655011/pexels-photo-5655011.jpeg"
-            alt="A woman holding multiple shopping bags"
+            alt="A close up of neck and shoulders with gold necklace around neck"
             fill
             className="object-cover"
           />
           <div className="absolute text-white	text-9xl h-[50vh] flex flex-col text-right justify-between left-10 top-20">
-            <p>Indulge</p>
+            <p data-test="gold-page-hero-text">Indulge</p>
           </div>
         </div>
       );
