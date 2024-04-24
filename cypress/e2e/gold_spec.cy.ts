@@ -81,7 +81,7 @@ describe("gold", () => {
     });
   });
   it("should show individual product upon click", () => {
-    cy.intercept("GET", "/product/7?_rsc=12ked", {
+    cy.intercept("GET", "**/product/7?_rsc=12ked", {
       fixture: "product_7_data.json",
     }).as("gold_product");
 
