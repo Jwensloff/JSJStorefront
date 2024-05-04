@@ -5,7 +5,7 @@ describe("footer", () => {
       "https://qclojeseumhphvvxrtog.supabase.co/rest/v1/products?select=*",
       {
         fixture: "landing_page_data.json",
-      }
+      },
     );
 
     cy.visit("http://localhost:3000/");
@@ -46,14 +46,14 @@ describe("footer", () => {
       .should("exist")
       .and(
         "contain",
-        "We are seeking a talented and motivated Software Engineer to join our growing team."
+        "We are seeking a talented and motivated Software Engineer to join our growing team.",
       );
     cy.get('[data-test="career-description"]')
       .eq(1)
       .should("exist")
       .and(
         "contain",
-        "We are seeking a driven and results-oriented Sales Manager to lead and motivate our sales team in achieving ambitious sales goals."
+        "We are seeking a driven and results-oriented Sales Manager to lead and motivate our sales team in achieving ambitious sales goals.",
       );
 
     // navigate to the software engineering job
@@ -88,7 +88,7 @@ describe("footer", () => {
       .eq(10)
       .should(
         "contain",
-        "We are seeking a talented and motivated Software Engineer to join our growing team. You will play a key role in developing and maintaining our e-commerce platform, ensuring a high-performing and user-friendly "
+        "We are seeking a talented and motivated Software Engineer to join our growing team. You will play a key role in developing and maintaining our e-commerce platform, ensuring a high-performing and user-friendly ",
       );
 
     cy.get('[data-test="individual-job"] p')
@@ -101,13 +101,13 @@ describe("footer", () => {
       .first()
       .and(
         "contain",
-        "Design, develop, and maintain features for our e-commerce platform, utilizing modern web technologies (e.g., React, Node.js, Python)"
+        "Design, develop, and maintain features for our e-commerce platform, utilizing modern web technologies (e.g., React, Node.js, Python)",
       );
     cy.get('[data-test="responsibilities-list"] li')
       .last()
       .and(
         "contain",
-        "Stay up-to-date with the latest advancements in e-commerce technologies and best practices"
+        "Stay up-to-date with the latest advancements in e-commerce technologies and best practices",
       );
 
     cy.get('[data-test="individual-job"] p')
@@ -120,13 +120,13 @@ describe("footer", () => {
       .first()
       .and(
         "contain",
-        "Bachelor's degree in Computer Science, Software Engineering, or a related field (or equivalent Bootcamp experience)"
+        "Bachelor's degree in Computer Science, Software Engineering, or a related field (or equivalent Bootcamp experience)",
       );
     cy.get('[data-test="qualifications-list"] li')
       .last()
       .and(
         "contain",
-        "Passion for building user-friendly and engaging e-commerce experiences"
+        "Passion for building user-friendly and engaging e-commerce experiences",
       );
 
     cy.get('[data-test="individual-job"] p')
@@ -181,7 +181,7 @@ describe("footer", () => {
       .eq(10)
       .should(
         "contain",
-        "We are seeking a driven and results-oriented Sales Manager to lead and motivate our sales team in achieving ambitious sales goals. You will play a crucial role in developing and implementing sales strategies, managing and coaching individual team members, and fostering a positive and collaborative sales environment."
+        "We are seeking a driven and results-oriented Sales Manager to lead and motivate our sales team in achieving ambitious sales goals. You will play a crucial role in developing and implementing sales strategies, managing and coaching individual team members, and fostering a positive and collaborative sales environment.",
       );
 
     cy.get('[data-test="individual-job"] p')
@@ -194,7 +194,7 @@ describe("footer", () => {
       .first()
       .and(
         "contain",
-        "Develop and implement effective sales strategies to achieve company objectives"
+        "Develop and implement effective sales strategies to achieve company objectives",
       );
     cy.get('[data-test="responsibilities-list"] li')
       .last()
@@ -210,7 +210,7 @@ describe("footer", () => {
       .first()
       .and(
         "contain",
-        "Bachelor's degree in Business Administration, Marketing, or a related field (or equivalent experience)"
+        "Bachelor's degree in Business Administration, Marketing, or a related field (or equivalent experience)",
       );
     cy.get('[data-test="qualifications-list"] li')
       .last()
@@ -247,7 +247,7 @@ describe("footer", () => {
       .type("12345");
     cy.get('[data-test="order-status-number-input"]').should(
       "have.value",
-      "12345"
+      "12345",
     );
     cy.get('label[for="E-mail address"]').should("contain", "E-mail Address");
     cy.get('[data-test="order-status-email-input"]')
@@ -255,7 +255,7 @@ describe("footer", () => {
       .type("useremail@email.com");
     cy.get('[data-test="order-status-email-input"]').should(
       "have.value",
-      "useremail@email.com"
+      "useremail@email.com",
     );
     cy.get('[data-test="order-status-submit-btn"]').should("exist").click();
 
@@ -283,7 +283,7 @@ describe("footer", () => {
       .should("exist")
       .and(
         "have.text",
-        "Start a return today for any items you purchased from JSJ."
+        "Start a return today for any items you purchased from JSJ.",
       )
       .click();
 
@@ -297,7 +297,7 @@ describe("footer", () => {
       .should("exist")
       .and(
         "have.text",
-        "Returning a gift? Our return process is quick and easy."
+        "Returning a gift? Our return process is quick and easy.",
       );
   });
 
@@ -330,7 +330,7 @@ describe("footer", () => {
       .should("be.visible")
       .and(
         "contain",
-        "We would recommend that you refer to our sizing guide which can be found here"
+        "We would recommend that you refer to our sizing guide which can be found here",
       );
     cy.get('[data-test="size-link"]').click();
     cy.url().should("include", "/size-chart");
@@ -360,7 +360,7 @@ describe("footer", () => {
       .should("be.visible")
       .and(
         "contain",
-        "Absolutely! We would love to hear from you! You can reach us here"
+        "Absolutely! We would love to hear from you! You can reach us here",
       );
   });
 
@@ -420,7 +420,7 @@ describe("footer", () => {
     cy.get('[data-test="fallback-hero"]').should("exist");
     cy.get('[data-test="fallback-hero-text"]').should(
       "contain",
-      "Sorry, you have reached the end of the JSJ experience."
+      "Sorry, you have reached the end of the JSJ experience.",
     );
     cy.get('[data-test="fallback-text"]').should("exist");
     cy.get('[data-test="jocey\'s-linkin-link"]').should("exist");

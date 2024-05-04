@@ -5,7 +5,7 @@ describe("template spec", () => {
       "https://qclojeseumhphvvxrtog.supabase.co/rest/v1/products?select=*",
       {
         fixture: "landing_page_data.json",
-      }
+      },
     );
 
     cy.visit("http://localhost:3000/");
@@ -108,7 +108,7 @@ describe("template spec", () => {
       .should("exist")
       .and(
         "contain",
-        "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats"
+        "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
       )
       .and("contain", "Rating: 2.6");
 
@@ -116,7 +116,7 @@ describe("template spec", () => {
       .should("exist")
       .and(
         "contain",
-        "Rain Jacket Women Windbreaker Striped Climbing Raincoats"
+        "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
       )
       .and("contain", "Rating: 3.8");
   });
@@ -135,7 +135,7 @@ describe("template spec", () => {
       .should("exist")
       .and(
         "contain",
-        "Sorry, no products match your search. Please try something else!"
+        "Sorry, no products match your search. Please try something else!",
       );
   });
 });
