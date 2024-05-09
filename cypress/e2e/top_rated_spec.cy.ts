@@ -9,7 +9,7 @@ describe("top rated", () => {
     ).as("top_rated_data");
     cy.visit("http://localhost:3000/top-rated");
   });
-  it("should show sale page content", () => {
+  it("should show top-rated page content", () => {
     //Header
     cy.get('[data-test="header"]').should("exist");
     cy.get('[data-test="header_logo"]').should("exist");
