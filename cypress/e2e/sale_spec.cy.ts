@@ -1,4 +1,4 @@
-describe("gold", () => {
+describe("sale", () => {
   beforeEach(() => {
     cy.intercept(
       "GET",
