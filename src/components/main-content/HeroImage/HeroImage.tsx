@@ -152,8 +152,9 @@ export default function HeroImage({ location }: HeroImageProps) {
       return (
         <div>
           <Image
+            data-test="top-rated-page-hero"
             src="https://images.pexels.com/photos/2529172/pexels-photo-2529172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="A woman holding multiple shopping bags"
+            alt="A woman posing on some stairs"
             fill
             className="object-cover"
           />
