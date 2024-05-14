@@ -9,16 +9,15 @@ describe("single product page", () => {
     );
 
     cy.visit("http://localhost:3000/");
+
+    cy.url().should("eq", "http://localhost:3000/");
+  });
+
+  it("Should show the corrent information for an individual product page", () => {
     cy.intercept("GET", "**/product/2?_rsc=acgkz", {
       fixture: "product_2_data.json",
     }).as("product_2_data");
-
-    cy.url().should("eq", "http://localhost:3000/");
-
     cy.get('[data-test="2-card"]').click();
-  });
-
-  it("", () => {
     cy.wait("@product_2_data");
     cy.url().should("eq", "http://localhost:3000/product/2");
 
