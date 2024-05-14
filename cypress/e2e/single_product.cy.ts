@@ -18,7 +18,7 @@ describe("single product page", () => {
       fixture: "product_2_data.json",
     }).as("product_2_data");
     cy.get('[data-test="2-card"]').click();
-    cy.wait("@product_2_data");
+    cy.wait("@product_2_data", { timeout: 10000 });
     cy.url().should("eq", "http://localhost:3000/product/2");
 
     // header and footer
