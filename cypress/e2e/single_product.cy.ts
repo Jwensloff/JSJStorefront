@@ -19,9 +19,6 @@ describe("single product page", () => {
       retries: 2,
     }).as("product_2_data");
     cy.get('[data-test="2-card"]').click();
-    cy.wait("@product_2_data", { timeout: 10000 }).then((interception) => {
-      console.log(interception); // Log the intercepted request/response
-    });
     cy.url().should("eq", "http://localhost:3000/product/2");
 
     // header and footer
