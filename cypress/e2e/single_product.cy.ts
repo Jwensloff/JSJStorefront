@@ -5,13 +5,10 @@ describe("single product page", () => {
       "https://qclojeseumhphvvxrtog.supabase.co/rest/v1/products?select=*",
       {
         fixture: "landing_page_data.json",
-      },
+      }
     );
 
     cy.visit("http://localhost:3000/");
-  });
-
-  it("", () => {
     cy.intercept("GET", "**/product/2?_rsc=acgkz", {
       fixture: "product_2_data.json",
     }).as("product_2_data");
@@ -19,6 +16,9 @@ describe("single product page", () => {
     cy.url().should("eq", "http://localhost:3000/");
 
     cy.get('[data-test="2-card"]').click();
+  });
+
+  it("", () => {
     cy.wait("@product_2_data");
     cy.url().should("eq", "http://localhost:3000/product/2");
 
@@ -102,7 +102,7 @@ describe("single product page", () => {
       .eq(5)
       .should(
         "contain",
-        "The Henley style round neckline includes a three-button placket",
+        "The Henley style round neckline includes a three-button placket"
       );
   });
 });
