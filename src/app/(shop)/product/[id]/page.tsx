@@ -11,7 +11,7 @@ export default async function Product({ params }: { params: { id: string } }) {
   const shoppingCart = await getShoppingCartItems();
 
   const singleProduct = allProducts?.find(
-    (product) => product.id === Number(params.id)
+    (product) => product.id === Number(params.id),
   );
   const formattedDescription = formatProductDescription(singleProduct);
 

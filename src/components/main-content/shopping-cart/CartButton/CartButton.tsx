@@ -44,7 +44,7 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
 
   const router = useRouter();
   const handleClick = async (
-    singleProduct: CartButtonProps["singleProduct"]
+    singleProduct: CartButtonProps["singleProduct"],
   ) => {
     if (
       (singleProduct.category !== "jewelery" && selectedSize === "") ||
