@@ -44,7 +44,7 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
 
   const router = useRouter();
   const handleClick = async (
-    singleProduct: CartButtonProps["singleProduct"],
+    singleProduct: CartButtonProps["singleProduct"]
   ) => {
     if (
       (singleProduct.category !== "jewelery" && selectedSize === "") ||
@@ -63,9 +63,13 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
   };
   return (
     <>
-      <div className="flex flex-col w-full md:w-2/5 gap-5">
+      <div
+        data-test="cart-button"
+        className="flex flex-col w-full md:w-2/5 gap-5"
+      >
         {singleProduct?.category !== "jewelery" && (
           <Select
+            data-test={`${singleProduct.id}-size-selection`}
             variant="static"
             label="Select Size"
             placeholder={undefined}
@@ -83,6 +87,7 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
           </Select>
         )}
         <Select
+          data-test={`${singleProduct.id}-quantity`}
           variant="static"
           label="Quantity"
           placeholder={undefined}
@@ -98,6 +103,7 @@ export default function CartButton({ singleProduct, cart }: CartButtonProps) {
       </div>
       <div className="flex justify-center items-center mt-5 md:mt-0 md:ml-[10%]">
         <Button
+          data-test="add-to-cart-btn"
           onClick={() => handleClick(singleProduct)}
           size="lg"
           color="gray"
