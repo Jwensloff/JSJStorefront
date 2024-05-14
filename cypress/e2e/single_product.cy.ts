@@ -16,9 +16,12 @@ describe("single product page", () => {
   it("Should show the corrent information for an individual product page", () => {
     cy.intercept("GET", "**/product/2?_rsc=acgkz", {
       fixture: "product_2_data.json",
+      retries: 2,
     }).as("product_2_data");
     cy.get('[data-test="2-card"]').click();
-    cy.wait("@product_2_data", { timeout: 10000 });
+    cy.wait("@product_2_data", { timeout: 10000 }).then((interception) => {
+      console.log(interception); // Log the intercepted request/response
+    });
     cy.url().should("eq", "http://localhost:3000/product/2");
 
     // header and footer
