@@ -28,12 +28,16 @@ export default function HeroImage({ location }: HeroImageProps) {
       return (
         <div>
           <Image
+            data-test="mens-page-hero"
             src="https://images.pexels.com/photos/432059/pexels-photo-432059.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="A black and white photo of a stylish man popping his colar"
+            alt="A black and white photo of a stylish man popping his collar"
             fill
             className="object-cover z-0"
           />
-          <p className="absolute top-[30%] left-[20%] z-10 text-white text-6xl sm:text-9xl">
+          <p
+            data-test="mens-page-hero-text"
+            className="absolute top-[30%] left-[20%] z-10 text-white text-6xl sm:text-9xl"
+          >
             Be <br></br> Auth
             <span className="md:hidden">-</span>
             <br className="md:hidden"></br>
