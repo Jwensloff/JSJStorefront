@@ -12,12 +12,16 @@ export default function HeroImage({ location }: HeroImageProps) {
       return (
         <div>
           <Image
+            data-test="womens-page-hero"
             src="https://images.pexels.com/photos/886404/pexels-photo-886404.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt="A woman sitting on a car"
             fill
             className="object-cover"
           />
-          <div className="absolute text-white text-9xl h-[80%] left-[3rem] flex flex-col justify-evenly">
+          <div
+            data-test="womens-page-hero-text"
+            className="absolute text-white text-9xl h-[80%] left-[3rem] flex flex-col justify-evenly"
+          >
             <p>Find</p>
             <p>Your</p>
             <p>Style</p>
