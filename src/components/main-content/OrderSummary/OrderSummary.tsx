@@ -51,13 +51,18 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
   return (
     <main className="flex flex-col px-2 sm:px-4 lg:px-8 justify-evenly gap-3 lg:gap-8 md:flex-row">
       <div>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form
+          onSubmit={handleSubmit}
+          data-test="form"
+          className="flex flex-col gap-4"
+        >
           <section className="flex flex-col p-4 w-full border-2 border-gray-500 rounded-md">
             <fieldset className="flex flex-col gap-6">
               <legend className="text-lg font-bold pb-4">Delivery</legend>
               <span className="flex flex-col gap-5 md:flex-row justify-between ">
                 <div className="relative w-full">
                   <input
+                    data-test="first-name"
                     required
                     id="first name"
                     placeholder=""
@@ -72,6 +77,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
                 </div>
                 <div className="relative w-full ">
                   <input
+                    data-test="last-name"
                     required
                     id="last name"
                     placeholder=""
@@ -88,6 +94,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <span className="flex flex-col gap-5 md:flex-row justify-between">
                 <div className="relative w-full">
                   <input
+                    data-test="email"
                     type="email"
                     required
                     id="e-mail address"
@@ -103,6 +110,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
                 </div>
                 <div className="relative w-full">
                   <input
+                    data-test="phone-number"
                     type="tel"
                     required
                     id="phone number"
@@ -120,6 +128,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <span>
                 <div className="relative w-full">
                   <input
+                    data-test="street-address"
                     required
                     id="street address"
                     placeholder=""
@@ -136,6 +145,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <span className="flex flex-col gap-5 md:flex-row justify-between">
                 <div className="relative w-full">
                   <input
+                    data-test="city"
                     required
                     id="city"
                     placeholder=""
@@ -150,6 +160,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
                 </div>
                 <div className="relative w-full">
                   <input
+                    data-test="postal-code"
                     required
                     id="postal code"
                     placeholder=""
@@ -166,6 +177,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <span className="flex flex-col gap-5 md:flex-row justify-between">
                 <div className="relative w-full">
                   <input
+                    data-test="country"
                     required
                     id="country"
                     placeholder=""
@@ -180,6 +192,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
                 </div>
                 <div className="relative w-full">
                   <input
+                    data-test="state"
                     required
                     id="state or province"
                     placeholder=""
@@ -197,11 +210,11 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
           </section>
           <section className="flex w-full md:w-[60vw] flex-col p-4 border-2 border-gray-500 rounded-md">
             {data.length > 0 && (
-              <div className="flex justify-center ">
+              <div data-test="cart-products" className="flex justify-center ">
                 <ProductCardContainer shoppingCartItems={data} />
               </div>
             )}
-            <fieldset>
+            <fieldset data-test="shipping">
               <legend className="text-lg font-bold pb-4">
                 {" "}
                 Shipping Method
@@ -266,7 +279,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
             </fieldset>
           </section>
           <section className="flex flex-col p-4 w-full border-2 border-gray-500 rounded-md">
-            <fieldset className="flex flex-col gap-6">
+            <fieldset data-test="payment" className="flex flex-col gap-6">
               <span className="flex justify-between">
                 <legend className="text-lg font-bold pb-4">Payment</legend>
                 <button
@@ -278,7 +291,9 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               </span>
               <div className="relative w-full">
                 <input
+                  data-test="cc"
                   required
+                  readOnly
                   id="credit card number"
                   value={paymentData.cc}
                   placeholder=""
@@ -294,7 +309,9 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
 
               <div className="relative w-full">
                 <input
+                  data-test="name"
                   required
+                  readOnly
                   id="name on card"
                   value={paymentData.name}
                   placeholder=""
@@ -311,7 +328,9 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
               <span className="flex flex-col gap-5 md:flex-row justify-between">
                 <div className="relative w-full">
                   <input
+                    data-test="exp"
                     required
+                    readOnly
                     id="expiration date"
                     value={paymentData.exp}
                     className="py-2 pl-2 w-full border-2 border-gray-500 rounded-md peer  focus:ring-0 focus:border-blue-700"
@@ -325,7 +344,9 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
                 </div>
                 <div className="relative w-full">
                   <input
+                    data-test="cvv"
                     required
+                    readOnly
                     id="CVV"
                     value={paymentData.cvv}
                     placeholder=""
@@ -342,6 +363,7 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
             </fieldset>
           </section>
           <button
+            data-test="submit"
             type="submit"
             className="self-center p-2 w-full md:w-1/2 text-white bg-black border-2 rounded-md"
           >
@@ -349,21 +371,33 @@ export default function OrderSummary({ data }: { data: ShoppingCartProps[] }) {
           </button>
         </form>
       </div>
-      <section className="sticky top-2 py-1 px-4 w-full h-full flex flex-col gap-4 border-2 border-gray-500 rounded-md ">
+      <section
+        data-test="order-summary"
+        className="sticky top-2 py-1 px-4 w-full h-full flex flex-col gap-4 border-2 border-gray-500 rounded-md "
+      >
         <h2 className="font-bold pb-2">Order Summary</h2>
-        <div className="flex flex-row gap-8 justify-between">
+        <div
+          data-test="subtotal"
+          className="flex flex-row gap-8 justify-between"
+        >
           <p>Subtotal</p>
           <p>${subtotalNum}</p>
         </div>
-        <div className="flex flex-row gap-8 justify-between">
+        <div
+          data-test="shipping"
+          className="flex flex-row gap-8 justify-between"
+        >
           <p>Shipping {shippingOption.shippingMethod}</p>
           <p>${shippingOption.price}</p>
         </div>
-        <div className="flex flex-row gap-8 justify-between">
+        <div data-test="tax" className="flex flex-row gap-8 justify-between">
           <p>Sales Tax</p>
           <p>${tax}</p>
         </div>
-        <div className="flex flex-row gap-8 pt-4 border-t-4 border-gray-500 justify-between">
+        <div
+          data-test="total"
+          className="flex flex-row gap-8 pt-4 border-t-4 border-gray-500 justify-between"
+        >
           <p>Total</p>
           <p>${totalPrice}</p>
         </div>

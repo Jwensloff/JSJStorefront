@@ -24,12 +24,14 @@ export default function ProductCardContainer({
         <div className="w-full h-auto flex flex-col gap-5 p-1 md:p-5">
           {sortedData?.map((product: ShoppingCartProps) => (
             <div
+              data-test="products"
               key={product.id}
               className="w-full box-border hover:border-t-blue-gray-400 hover:border-t-2"
             >
               <div className=" w-full flex flex-col sm:flex-row justify-between gap-5 p-1 sm:p-5">
                 <div className="self-center">
                   <Image
+                    data-test="image"
                     src={product.image}
                     alt={product.title}
                     width={100}
@@ -55,7 +57,7 @@ export default function ProductCardContainer({
                       className="text-md flex gap-2"
                     >
                       Price:{" "}
-                      <span>
+                      <span data-test="price">
                         {" "}
                         <Typography
                           placeholder="product price"
@@ -73,7 +75,7 @@ export default function ProductCardContainer({
                         className="text-md flex gap-2"
                       >
                         Size:{" "}
-                        <span>
+                        <span data-test="size">
                           {" "}
                           <Typography placeholder="product size">
                             {product.size.charAt(0).toUpperCase() +
@@ -104,7 +106,7 @@ export default function ProductCardContainer({
                       className="text-md text-right flex gap-2"
                     >
                       Quantity:{" "}
-                      <span>
+                      <span data-test="quantity">
                         {" "}
                         <Typography placeholder="quantity">
                           {product.quantity}

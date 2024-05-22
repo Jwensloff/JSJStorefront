@@ -8,6 +8,9 @@ describe("mens", () => {
       },
     ).as("mens_clothing");
     cy.visit("http://localhost:3000/mens");
+    cy.intercept("GET", "**/product/2?_rsc=1gprc", {
+      fixture: "product_2_data.json",
+    }).as("mens_product");
   });
   it("should show men's page content", () => {
     //Header
@@ -84,9 +87,10 @@ describe("mens", () => {
     });
   });
   it("should show individual product upon click", () => {
-    cy.intercept("GET", "**/product/2?_rsc=1gprc", {
-      fixture: "product_2_data.json",
-    }).as("mens_product");
+    // commenting this out to see if it passes CI/CD
+    // cy.intercept("GET", "**/product/2?_rsc=1gprc", {
+    //   fixture: "product_2_data.json",
+    // }).as("mens_product");
 
     //  Clicking product
     cy.get('[data-test="content-section"]').within(() => {
