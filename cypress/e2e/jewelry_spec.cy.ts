@@ -8,6 +8,9 @@ describe("jewelry", () => {
       },
     ).as("jewelry_data");
     cy.visit("http://localhost:3000/jewelry");
+    cy.intercept("GET", "**/product/7?_rsc=bmzfm", {
+      fixture: "product_7_data.json",
+    }).as("jewelry_product");
   });
   it("should show jewelry page content", () => {
     //Header
@@ -85,9 +88,9 @@ describe("jewelry", () => {
     });
   });
   it("should show individual product upon click", () => {
-    cy.intercept("GET", "**/product/7?_rsc=bmzfm", {
-      fixture: "product_7_data.json",
-    }).as("jewelry_product");
+    // cy.intercept("GET", "**/product/7?_rsc=bmzfm", {
+    //   fixture: "product_7_data.json",
+    // }).as("jewelry_product");
 
     //  Clicking product
     cy.get('[data-test="content-section"]').within(() => {
