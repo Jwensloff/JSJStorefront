@@ -29,7 +29,7 @@ describe("womens", () => {
     cy.get('[data-test ="womens-page-hero"]').should(
       "have.attr",
       "alt",
-      "A woman sitting on a car"
+      "A woman sitting on a car",
     );
     cy.get('[data-test="womens-page-hero-text"]')
       .should("contain", "Find")
@@ -45,20 +45,20 @@ describe("womens", () => {
         .should(
           "have.attr",
           "alt",
-          "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats"
+          "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
         )
         .get('[data-test="6-image"]')
         .should(
           "have.attr",
           "src",
-          "/_next/image?url=https%3A%2F%2Ffakestoreapi.com%2Fimg%2F51Y5NI-I5jL._AC_UX679_.jpg&w=640&q=75"
+          "/_next/image?url=https%3A%2F%2Ffakestoreapi.com%2Fimg%2F51Y5NI-I5jL._AC_UX679_.jpg&w=640&q=75",
         )
         .get(
-          '[data-test="6-individual-product-card"] > .flex-col > :nth-child(3)'
+          '[data-test="6-individual-product-card"] > .flex-col > :nth-child(3)',
         )
         .should("contain", "$56.99")
         .get(
-          '[data-test="6-individual-product-card"] > .flex-col > :nth-child(4)'
+          '[data-test="6-individual-product-card"] > .flex-col > :nth-child(4)',
         )
         .should("contain", "Rating: 2.6 (235)");
 
@@ -69,20 +69,20 @@ describe("womens", () => {
         .should(
           "have.attr",
           "alt",
-          "DANVOUY Womens T Shirt Casual Cotton Short"
+          "DANVOUY Womens T Shirt Casual Cotton Short",
         )
         .get('[data-test="14-image"]')
         .should(
           "have.attr",
           "src",
-          "/_next/image?url=https%3A%2F%2Ffakestoreapi.com%2Fimg%2F61pHAEJ4NML._AC_UX679_.jpg&w=640&q=75"
+          "/_next/image?url=https%3A%2F%2Ffakestoreapi.com%2Fimg%2F61pHAEJ4NML._AC_UX679_.jpg&w=640&q=75",
         )
         .get(
-          '[data-test="14-individual-product-card"] > .flex-col > :nth-child(3)'
+          '[data-test="14-individual-product-card"] > .flex-col > :nth-child(3)',
         )
         .should("contain", "$12.99")
         .get(
-          '[data-test="14-individual-product-card"] > .flex-col > :nth-child(4)'
+          '[data-test="14-individual-product-card"] > .flex-col > :nth-child(4)',
         )
         .should("contain", "Rating: 3.1 (145)");
     });

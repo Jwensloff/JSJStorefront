@@ -6,7 +6,10 @@ export default async function Checkout() {
 
   return (
     <div className="flex flex-col py-4 ">
-      <h1 className="text-center text-lg sm:text-2xl font-bold mb-6">
+      <h1
+        data-test="title"
+        className="text-center text-lg sm:text-2xl font-bold mb-6"
+      >
         Checkout
       </h1>
       <OrderSummary data={data} />
