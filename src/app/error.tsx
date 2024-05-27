@@ -1,7 +1,7 @@
 "use client";
 
 function ErrorPage() {
-  return <div>This is the error page</div>;
+  return <div className="h-screen">This is the error page</div>;
 }
 
 export default ErrorPage;

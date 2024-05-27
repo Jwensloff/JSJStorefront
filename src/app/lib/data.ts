@@ -1,4 +1,5 @@
 import { createClient } from "@/src/utils/supabase/supabaseServer";
+import { redirect } from "next/navigation";
 
 export async function getAllProducts() {
   const supabase = createClient();
@@ -39,11 +40,11 @@ export async function getShoppingCartItems() {
 export async function getCareers() {
   const supabase = createClient();
   const { data: open_jobs, error } = await supabase
-    .from("open_jobs")
+    .from("open_js")
     .select("id,title,description");
 
   if (error) {
-    throw error;
+    redirect("/error");
   }
 
   return open_jobs;
